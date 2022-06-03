@@ -22,11 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
         myRef.setValue("Hello");
 
-            Btn_start=findViewById(R.id.Btn_strat);
+            Btn_start=findViewById(R.id.BtnSkip);
             Btn_start.setOnClickListener(view -> {
                 Intent intent=new Intent(this,LoginPage.class);
                 startActivity(intent);
             });
         }
     }
-}

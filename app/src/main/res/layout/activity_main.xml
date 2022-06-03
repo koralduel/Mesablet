@@ -35,12 +35,14 @@
 
     <TextView
         android:id="@+id/easy_sublet"
-        android:layout_width="121dp"
-        android:layout_height="14dp"
+        android:layout_width="186dp"
+        android:layout_height="19dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:gravity="top"
         android:text="@string/easy_sublet"
+        android:textColor="@color/Blue"
+        android:textSize="14dp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

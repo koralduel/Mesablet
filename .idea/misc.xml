@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/drawable/btn_skip.xml" value="0.1" />
-        <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/activity_login_page.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/activity_main.xml" value="0.17592592592592593" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/drawable/field.xml" value="0.173" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/drawable/rectangle.xml" value="0.173" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_login_page.xml" value="0.176" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_login.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_register.xml" value="0.21770833333333334" />
       </map>
     </option>
   </component>

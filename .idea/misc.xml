@@ -5,9 +5,10 @@
       <map>
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/drawable/field.xml" value="0.173" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/drawable/rectangle.xml" value="0.173" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_home_page.xml" value="0.1671875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_login_page.xml" value="0.176" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_login.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_register.xml" value="0.21770833333333334" />
       </map>
     </option>

@@ -11,4 +11,14 @@
     <string name="login_to_your_account">Login to your Account</string>
     <string name="full_name">Full Name</string>
     <string name="username">Username</string>
+    <string name="hello">Hello,</string>
+    <string name="name">Name</string>
+    <string name="home">Home</string>
+    <string name="booking">Booking</string>
+    <string name="favorites">Favorites</string>
+    <string name="profile">Profile</string>
+    <string name="publisher_name">publisher_name</string>
+    <string name="message">Send Message</string>
+    <string name="add_favorites">Add Favorites</string>
+    <string name="context">Context</string>
 </resources>

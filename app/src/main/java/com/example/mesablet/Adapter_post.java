@@ -60,7 +60,6 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         ImageView publisher_image;
         ImageView post_photos;
         TextView publisher_name,post_context;
-        BottomNavigationView bottomNavigationView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,7 +67,6 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
             post_photos=itemView.findViewById(R.id.IV_card_photo);
             publisher_name=itemView.findViewById(R.id.TV_publisher_name);
             post_context=itemView.findViewById(R.id.Tv_post_content);
-            bottomNavigationView=itemView.findViewById(R.id.bottom_navigation);
         }
     }
 }

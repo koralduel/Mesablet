@@ -10,13 +10,6 @@
         android:contentDescription="@string/home"/>
 
 
-    <item
-        android:id="@+id/booking"
-        android:enabled="true"
-        android:icon="@drawable/ic_booking"
-        android:title="@string/booking"
-        android:contentDescription="@string/booking"
-        />
 
     <item
         android:id="@+id/favorites"
@@ -33,5 +26,13 @@
         android:icon="@drawable/ic_profile"
         android:title="@string/profile"
         android:contentDescription="@string/profile"
+        />
+
+    <item
+        android:id="@+id/logout"
+        android:enabled="true"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout"
+        android:contentDescription="@string/logout"
         />
 </menu>

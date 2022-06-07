@@ -54,11 +54,11 @@
 
     <ImageView
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:id="@+id/IV_card_photo"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="200dp"
         android:src="@drawable/ic_image"/>
 
         <TextView
@@ -70,13 +70,41 @@
             android:text="@string/context"
             android:layout_height="wrap_content"/>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_marginTop="10dp"
-            android:id="@+id/bottom_navigation"
+        <LinearLayout
+            android:id="@+id/LL_bottom_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_post" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_add_favorite"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="55dp"
+                android:textSize="12dp"
+                app:iconSize="12dp"
+                app:iconTint="@color/black"
+                android:layout_height="wrap_content"
+                android:text="@string/add_favorites"
+                app:icon="@drawable/ic_favorite"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                />
+
+            <Button
+                android:id="@+id/btn_send_message"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textSize="12dp"
+                app:iconSize="12dp"
+                app:iconTint="@color/black"
+                android:layout_height="wrap_content"
+                android:text="@string/message"
+                app:icon="@drawable/ic_message"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                />
+
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

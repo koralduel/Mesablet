@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+
         <LinearLayout
             android:id="@+id/LL_top_post_card"
             android:layout_width="match_parent"

@@ -9,17 +9,24 @@ public class Post {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-   private int publisher_image;
+   private String publisher_image;
    private String publisher_name;
-   private int post_photos;
+   private List<String> post_photos;
    private String post_context;
    private int likes;
    private String Address;
    private String Price;
 
+   public Post (Post post){
+       this.publisher_image = post.publisher_image;
+       this.publisher_name = post.publisher_name;
+       this.post_photos = post.post_photos;
+       this.post_context = post.post_context;
+       this.Address = post.Address;
+       this.Price = post.Price;
+   }
 
-
-    public Post(int publisher_image, String publisher_name, int post_photos, String post_context ,String Address, String Price) {
+    public Post(String publisher_image, String publisher_name, int post_photos, String post_context ,String Address, String Price) {
         this.publisher_image = publisher_image;
         this.publisher_name = publisher_name;
         this.post_photos = post_photos;
@@ -28,11 +35,11 @@ public class Post {
         this.Price=Price;
     }
 
-    public int getPublisher_image() {
+    public String getPublisher_image() {
         return publisher_image;
     }
 
-    public void setPublisher_image(int publisher_image) {
+    public void setPublisher_image(String publisher_image) {
         this.publisher_image = publisher_image;
     }
 

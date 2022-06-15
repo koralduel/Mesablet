@@ -21,7 +21,7 @@ public interface PostDao {
     void insert(Post... posts);
 
     @Insert
-    void insertList(List<Post> users);
+    void insertList(List<Post> posts);
 
     @Update
     void update(Post... posts);

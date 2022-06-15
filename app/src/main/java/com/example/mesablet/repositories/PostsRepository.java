@@ -23,13 +23,13 @@ public class PostsRepository {
         LocalDatabase db = LocalDatabase.getInstance();
         dao = db.postDao();
         postListData = new PostListData();
-        fireBase = new FireBase();
+        fireBase = new FireBase(dao,postListData);
 
     }
 
 
 
-    class PostListData extends MutableLiveData<List<Post>> {
+    public class PostListData extends MutableLiveData<List<Post>> {
 
         public PostListData() {
             super();

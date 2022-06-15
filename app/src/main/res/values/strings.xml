@@ -25,5 +25,5 @@
     <string name="price">Price</string>
     <string name="enter_price">Enter_Price</string>
     <string name="description">Description</string>
-    <string name="MesabletDB">MesabletDB</string>
+    <string name="LocalDB">LocalDB</string>
 </resources>

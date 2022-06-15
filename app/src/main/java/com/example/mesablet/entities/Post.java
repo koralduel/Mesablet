@@ -9,39 +9,44 @@ public class Post {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-   private String publisher_image;
+   private String publisher_image_path;
    private String publisher_name;
-   private List<String> post_photos;
+   private String post_photos_path;
    private String post_context;
    private int likes;
    private String Address;
    private String Price;
 
    public Post (Post post){
-       this.publisher_image = post.publisher_image;
+       this.publisher_image_path = post.publisher_image_path;
        this.publisher_name = post.publisher_name;
-       this.post_photos = post.post_photos;
+       this.post_photos_path = post.post_photos_path;
        this.post_context = post.post_context;
        this.Address = post.Address;
        this.Price = post.Price;
    }
 
-    public Post(String publisher_image, String publisher_name, int post_photos, String post_context ,String Address, String Price) {
-        this.publisher_image = publisher_image;
+    public Post(String publisher_image_path, String publisher_name, String post_photos_path, String post_context, int likes, String address, String price) {
+        this.publisher_image_path = publisher_image_path;
         this.publisher_name = publisher_name;
-        this.post_photos = post_photos;
+        this.post_photos_path = post_photos_path;
         this.post_context = post_context;
-        this.Address=Address;
-        this.Price=Price;
+        this.likes = likes;
+        Address = address;
+        Price = price;
     }
 
-    public String getPublisher_image() {
-        return publisher_image;
+    public String getPublisher_image_path() {
+        return publisher_image_path;
     }
 
-    public void setPublisher_image(String publisher_image) {
-        this.publisher_image = publisher_image;
+    public void setPublisher_image_path(String publisher_image_path) {this.publisher_image_path = publisher_image_path;}
+
+    public String getPost_photos_path() {
+        return post_photos_path;
     }
+
+    public void setPost_photos_path(String post_photos_path) {this.post_photos_path = post_photos_path;}
 
     public String getPublisher_name() {
         return publisher_name;
@@ -51,13 +56,6 @@ public class Post {
         this.publisher_name = publisher_name;
     }
 
-    public int getPost_photos() {
-        return post_photos;
-    }
-
-    public void setPost_photos(int post_photos) {
-        this.post_photos = post_photos;
-    }
 
     public String getPost_context() {
         return post_context;

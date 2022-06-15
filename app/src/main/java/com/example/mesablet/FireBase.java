@@ -1,6 +1,7 @@
 package com.example.mesablet;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -34,12 +35,15 @@ public class FireBase {
     public void add(Post post){
 
        dataRef.child(String.valueOf(post.getId())).setValue(post);
+       storageRef.child(String.valueOf(post.getId())).child("Publisher_image").putBytes(post.getPublisher_image());
+       storageRef.child(String.valueOf(post.getId())).child("Post_image").putBytes(post.getPost_photos());
 
    }
 
    public void delete(Post post){
 
        dataRef.child(String.valueOf(post.getId())).removeValue();
+       storageRef.child(String.valueOf(post.getId())).delete();
    }
 
    public void reload(){
@@ -59,6 +63,11 @@ public class FireBase {
                Log.d("Error","Cannot refresh new posts");
            }
        });
+
+   }
+
+   public int[][] getPhotoBitmap(String path){
+
    }
 
 

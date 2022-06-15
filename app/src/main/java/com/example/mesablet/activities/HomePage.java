@@ -2,9 +2,11 @@ package com.example.mesablet.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -15,6 +17,12 @@ import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +32,10 @@ public class HomePage extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     Adapter_post adapter;
     BottomNavigationView bottomNavigationView;
+    TextView TV_Name;
+    FirebaseUser user;
+
+    DatabaseReference databaseReference;
     private PostsViewModel viewModel;
 
     @Override
@@ -31,8 +43,14 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         firebaseAuth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         bottomNavigationView=findViewById(R.id.bottom_navigation);
-        viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
+
+
+        TV_Name = findViewById(R.id.TV_Name);
+        TV_Name.setText(user.getDisplayName());
+
+     //   viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
 
         bottomNavigationView.setOnNavigationItemReselectedListener(item ->{
             if(item.getTitle().equals("Home")){

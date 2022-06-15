@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.mesablet.activities.LoginPage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -71,7 +72,7 @@ public class RegisterFragment extends Fragment {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getActivity(),"User Created",Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(getActivity(),LoginPage.class));
+                        startActivity(new Intent(getActivity(), LoginPage.class));
                     }else{
                         Toast.makeText(getActivity(),"Registration Error: "+task.getException().getMessage(),Toast.LENGTH_LONG).show();
                     }

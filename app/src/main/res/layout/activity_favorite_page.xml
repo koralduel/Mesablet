@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Favorite_page">
+    tools:context=".activities.Favorite_page">
 
     <TextView
         android:id="@+id/textView2"

@@ -19,6 +19,11 @@
     <string name="publisher_name">publisher_name</string>
     <string name="message">Send Message</string>
     <string name="add_favorites">Add Favorites</string>
-    <string name="context">Context</string>
     <string name="logout">Logout</string>
+    <string name="address">Address</string>
+    <string name="enter_address">Enter_Address</string>
+    <string name="price">Price</string>
+    <string name="enter_price">Enter_Price</string>
+    <string name="description">Description</string>
+    <string name="MesabletDB">MesabletDB</string>
 </resources>

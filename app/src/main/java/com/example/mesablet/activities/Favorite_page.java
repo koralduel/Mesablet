@@ -1,8 +1,10 @@
-package com.example.mesablet;
+package com.example.mesablet.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.mesablet.R;
 
 public class Favorite_page extends AppCompatActivity {
 

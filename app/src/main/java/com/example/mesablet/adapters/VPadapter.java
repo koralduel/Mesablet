@@ -1,4 +1,4 @@
-package com.example.mesablet;
+package com.example.mesablet.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

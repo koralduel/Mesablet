@@ -1,4 +1,4 @@
-package com.example.mesablet;
+package com.example.mesablet.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -6,6 +6,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.example.mesablet.LoginFragment;
+import com.example.mesablet.R;
+import com.example.mesablet.RegisterFragment;
+import com.example.mesablet.adapters.VPadapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class LoginPage extends AppCompatActivity {

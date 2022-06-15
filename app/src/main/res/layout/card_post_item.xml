@@ -63,13 +63,62 @@
         android:layout_height="200dp"
         android:src="@drawable/ic_image"/>
 
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/LL_Address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/TV_Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/address"/>
+
+            <TextView
+                android:id="@+id/TV_Enter_Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="@string/enter_address"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/LL_Price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/TV_Price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/price"/>
+
+            <TextView
+                android:id="@+id/TV_Enter_Price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/enter_price"/>
+
+        </LinearLayout>
+
         <TextView
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="15dp"
             android:id="@+id/Tv_post_content"
             android:layout_width="match_parent"
-            android:text="@string/context"
+            android:text="@string/description"
             android:layout_height="wrap_content"/>
 
         <LinearLayout

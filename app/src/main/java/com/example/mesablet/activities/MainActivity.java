@@ -1,15 +1,14 @@
-package com.example.mesablet;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.mesablet.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mesablet.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
             Btn_start=findViewById(R.id.BtnSkip);
             Btn_start.setOnClickListener(view -> {
-                Intent intent=new Intent(this,LoginPage.class);
+                Intent intent=new Intent(this, LoginPage.class);
                 startActivity(intent);
             });
         }
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user != null){
-            startActivity(new Intent(this,HomePage.class));
+            startActivity(new Intent(this, HomePage.class));
         }
     }
 }

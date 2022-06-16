@@ -95,6 +95,8 @@ public class RegisterFragment extends Fragment {
                         Toast.makeText(getActivity(), "User Created", Toast.LENGTH_LONG).show();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         String userID = user.getUid();
+                        uploadProfilePhoto(userID);
+                        imageUri=Uri.parse(storageReference.child("Users").child(userID).toString());
                         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
 
                         HashMap<String, String> hashMap = new HashMap<>();
@@ -124,9 +126,9 @@ public class RegisterFragment extends Fragment {
 
         }
 
-    private void uploadProfilePhoto() {
+    private void uploadProfilePhoto(String userID) {
 
-        storageReference = FirebaseStorage.getInstance().getReference("Users/"+uid);
+        storageReference = FirebaseStorage.getInstance().getReference("Users").child(userID);
         storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

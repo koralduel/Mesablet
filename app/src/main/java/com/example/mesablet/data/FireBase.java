@@ -1,5 +1,6 @@
-package com.example.mesablet;
+package com.example.mesablet.data;
 
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,11 +24,31 @@ public class FireBase {
 
    private StorageReference storageRef = FirebaseStorage.getInstance().getReference();
    private FirebaseDatabase dateBase = FirebaseDatabase.getInstance();
-   DatabaseReference dataRef = dateBase.getReference("Posts");
+   private DatabaseReference dataRef = dateBase.getReference("Posts");
+
    private PostDao dao;
    private PostsRepository.PostListData postListData;
 
     public FireBase(PostDao dao, PostsRepository.PostListData postListData) {
+       dataRef.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+               List<Post> posts = new ArrayList<>();
+               for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                   Post post = dataSnapshot.getValue(Post.class);
+                   posts.add(post);
+               }
+               postListData.setValue(posts);
+               new Thread(()->{
+                   dao.clear();
+                   dao.insertList(posts);
+               }).start();
+           }
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Error","Failed to change data in dao");
+           }
+       });
         this.dao=dao;
         this.postListData=postListData;
     }
@@ -35,8 +56,8 @@ public class FireBase {
     public void add(Post post){
 
        dataRef.child(String.valueOf(post.getId())).setValue(post);
-       storageRef.child(String.valueOf(post.getId())).child("Publisher_image").putBytes(post.getPublisher_image());
-       storageRef.child(String.valueOf(post.getId())).child("Post_image").putBytes(post.getPost_photos());
+       storageRef.child(String.valueOf(post.getId())).child("Publisher_image").putFile(Uri.parse(post.getPublisher_image_path()));
+       storageRef.child(String.valueOf(post.getId())).child("Post_image").putFile(Uri.parse(post.getPost_photos_path()));
 
    }
 
@@ -46,7 +67,7 @@ public class FireBase {
        storageRef.child(String.valueOf(post.getId())).delete();
    }
 
-   public void reload(){
+   /*public void reload(){
        dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -64,11 +85,11 @@ public class FireBase {
            }
        });
 
-   }
+   }*/
 
-   public int[][] getPhotoBitmap(String path){
+   /*public int[][] getPhotoBitmap(String path){
 
-   }
+   }*/
 
 
 }

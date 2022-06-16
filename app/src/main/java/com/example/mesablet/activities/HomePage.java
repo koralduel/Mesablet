@@ -1,12 +1,14 @@
 package com.example.mesablet.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -35,8 +37,8 @@ public class HomePage extends AppCompatActivity {
     TextView TV_Name;
     FirebaseUser user;
 
-    DatabaseReference databaseReference;
     private PostsViewModel viewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class HomePage extends AppCompatActivity {
         TV_Name = findViewById(R.id.TV_Name);
         TV_Name.setText(user.getDisplayName());
 
-     //   viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
+   //     viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
 
         bottomNavigationView.setOnNavigationItemReselectedListener(item ->{
             if(item.getTitle().equals("Home")){
@@ -72,8 +74,9 @@ public class HomePage extends AppCompatActivity {
 
 
         List<Post> posts =new ArrayList<>();
-
-        posts.add(new Post("123","koral duel",android.R.drawable.ic_dialog_email,"new post","Ashkenazi 68,Tel Aviv","50-60"));
+        Uri image = Uri.parse("android.resource://com.example.mesablet/drawable/ic_image");
+        Uri profilePhoto = Uri.parse("android.resource://com.example.mesablet/drawable/ic_image");
+        posts.add(new Post(profilePhoto.toString(),"koral duel",image.toString(),"new post",0,"Ashkenazi 68,Tel Aviv","50-60"));
         RecyclerView recyclerView = findViewById(R.id.RV_post);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter =new Adapter_post(this,posts);
@@ -81,15 +84,18 @@ public class HomePage extends AppCompatActivity {
 
         //refresh refresh layout -reload new data
         SwipeRefreshLayout refreshLayout=findViewById(R.id.refreshlayout);
-        refreshLayout.setOnRefreshListener(()->{
-            viewModel.reload();
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.notifyDataSetChanged();
+                refreshLayout.setRefreshing(false);
+            }
         });
 
-
-        viewModel.get().observe(this,p->{
+    /*    viewModel.get().observe(this,p->{
             adapter.setPosts(p);
             refreshLayout.setRefreshing(false);
-        });
+        });*/
 
     }
 }

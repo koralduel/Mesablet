@@ -35,7 +35,7 @@ import com.google.firebase.storage.UploadTask;
 public class RegisterFragment extends Fragment {
 
     private static final int GALLERY_CODE = 1;
-    TextInputEditText username_value,fullname_value,email_value,password_value;
+    TextInputEditText fullname_value,email_value,password_value;
     ImageView upload_profile_btn;
     Button BtnRegister;
     private Uri imageUri = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
@@ -54,7 +54,6 @@ public class RegisterFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_register, container, false);
 
-        username_value = view.findViewById(R.id.username_value);
         fullname_value = view.findViewById(R.id.fullname_value);
         email_value = view.findViewById(R.id.email_value);
         password_value = view.findViewById(R.id.password_value);
@@ -81,16 +80,11 @@ public class RegisterFragment extends Fragment {
 
     private void createUser() {
 
-        String username = username_value.getText().toString();
         String fullname = fullname_value.getText().toString();
         String email = email_value.getText().toString();
         String password = password_value.getText().toString();
-        String profile_photo = imageUri.toString();
 
-        if(TextUtils.isEmpty(username)){
-            username_value.setError("Username cannot be null");
-            username_value.requestFocus();
-        }else if(TextUtils.isEmpty(fullname)) {
+        if(TextUtils.isEmpty(fullname)) {
             fullname_value.setError("Full Name cannot be null");
             fullname_value.requestFocus();
         }else if(TextUtils.isEmpty(email)) {
@@ -109,16 +103,18 @@ public class RegisterFragment extends Fragment {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                 .setDisplayName(fullname)
+                                .setPhotoUri(imageUri)
                                 .build();
                         user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful())
                                     Log.d("Success","Profile Updated");
+                                uid = user.getUid();
+                                uploadProfilePhoto();
+                                startActivity(new Intent(getActivity(), LoginPage.class));
                             }
                         });
-                        uploadProfilePhoto();
-                        startActivity(new Intent(getActivity(), LoginPage.class));
                     }else{
                         Toast.makeText(getActivity(),"Registration Error: "+task.getException().getMessage(),Toast.LENGTH_LONG).show();
                     }

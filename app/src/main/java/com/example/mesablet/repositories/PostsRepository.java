@@ -4,7 +4,7 @@ package com.example.mesablet.repositories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.mesablet.FireBase;
+import com.example.mesablet.data.FireBase;
 import com.example.mesablet.data.LocalDatabase;
 import com.example.mesablet.data.PostDao;
 import com.example.mesablet.entities.Post;
@@ -59,9 +59,9 @@ public class PostsRepository {
         fireBase.delete(post);
     }
 
-    public void reload() {
+    /*public void reload() {
         fireBase.reload();
-    }
+    }*/
 }
 
 

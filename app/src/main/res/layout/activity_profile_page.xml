@@ -41,6 +41,140 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/LL_top_profile"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="250dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CV_profilePhoto"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="250dp">
+
+                <ImageView
+                    android:id="@+id/IV_profilePhoto"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_foreground" />
+
+            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/Tv_FullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/full_name"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="16dp">
+        </TextView>
+
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:id="@+id/LL_Posts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="70dp">
+
+            <TextView
+                android:id="@+id/TV_posts_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/TV_posts_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/posts"
+                android:textSize="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:id="@+id/LL_Likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="70dp">
+
+            <TextView
+                android:id="@+id/TV_likes_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_0"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/TV_likes_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/likes"
+                android:textSize="15dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LL_top_profile">
+
+        <Button
+            android:id="@+id/Btn_Edit_Profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_profile"
+            android:textSize="14dp"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            style="?attr/materialButtonOutlinedStyle"
+            app:strokeWidth="1dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"/>
+
+        <Button
+            android:id="@+id/Btn_sent_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send Message"
+            android:textSize="14dp"
+            android:layout_weight="1"
+            android:layout_marginRight="50dp"
+            android:textAllCaps="false"
+            style="?attr/materialButtonOutlinedStyle"
+            android:textColor="@color/black"
+            app:strokeWidth="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"/>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

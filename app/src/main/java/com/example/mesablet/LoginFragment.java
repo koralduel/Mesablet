@@ -2,16 +2,15 @@ package com.example.mesablet;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.example.mesablet.activities.HomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,32 +39,36 @@ public class LoginFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         BtnLogin.setOnClickListener(view1 -> {
-            loginUser();
+            String email = email_value.getText().toString();
+            String password = password_value.getText().toString();
+            if (TextUtils.isEmpty(email)) {
+                email_value.setError("Email cannot be null");
+                email_value.requestFocus();
+            } else if (TextUtils.isEmpty(password)) {
+                password_value.setError("Password cannot be null");
+                password_value.requestFocus();
+            }
+            else{
+                loginUser(email,password);
+            }
         });
         return view;
     }
 
-    private void loginUser() {
-        String email = email_value.getText().toString();
-        String password = password_value.getText().toString();
-        if (TextUtils.isEmpty(email)) {
-            email_value.setError("Email cannot be null");
-            email_value.requestFocus();
-        } else if (TextUtils.isEmpty(password)) {
-            password_value.setError("Password cannot be null");
-            password_value.requestFocus();
-        }else{
+    private void loginUser(String email, String password) {
             firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getActivity(),"Login Success",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getActivity(), HomePage.class));
+                        Intent intent=new Intent(getActivity(), HomePage.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+
                     }else {
-                        Toast.makeText(getActivity(),"Login Error",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"Login Error: "+task.getException().toString(),Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
     }
-}

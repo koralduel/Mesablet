@@ -3,19 +3,16 @@ package com.example.mesablet;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.mesablet.activities.LoginPage;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,12 +22,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
 
 public class RegisterFragment extends Fragment {
 
@@ -61,11 +59,22 @@ public class RegisterFragment extends Fragment {
         upload_profile_btn = view.findViewById(R.id.upload_profile_btn);
 
         mAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
 
 
         BtnRegister.setOnClickListener(view1 -> {
-            createUser();
+            String txt_fullName=fullname_value.getText().toString();
+            String txt_email=email_value.getText().toString();
+            String txt_password=password_value.getText().toString();
+            if( txt_fullName.equals(null) || txt_email.equals(null) || txt_password.equals(null) ){
+                Toast.makeText(getActivity(), R.string.fileds_required,Toast.LENGTH_SHORT).show();
+            }
+            else if(txt_password.length()<6){
+                Toast.makeText(getActivity(), R.string.password_error,Toast.LENGTH_SHORT).show();
+            }
+            else {
+                createUser(txt_fullName,txt_email,txt_password);
+            }
         });
 
         upload_profile_btn.setOnClickListener(view1 -> {
@@ -78,51 +87,42 @@ public class RegisterFragment extends Fragment {
         return view;
     }
 
-    private void createUser() {
-
-        String fullname = fullname_value.getText().toString();
-        String email = email_value.getText().toString();
-        String password = password_value.getText().toString();
-
-        if(TextUtils.isEmpty(fullname)) {
-            fullname_value.setError("Full Name cannot be null");
-            fullname_value.requestFocus();
-        }else if(TextUtils.isEmpty(email)) {
-            email_value.setError("Email cannot be null");
-            email_value.requestFocus();
-        }else if(TextUtils.isEmpty(password)) {
-            password_value.setError("Password cannot be null");
-            password_value.requestFocus();
-        }else{
-
+    private void createUser(String fullname,String email,String password) {
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(getActivity(),"User Created",Toast.LENGTH_LONG).show();
+                    if(task.isSuccessful()) {
+                        Toast.makeText(getActivity(), "User Created", Toast.LENGTH_LONG).show();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(fullname)
-                                .setPhotoUri(imageUri)
-                                .build();
-                        user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        String userID = user.getUid();
+                        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
+
+                        HashMap<String, String> hashMap = new HashMap<>();
+                        hashMap.put("id", userID);
+                        hashMap.put("fullname", fullname);
+                        hashMap.put("email", email);
+                        hashMap.put("profileImageUri", imageUri.toString());
+
+                        databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful())
-                                    Log.d("Success","Profile Updated");
-                                uid = user.getUid();
-                                uploadProfilePhoto();
-                                startActivity(new Intent(getActivity(), LoginPage.class));
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getActivity(), R.string.registerSuccessfully, Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getActivity(), LoginPage.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                }
                             }
                         });
                     }else{
-                        Toast.makeText(getActivity(),"Registration Error: "+task.getException().getMessage(),Toast.LENGTH_LONG).show();
-                    }
+                            Toast.makeText(getActivity(), R.string.errorRegister,Toast.LENGTH_LONG).show();
+                        }
+
                 }
+
             });
 
         }
-    }
 
     private void uploadProfilePhoto() {
 

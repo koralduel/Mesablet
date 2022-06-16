@@ -29,4 +29,12 @@
     <string name="user_name">UserName</string>
     <string name="add_post">Add post</string>
     <string name="messenger">messenger</string>
+    <string name="posts">Posts</string>
+    <string name="_0">0</string>
+    <string name="likes">Likes</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="fileds_required">All fileds are required</string>
+    <string name="password_error">password must be at least 6 characters</string>
+    <string name="registerSuccessfully">Register Successfully</string>
+    <string name="errorRegister">You cannot register with this email or password</string>
 </resources>

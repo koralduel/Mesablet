@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/new_post"
+        android:icon="@drawable/ic_add"
+        android:title="@string/add_post"
+        android:contentDescription="@string/add_post"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/messenger"
+        android:icon="@drawable/ic_messenger"
+        android:title="@string/messenger"
+        android:contentDescription="@string/messenger"
+        app:showAsAction="ifRoom" />
+
+
+</menu>

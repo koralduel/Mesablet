@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mesablet">
         <activity
+            android:name=".activities.MessagePage"
+            android:exported="false" />
+        <activity
             android:name=".activities.PostPage"
             android:exported="false" />
         <activity

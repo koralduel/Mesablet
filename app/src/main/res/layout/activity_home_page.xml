@@ -15,108 +15,74 @@
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/LL_logo_name"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/IVLogo"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/mesublet_logo" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Surface"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/top_app_bar"
+                app:titleTextColor="@color/appBlue">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mesublet_logo"
+                    android:layout_marginRight="200dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity=""/>
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <TextView
-                android:id="@+id/TVMesablet"
-                android:layout_width="wrap_content"
-                android:layout_height="21dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="55dp"
-                android:text="@string/app_name"
-                android:textSize="15dp"
-                android:textStyle="bold" />
 
-        </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LL_Welcome_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <TextView
-            android:id="@+id/TV_Hello"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello"
-            android:textSize="35dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/TV_Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name"
-            android:textSize="35dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="5dp"
-            android:textStyle="bold"/>
-    </LinearLayout>
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/Search_View"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/search_bar"
             android:layout_marginBottom="5dp"/>
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/line_1"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/line_1"
-        app:layout_constraintBottom_toBottomOf="@+id/LL_Top_HomePage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_marginTop="10dp"
-        android:id="@+id/refreshlayout"
-        android:layout_width="412dp"
-        android:layout_height="452dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LL_Top_HomePage">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RV_post"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
+            android:id="@+id/refreshlayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_height="452dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LL_Top_HomePage" />
+            app:layout_constraintTop_toBottomOf="@+id/LL_Top_HomePage">
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RV_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/LL_Top_HomePage" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
 
     <LinearLayout
@@ -126,7 +92,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-        ...
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"

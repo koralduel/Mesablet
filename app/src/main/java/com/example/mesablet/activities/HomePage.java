@@ -40,13 +40,9 @@ public class HomePage extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         bottomNavigationView=findViewById(R.id.bottom_navigation);
 
-
-        TV_Name = findViewById(R.id.TV_Name);
-        TV_Name.setText(user.getDisplayName());
-
    //     viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
 
-        bottomNavigationView.setOnNavigationItemReselectedListener(item ->{
+        bottomNavigationView.setOnNavigationItemSelectedListener(item ->{
             if(item.getTitle().equals("Home")){
                 //stay in this page
             }
@@ -62,7 +58,8 @@ public class HomePage extends AppCompatActivity {
                 firebaseAuth.signOut();
                 startActivity(new Intent(this, LoginPage.class));
             }
-                });
+            return true;
+        });
 
 
         List<Post> posts =new ArrayList<>();

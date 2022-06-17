@@ -39,4 +39,7 @@
     <string name="errorRegister">You cannot register with this email or password</string>
     <string name="type_a_message">Type a message</string>
     <string name="chat">Chat</string>
+    <string name="new_post">New Post</string>
+    <string name="enter_you_description">Enter you Description...</string>
+    <string name="create">Create</string>
 </resources>

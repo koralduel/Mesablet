@@ -16,6 +16,9 @@
             android:name=".activities.chat"
             android:exported="false" />
         <activity
+            android:name=".activities.CreatePost"
+            android:exported="false" />
+        <activity
             android:name=".activities.MessagePage"
             android:exported="false" />
         <activity

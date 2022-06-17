@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,6 +18,7 @@ import com.example.mesablet.R;
 import com.example.mesablet.adapters.Adapter_post;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,8 +31,8 @@ public class HomePage extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     Adapter_post adapter;
     BottomNavigationView bottomNavigationView;
-    TextView TV_Name;
     FirebaseUser user;
+    MaterialToolbar topAppBar;
 
     private PostsViewModel viewModel;
 
@@ -42,8 +44,21 @@ public class HomePage extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         bottomNavigationView=findViewById(R.id.bottom_navigation);
+        topAppBar = findViewById(R.id.topAppBar);
 
         viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
+
+        topAppBar.setOnMenuItemClickListener(menuItem -> {
+            if(menuItem.getTitle().equals("Add post")) {
+                Intent intent = new Intent(this, CreatePost.class);
+                startActivity(intent);
+            }
+            if(menuItem.getTitle().equals("messenger")){
+                Intent intent = new Intent(this,MessagePage.class);
+                startActivity(intent);
+            }
+            return true;
+        });
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item ->{
             if(item.getTitle().equals("Home")){

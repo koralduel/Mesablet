@@ -52,7 +52,7 @@ public class HomePage extends AppCompatActivity {
                 startActivity(intent);
             }
             if(menuItem.getTitle().equals("messenger")){
-                Intent intent = new Intent(this,MessagePage.class);
+                Intent intent = new Intent(this,ChatActivity.class);
                 startActivity(intent);
             }
             return true;

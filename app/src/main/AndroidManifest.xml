@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mesablet">
         <activity
-            android:name=".activities.chat"
+            android:name=".activities.ChatActivity"
             android:exported="false" />
         <activity
             android:name=".activities.CreatePost"

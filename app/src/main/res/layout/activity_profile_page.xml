@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,31 +25,18 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:id="@+id/bottomMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_app_bar" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/LL_top_profile"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.cardview.widget.CardView
             android:layout_width="50dp"
@@ -80,101 +67,144 @@
             android:id="@+id/Tv_FullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/full_name"
-            android:layout_marginTop="45dp"
             android:layout_marginLeft="10dp"
-            android:textSize="16dp">
-        </TextView>
+            android:layout_marginTop="45dp"
+            android:text="@string/full_name"
+            android:textSize="16dp"></TextView>
 
         <LinearLayout
-            android:layout_marginTop="25dp"
             android:id="@+id/LL_Posts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="70dp">
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/TV_posts_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
                 android:layout_marginLeft="10dp"
+                android:text="0"
                 android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/TV_posts_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/posts"
-                android:textSize="15dp"/>
+                android:textSize="15dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="25dp"
             android:id="@+id/LL_Likes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="70dp">
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/TV_likes_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_0"
                 android:layout_marginLeft="10dp"
+                android:text="@string/_0"
                 android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/TV_likes_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/likes"
-                android:textSize="15dp"/>
+                android:textSize="15dp" />
 
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/LL_Buttons_profile"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/LL_top_profile"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="horizontal"
+        app:="@+id/LL_top_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LL_top_profile">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/Btn_Edit_Profile"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit_profile"
-            android:textSize="14dp"
-            android:layout_weight="1"
-            android:textAllCaps="false"
-            style="?attr/materialButtonOutlinedStyle"
-            app:strokeWidth="1dp"
-            android:textColor="@color/black"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:text="@string/edit_profile"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:strokeWidth="1dp" />
 
         <Button
             android:id="@+id/Btn_sent_message"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send Message"
-            android:textSize="14dp"
-            android:layout_weight="1"
-            android:layout_marginRight="50dp"
-            android:textAllCaps="false"
-            style="?attr/materialButtonOutlinedStyle"
-            android:textColor="@color/black"
-            app:strokeWidth="1dp"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="1"
+            android:text="Send Message"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:strokeWidth="1dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/gridLayout_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomMenu_profile"
+        android:layout_below="@id/LL_Buttons_profile">
+
+        <GridView
+            android:id="@+id/photoGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:horizontalSpacing="4dp"
+            android:numColumns="3"
+            android:verticalSpacing="4dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomMenu_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_app_bar" />
+
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

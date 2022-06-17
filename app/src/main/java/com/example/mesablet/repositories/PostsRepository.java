@@ -59,9 +59,7 @@ public class PostsRepository {
         fireBase.delete(post);
     }
 
-    /*public void reload() {
-        fireBase.reload();
-    }*/
+    public void reload() { fireBase.reload(); }
 }
 
 

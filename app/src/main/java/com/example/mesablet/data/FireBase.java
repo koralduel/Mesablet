@@ -2,11 +2,9 @@ package com.example.mesablet.data;
 
 import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.mesablet.data.PostDao;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.repositories.PostsRepository;
 import com.google.firebase.database.DataSnapshot;
@@ -67,7 +65,7 @@ public class FireBase {
        storageRef.child(String.valueOf(post.getId())).delete();
    }
 
-   /*public void reload(){
+   public void reload(){
        dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -85,7 +83,7 @@ public class FireBase {
            }
        });
 
-   }*/
+   }
 
    /*public int[][] getPhotoBitmap(String path){
 

@@ -37,4 +37,5 @@
     <string name="password_error">password must be at least 6 characters</string>
     <string name="registerSuccessfully">Register Successfully</string>
     <string name="errorRegister">You cannot register with this email or password</string>
+    <string name="type_a_message">Type a message</string>
 </resources>

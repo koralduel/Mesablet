@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -40,7 +41,7 @@ public class HomePage extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         bottomNavigationView=findViewById(R.id.bottom_navigation);
 
-   //     viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
+        viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item ->{
             if(item.getTitle().equals("Home")){

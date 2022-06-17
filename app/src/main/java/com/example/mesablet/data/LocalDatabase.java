@@ -21,7 +21,7 @@ public abstract class LocalDatabase extends RoomDatabase {
         if (instance == null) {
             instance = Room.databaseBuilder(mesablet.context.getApplicationContext(),
                     LocalDatabase.class,
-                    mesablet.context.getString(R.string.dblocal)).build();
+                    mesablet.context.getString(R.string.localDb)).build();
         }
         return instance;
     }

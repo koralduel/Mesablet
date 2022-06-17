@@ -1,8 +1,6 @@
 package com.example.mesablet.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,27 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mesablet.R;
+import com.example.mesablet.data.FireBase;
 import com.example.mesablet.entities.Post;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
 
     private LayoutInflater layoutInflater;
     private List<Post> data;
-    StorageReference storageReference;
-    Bitmap bitmap = null;
+    ;
+
 
     public Adapter_post(Context layoutInflater, List<Post> data) {
         this.layoutInflater =  LayoutInflater.from(layoutInflater);
         this.data = data;
-        storageReference = FirebaseStorage.getInstance().getReference();
     }
 
     @NonNull
@@ -59,35 +51,14 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         viewHolder.post_Price.setText(post_Price);
 
         String publisher_image = data.get(i).getPublisher_image_path();
-        downloadImage(data.get(i).getId(),"Publisher_image",publisher_image);
-        if(bitmap != null)
-            viewHolder.publisher_image.setImageBitmap(bitmap);
+        FireBase.downloadImage("Users",data.get(i).getId(),"Publisher_image",publisher_image,viewHolder.publisher_image);
 
         String post_photos = data.get(i).getPost_photos_path();
-        downloadImage(data.get(i).getId(),"Post_image",post_photos);
-        if(bitmap != null)
-            viewHolder.post_photos.setImageBitmap(bitmap);
-
-
+        FireBase.downloadImage("Posts",data.get(i).getId(),"Post_image",post_photos,viewHolder.post_photos);
 
     }
 
-    private void downloadImage(String id, String type, String publisher_image)
-    {
-        storageReference.child(id).child(type).child(publisher_image);
-        try {
-            bitmap = null;
-            File localFile = File.createTempFile("tempfile",".jpeg");
-            storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
 
     public void setPosts(List<Post> s){

@@ -15,8 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.mesablet.activities.HomePage;
+import com.example.mesablet.data.FireBase;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
@@ -24,9 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
@@ -95,8 +93,8 @@ public class RegisterFragment extends Fragment {
                         Toast.makeText(getActivity(), "User Created", Toast.LENGTH_LONG).show();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         String userID = user.getUid();
-                        uploadProfilePhoto(userID);
-                        imageUri=Uri.parse(storageReference.child("Users").child(userID).toString());
+                        imageUri=Uri.parse(storageReference.child("Users").child(userID).child("ProfileImg").toString());
+                        FireBase.uploadProfilePhoto("Users",userID,"ProfileImg",imageUri);
                         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
 
                         HashMap<String, String> hashMap = new HashMap<>();
@@ -126,17 +124,6 @@ public class RegisterFragment extends Fragment {
 
         }
 
-    private void uploadProfilePhoto(String userID) {
-
-        storageReference = FirebaseStorage.getInstance().getReference("Users").child(userID);
-        storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(getActivity(),"Upload success",Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

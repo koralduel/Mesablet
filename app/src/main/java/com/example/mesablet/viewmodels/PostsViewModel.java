@@ -15,7 +15,7 @@ public class PostsViewModel extends ViewModel {
     private LiveData<List<Post>> posts;
 
     public PostsViewModel () {
-        mRepository = new PostsRepository();
+        mRepository = PostsRepository.getPostsRepository();
         posts = mRepository.getAll();
     }
 

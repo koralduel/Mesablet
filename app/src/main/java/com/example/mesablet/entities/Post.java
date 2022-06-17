@@ -1,5 +1,7 @@
 package com.example.mesablet.entities;
 
+import static java.util.UUID.randomUUID;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -17,6 +19,10 @@ public class Post {
     private String publisher_name;
     @ColumnInfo
     private String post_photos_path;
+    @ColumnInfo
+    private String post_photos_path1;
+    @ColumnInfo
+    private String post_photos_path2;
     @ColumnInfo
     private String post_context;
     @ColumnInfo
@@ -39,13 +45,13 @@ public class Post {
        this.id=id;
    }
 
-    public Post(String id,String publisher_image_path, String publisher_name, String post_photos_path, String post_context, int likes, String address, String price) {
-        this.id=id;
+    public Post(String publisher_image_path, String publisher_name, String post_photos_path, String post_context, String address, String price) {
+        this.id=randomUUID().toString();
         this.publisher_image_path = publisher_image_path;
         this.publisher_name = publisher_name;
         this.post_photos_path = post_photos_path;
         this.post_context = post_context;
-        this.likes = likes;
+        this.likes = 0;
         Address = address;
         Price = price;
     }
@@ -81,4 +87,20 @@ public class Post {
     public String getPrice() { return Price; }
 
     public void setPrice(String price) { Price = price; }
+
+    public String getPost_photos_path1() {
+        return post_photos_path1;
+    }
+
+    public void setPost_photos_path1(String post_photos_path1) {
+        this.post_photos_path1 = post_photos_path1;
+    }
+
+    public String getPost_photos_path2() {
+        return post_photos_path2;
+    }
+
+    public void setPost_photos_path2(String post_photos_path2) {
+        this.post_photos_path2 = post_photos_path2;
+    }
 }

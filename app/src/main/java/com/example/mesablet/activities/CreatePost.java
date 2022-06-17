@@ -1,8 +1,5 @@
 package com.example.mesablet.activities;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,19 +9,27 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mesablet.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.mesablet.entities.Post;
+import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class CreatePost extends AppCompatActivity {
 
     private static final int GALLERY_CODE = 2;
     //Firebase connection objects
-    FirebaseUser user;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    PostsViewModel viewModel =new PostsViewModel();
 
     ImageView backBtn,upload_photo;
     Button createBtn;
+    static StorageReference storageRef = FirebaseStorage.getInstance().getReference();
     EditText ET_Enter_Address,ET_Enter_Price,ET_description_value;
     private Uri imageUri = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
 
@@ -41,6 +46,9 @@ public class CreatePost extends AppCompatActivity {
         upload_photo = findViewById(R.id.upload_photo);
         createBtn = findViewById(R.id.createBtn);
 
+        String publisher_photo= storageRef.child("Users").child(user.getUid()).child("ProfileImg").toString();
+        String publisher_name = user.getDisplayName();
+
         createBtn.setOnClickListener(view -> {
             String address = ET_Enter_Address.getText().toString();
             String price = ET_Enter_Price.getText().toString();
@@ -48,7 +56,7 @@ public class CreatePost extends AppCompatActivity {
 
             //Validation check
             if(!TextUtils.isEmpty(address) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description)){
-                //Todo: Add new post
+                viewModel.add(new Post(publisher_photo,publisher_name,imageUri.toString(),description,address,price));
             }else
                 Toast.makeText(this,"You must enter address,price and description",Toast.LENGTH_LONG).show();
         });

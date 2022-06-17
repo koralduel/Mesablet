@@ -17,16 +17,16 @@ public class PostsRepository {
     private PostDao dao;
     private PostListData postListData;
     private FireBase fireBase;
+    private static  PostsRepository postsRepository = new PostsRepository();
 
 
-    public PostsRepository() {
+   private PostsRepository() {
         LocalDatabase db = LocalDatabase.getInstance();
         dao = db.postDao();
         postListData = new PostListData();
         fireBase = new FireBase(dao,postListData);
 
     }
-
 
 
     public class PostListData extends MutableLiveData<List<Post>> {
@@ -60,6 +60,10 @@ public class PostsRepository {
     }
 
     public void reload() { fireBase.reload(); }
+
+    public static PostsRepository getPostsRepository() {
+        return postsRepository;
+    }
 }
 
 

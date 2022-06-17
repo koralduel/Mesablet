@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.mesablet.activities.LoginPage;
+import com.example.mesablet.activities.HomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -110,7 +110,7 @@ public class RegisterFragment extends Fragment {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getActivity(), R.string.registerSuccessfully, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getActivity(), LoginPage.class);
+                                    Intent intent = new Intent(getActivity(), HomePage.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);
                                 }

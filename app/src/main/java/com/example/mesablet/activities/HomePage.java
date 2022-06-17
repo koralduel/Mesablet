@@ -1,5 +1,7 @@
 package com.example.mesablet.activities;
 
+import static java.util.UUID.randomUUID;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -66,7 +68,8 @@ public class HomePage extends AppCompatActivity {
         List<Post> posts =new ArrayList<>();
         Uri image = Uri.parse("android.resource://com.example.mesablet/drawable/ic_image");
         Uri profilePhoto = Uri.parse("android.resource://com.example.mesablet/drawable/ic_image");
-        posts.add(new Post(profilePhoto.toString(),"koral duel",image.toString(),"new post",0,"Ashkenazi 68,Tel Aviv","50-60"));
+        String id=randomUUID().toString();
+        posts.add(new Post(id,profilePhoto.toString(),"koral duel",image.toString(),"new post",0,"Ashkenazi 68,Tel Aviv","50-60"));
         RecyclerView recyclerView = findViewById(R.id.RV_post);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter =new Adapter_post(this,posts);

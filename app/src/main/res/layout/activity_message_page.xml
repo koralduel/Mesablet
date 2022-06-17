@@ -8,22 +8,22 @@
     android:background="@color/grey">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/LL_top_chat"
+        android:id="@+id/LL_top_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/appBlue"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/appBlue">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/Btn_back_chats"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_width="45dp"
             android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/ic_back_white" />
 
         <androidx.cardview.widget.CardView
@@ -55,27 +55,27 @@
             android:id="@+id/user_chat_with"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/full_name"
-            android:layout_marginTop="25dp"
             android:layout_marginLeft="20dp"
-            android:textSize="20dp"
+            android:layout_marginTop="25dp"
+            android:text="@string/full_name"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textSize="20dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RV_messages"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/RL_bottom_chat"
-        android:layout_below="@+id/LL_top_chat"
+        android:layout_above="@+id/RL_bottom_message"
+        android:layout_below="@+id/LL_top_message"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp" />
 
     <RelativeLayout
-        android:id="@+id/RL_bottom_chat"
+        android:id="@+id/RL_bottom_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"

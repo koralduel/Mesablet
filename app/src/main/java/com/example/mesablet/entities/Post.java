@@ -1,5 +1,6 @@
 package com.example.mesablet.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,8 +8,9 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Post {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @NonNull
+    @PrimaryKey(autoGenerate = false)
+    private String id;
     @ColumnInfo
     private String publisher_image_path;
     @ColumnInfo
@@ -34,9 +36,11 @@ public class Post {
        this.Address = post.Address;
        this.likes = post.likes;
        this.Price = post.Price;
+       this.id=id;
    }
 
-    public Post(String publisher_image_path, String publisher_name, String post_photos_path, String post_context, int likes, String address, String price) {
+    public Post(String id,String publisher_image_path, String publisher_name, String post_photos_path, String post_context, int likes, String address, String price) {
+        this.id=id;
         this.publisher_image_path = publisher_image_path;
         this.publisher_name = publisher_name;
         this.post_photos_path = post_photos_path;
@@ -46,9 +50,9 @@ public class Post {
         Price = price;
     }
 
-    public int getId() { return id; }
+    public String getId() { return id; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(String id) { this.id = id; }
 
     public String getPublisher_image_path() { return publisher_image_path; }
 

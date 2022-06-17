@@ -72,9 +72,9 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
 
     }
 
-    private void downloadImage(int id, String type, String publisher_image)
+    private void downloadImage(String id, String type, String publisher_image)
     {
-        storageReference.child(""+id).child(type).child(publisher_image);
+        storageReference.child(id).child(type).child(publisher_image);
         try {
             bitmap = null;
             File localFile = File.createTempFile("tempfile",".jpeg");

@@ -25,7 +25,7 @@
     <string name="price">Price</string>
     <string name="enter_price">Enter_Price</string>
     <string name="description">Description</string>
-    <string name="LocalDB">LocalDB</string>
+    <string name="dblocal">DBlocal</string>
     <string name="user_name">UserName</string>
     <string name="add_post">Add post</string>
     <string name="messenger">messenger</string>
@@ -38,4 +38,5 @@
     <string name="registerSuccessfully">Register Successfully</string>
     <string name="errorRegister">You cannot register with this email or password</string>
     <string name="type_a_message">Type a message</string>
+    <string name="chat">Chat</string>
 </resources>

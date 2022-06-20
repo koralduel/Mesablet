@@ -51,10 +51,10 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         viewHolder.post_Price.setText(post_Price);
 
         String publisher_image = data.get(i).getPublisher_image_path();
-        FireBase.downloadImage("Users",data.get(i).getId(),"Publisher_image",publisher_image,viewHolder.publisher_image);
+        FireBase.downloadImage(data.get(i).getPublisher_image_path(),viewHolder.publisher_image);
 
         String post_photos = data.get(i).getPost_photos_path();
-        FireBase.downloadImage("Posts",data.get(i).getId(),"Post_image",post_photos,viewHolder.post_photos);
+        FireBase.downloadImage(data.get(i).getPost_photos_path(),viewHolder.post_photos);
 
     }
 

@@ -23,6 +23,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -102,6 +103,13 @@ public class RegisterFragment extends Fragment {
                         FireBase.uploadProfilePhoto("Users",userID,"ProfileImg",imageUri);
                         imageUri=Uri.parse(storageReference.child("Users").child(userID).child("ProfileImg").toString());
 
+                        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(fullname).build();
+                        user.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) { }
+                        });
+
                         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
                         HashMap<String, String> hashMap = new HashMap<>();
                         hashMap.put("id", userID);
@@ -120,6 +128,7 @@ public class RegisterFragment extends Fragment {
                                 }
                             }
                         });
+
                     }else{
                             Toast.makeText(getActivity(), R.string.errorRegister,Toast.LENGTH_LONG).show();
                         }

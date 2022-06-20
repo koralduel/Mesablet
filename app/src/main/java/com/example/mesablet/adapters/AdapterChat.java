@@ -43,7 +43,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.ViewHolder> {
         holder.sender_fullName.setText(sender_fullName);
 
         String publisher_image = chats.get(i).getImage_sender_path();
-        FireBase.downloadImage("Users",chats.get(i).getSenderID(),"profileImageUri",publisher_image,holder.sender_Profile_photo);
+        FireBase.downloadImage(chats.get(i).getImage_sender_path(),holder.sender_Profile_photo);
 
     }
 

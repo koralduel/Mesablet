@@ -31,9 +31,9 @@ import java.util.List;
 
 public class FireBase {
 
-   static StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-   private FirebaseDatabase dateBase = FirebaseDatabase.getInstance();
-   private DatabaseReference dataRef = dateBase.getReference("Posts");
+   private static StorageReference storageRef;
+   //private FirebaseDatabase dateBase = FirebaseDatabase.getInstance();
+   private DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("Posts");
 
    private PostDao dao;
    private PostsRepository.PostListData postListData;
@@ -65,18 +65,22 @@ public class FireBase {
     }
 
     public void add(Post post){
+        uploadProfilePhoto("Posts",post.getId(),"Post_image", Uri.parse(post.getPost_photos_path()));
+        storageRef = FirebaseStorage.getInstance().getReference();
+        post.setPost_photos_path(storageRef.child("Posts").child(post.getId()).child("Post_image").toString());
+        dataRef.child(String.valueOf(post.getId())).setValue(post);
+ //      storageRef.child("Users").child(user.getUid()).child("ProfileImg").putFile(Uri.parse(post.getPublisher_image_path()));
 
-       dataRef.child(String.valueOf(post.getId())).setValue(post);
-       storageRef.child("Users").child(user.getUid()).child("ProfileImg").putFile(Uri.parse(post.getPublisher_image_path()));
-       storageRef.child("Posts").child(String.valueOf(post.getId())).child("Post_image").putFile(Uri.parse(post.getPost_photos_path()));
+  //     storageRef.child("Posts").child(post.getId()).child("Post_image").putFile(Uri.parse(post.getPost_photos_path()));
 
    }
 
    public void delete(Post post){
 
-       dataRef.child(String.valueOf(post.getId())).removeValue();
-       storageRef.child("Users").child(user.getUid()).delete();
-       storageRef.child("Posts").child(String.valueOf(post.getId())).delete();
+       dataRef.child(post.getId()).removeValue();
+ //      storageRef.child("Users").child(user.getUid()).delete();
+       storageRef=FirebaseStorage.getInstance().getReference();
+       storageRef.child("Posts").child(post.getId()).delete();
    }
 
    public void reload(){
@@ -103,14 +107,13 @@ public class FireBase {
    }
 
     static Bitmap bitmap = null;
-    public static void downloadImage(String folder,String id, String type, String image, ImageView imageView)
+    public static void downloadImage(String path, ImageView imageView)
     {
-
-        storageRef.child(folder).child(id).child(type).child(image);
+        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(path);
         try {
             bitmap = null;
             File localFile = File.createTempFile("tempfile",".jpeg");
-            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
@@ -125,7 +128,7 @@ public class FireBase {
 
     public static void uploadProfilePhoto(String folder,String id,String type ,Uri imageUri) {
 
-        storageRef = FirebaseStorage.getInstance().getReference(folder+"/").child(id+"/").child(type);
+        storageRef = FirebaseStorage.getInstance().getReference(folder+"/").child(id+"/").child(type+"/");
         storageRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

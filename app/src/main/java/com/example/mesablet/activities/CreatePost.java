@@ -17,6 +17,7 @@ import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -24,12 +25,13 @@ public class CreatePost extends AppCompatActivity {
 
     private static final int GALLERY_CODE = 2;
     //Firebase connection objects
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseUser user;
     PostsViewModel viewModel =new PostsViewModel();
+
 
     ImageView backBtn,upload_photo;
     Button createBtn;
-    static StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+    StorageReference storageRef;
     EditText ET_Enter_Address,ET_Enter_Price,ET_description_value;
     private Uri imageUri = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
 
@@ -39,12 +41,16 @@ public class CreatePost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
 
+        storageRef = FirebaseStorage.getInstance().getReference();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
         ET_Enter_Address = findViewById(R.id.ET_Enter_Address);
         ET_Enter_Price = findViewById(R.id.ET_Enter_Price);
         ET_description_value = findViewById(R.id.ET_description_value);
         backBtn = findViewById(R.id.backBtn);
         upload_photo = findViewById(R.id.upload_photo);
         createBtn = findViewById(R.id.createBtn);
+
 
         String publisher_photo= storageRef.child("Users").child(user.getUid()).child("ProfileImg").toString();
         String publisher_name = user.getDisplayName();
@@ -56,7 +62,10 @@ public class CreatePost extends AppCompatActivity {
 
             //Validation check
             if(!TextUtils.isEmpty(address) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description)){
+
                 viewModel.add(new Post(publisher_photo,publisher_name,imageUri.toString(),description,address,price));
+                Intent intent = new Intent(this,HomePage.class);
+                startActivity(intent);
             }else
                 Toast.makeText(this,"You must enter address,price and description",Toast.LENGTH_LONG).show();
         });

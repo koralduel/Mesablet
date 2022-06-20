@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -124,11 +125,10 @@ public class FireBase {
 
     public static void uploadProfilePhoto(String folder,String id,String type ,Uri imageUri) {
 
-        storageRef = FirebaseStorage.getInstance().getReference(folder).child(id).child(type);
+        storageRef = FirebaseStorage.getInstance().getReference(folder+"/").child(id+"/").child(type);
         storageRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
             }
         });
 

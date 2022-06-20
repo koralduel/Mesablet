@@ -3,6 +3,7 @@ package com.example.mesablet;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
@@ -35,8 +37,6 @@ public class RegisterFragment extends Fragment {
     ImageView upload_profile_btn;
     Button BtnRegister;
     private Uri imageUri = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
-
-    String uid;
 
 
     FirebaseAuth mAuth;
@@ -55,7 +55,8 @@ public class RegisterFragment extends Fragment {
         password_value = view.findViewById(R.id.password_value);
         BtnRegister = view.findViewById(R.id.BtnRegister);
         upload_profile_btn = view.findViewById(R.id.upload_profile_btn);
-
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        storageReference = FirebaseStorage.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -64,11 +65,15 @@ public class RegisterFragment extends Fragment {
             String txt_fullName=fullname_value.getText().toString();
             String txt_email=email_value.getText().toString();
             String txt_password=password_value.getText().toString();
-            if( txt_fullName.equals(null) || txt_email.equals(null) || txt_password.equals(null) ){
-                Toast.makeText(getActivity(), R.string.fileds_required,Toast.LENGTH_SHORT).show();
-            }
-            else if(txt_password.length()<6){
-                Toast.makeText(getActivity(), R.string.password_error,Toast.LENGTH_SHORT).show();
+            if(TextUtils.isEmpty(txt_fullName)) {
+                fullname_value.setError("Full Name cannot be null");
+                fullname_value.requestFocus();
+            }else if(TextUtils.isEmpty(txt_email)) {
+                email_value.setError("Email cannot be null");
+                email_value.requestFocus();
+            }else if(TextUtils.isEmpty(txt_password)) {
+                password_value.setError("Password cannot be null");
+                password_value.requestFocus();
             }
             else {
                 createUser(txt_fullName,txt_email,txt_password);
@@ -93,10 +98,11 @@ public class RegisterFragment extends Fragment {
                         Toast.makeText(getActivity(), "User Created", Toast.LENGTH_LONG).show();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         String userID = user.getUid();
-                        imageUri=Uri.parse(storageReference.child("Users").child(userID).child("ProfileImg").toString());
-                        FireBase.uploadProfilePhoto("Users",userID,"ProfileImg",imageUri);
-                        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
 
+                        FireBase.uploadProfilePhoto("Users",userID,"ProfileImg",imageUri);
+                        imageUri=Uri.parse(storageReference.child("Users").child(userID).child("ProfileImg").toString());
+
+                        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
                         HashMap<String, String> hashMap = new HashMap<>();
                         hashMap.put("id", userID);
                         hashMap.put("fullname", fullname);

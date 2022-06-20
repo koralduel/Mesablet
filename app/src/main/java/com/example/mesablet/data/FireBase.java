@@ -65,7 +65,7 @@ public class FireBase {
     }
 
     public void add(Post post){
-        uploadProfilePhoto("Posts",post.getId(),"Post_image", Uri.parse(post.getPost_photos_path()));
+        UploadImage("Posts",post.getId(),"Post_image", Uri.parse(post.getPost_photos_path()));
         storageRef = FirebaseStorage.getInstance().getReference();
         post.setPost_photos_path(storageRef.child("Posts").child(post.getId()).child("Post_image").toString());
         dataRef.child(String.valueOf(post.getId())).setValue(post);
@@ -126,7 +126,7 @@ public class FireBase {
         }
     }
 
-    public static void uploadProfilePhoto(String folder,String id,String type ,Uri imageUri) {
+    public static void UploadImage(String folder,String id,String type ,Uri imageUri) {
 
         storageRef = FirebaseStorage.getInstance().getReference(folder+"/").child(id+"/").child(type+"/");
         storageRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

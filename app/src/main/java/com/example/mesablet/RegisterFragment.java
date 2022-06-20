@@ -100,7 +100,7 @@ public class RegisterFragment extends Fragment {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         String userID = user.getUid();
 
-                        FireBase.uploadProfilePhoto("Users",userID,"ProfileImg",imageUri);
+                        FireBase.UploadImage("Users",userID,"ProfileImg",imageUri);
                         imageUri=Uri.parse(storageReference.child("Users").child(userID).child("ProfileImg").toString());
 
                         UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()

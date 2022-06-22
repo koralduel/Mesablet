@@ -89,13 +89,15 @@ public class MessagePage extends AppCompatActivity {
 
         public void readMessage(String myid, String userid, String image_Path){
             Messages=new ArrayList<>();
-            reference = FirebaseDatabase.getInstance().getReference("Chats").child(myid+userid);
-            if(reference==null){
-                reference = FirebaseDatabase.getInstance().getReference("Chats").child(userid+myid);
-            }
-            if(reference==null){
-                reference = FirebaseDatabase.getInstance().getReference("Chats").child(myid+userid);
-            }
+            FirebaseDatabase.getInstance().getReference("Chats").get().addOnSuccessListener(dataSnapshot -> {
+                for (DataSnapshot snapshot:dataSnapshot.getChildren()) {
+                    if(snapshot.getValue().equals(myid+userid)){
+                        reference=FirebaseDatabase.getInstance().getReference("Chats").child(myid+userid);
+                    }else{
+                        reference =FirebaseDatabase.getInstance().getReference("Chats").child(userid+myid);
+                    }
+                }
+            });
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot datasnapshot) {

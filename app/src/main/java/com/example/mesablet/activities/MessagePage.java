@@ -77,8 +77,16 @@ public class MessagePage extends AppCompatActivity {
 
         private void sendMessage(String sender,String receiver,String message){
 
-            DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Chats").child(sender+receiver);
-
+           // DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Chats").child(sender+receiver);
+            FirebaseDatabase.getInstance().getReference("Chats").get().addOnSuccessListener(dataSnapshot -> {
+                for (DataSnapshot snapshot:dataSnapshot.getChildren()) {
+                    if(snapshot.getValue().equals(sender+receiver)){
+                        reference=FirebaseDatabase.getInstance().getReference("Chats").child(sender+receiver);
+                    }else{
+                        reference =FirebaseDatabase.getInstance().getReference("Chats").child(receiver+sender);
+                    }
+                }
+            });
             HashMap<String,Object> hashMap=new HashMap<>();
             hashMap.put("sender",sender);
             hashMap.put("receiver",receiver);
@@ -89,15 +97,7 @@ public class MessagePage extends AppCompatActivity {
 
         public void readMessage(String myid, String userid, String image_Path){
             Messages=new ArrayList<>();
-            FirebaseDatabase.getInstance().getReference("Chats").get().addOnSuccessListener(dataSnapshot -> {
-                for (DataSnapshot snapshot:dataSnapshot.getChildren()) {
-                    if(snapshot.getValue().equals(myid+userid)){
-                        reference=FirebaseDatabase.getInstance().getReference("Chats").child(myid+userid);
-                    }else{
-                        reference =FirebaseDatabase.getInstance().getReference("Chats").child(userid+myid);
-                    }
-                }
-            });
+            reference=FirebaseDatabase.getInstance().getReference("Chats").child(myid+userid);
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot datasnapshot) {

@@ -5,30 +5,31 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mesablet.R;
 import com.example.mesablet.adapters.AdapterChat;
 import com.example.mesablet.adapters.ClickInterface;
+import com.example.mesablet.databinding.ActivityChatBinding;
 import com.example.mesablet.entities.Chat;
 
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity implements ClickInterface {
 
+    ActivityChatBinding binding;
     List<Chat> chats;
     AdapterChat adapterChat;
-    RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        binding = ActivityChatBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        recyclerView=findViewById(R.id.RV_chats);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        binding.RVChats.setLayoutManager(new LinearLayoutManager(this));
         adapterChat= new AdapterChat(chats,this);
-        recyclerView.setAdapter(adapterChat);
+        binding.RVChats.setAdapter(adapterChat);
     }
 
     @Override

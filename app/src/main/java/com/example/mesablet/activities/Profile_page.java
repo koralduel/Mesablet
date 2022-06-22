@@ -1,33 +1,36 @@
 package com.example.mesablet.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mesablet.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.mesablet.databinding.ActivityProfilePageBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Profile_page extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
+    private ActivityProfilePageBinding binding;
+
     FirebaseUser user;
     FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_page);
+        binding = ActivityProfilePageBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        bottomNavigationView=findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.profile);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(item ->{
+        binding.bottomNavigation.setSelectedItemId(R.id.profile);
+
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(item ->{
             Intent intent;
             if(item.getTitle().equals("Home")){
                 intent = new Intent(this,HomePage.class);

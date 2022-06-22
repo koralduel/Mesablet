@@ -2,20 +2,15 @@ package com.example.mesablet.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mesablet.R;
 import com.example.mesablet.adapters.AdapterMessage;
 import com.example.mesablet.data.FireBase;
+import com.example.mesablet.databinding.ActivityMessagePageBinding;
 import com.example.mesablet.entities.Message;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,37 +28,29 @@ import java.util.List;
 
 public class MessagePage extends AppCompatActivity {
 
-    ImageView sender_Profile_Img;
-    TextView sender_full_name;
+    private ActivityMessagePageBinding binding;
+
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    ImageButton Btn_send;
-    EditText ET_message_content;
     StorageReference storageReference;
     DatabaseReference reference;
 
     AdapterMessage adapterMessage;
     List<Message> Messages;
 
-    RecyclerView RV_messages;
-
-
     Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_message_page);
+        binding = ActivityMessagePageBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        RV_messages=findViewById(R.id.RV_messages);
-        RV_messages.setHasFixedSize(true);
+        binding.RVMessages.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setStackFromEnd(true);
-        RV_messages.setLayoutManager(linearLayoutManager);
+        binding.RVMessages.setLayoutManager(linearLayoutManager);
 
-        sender_full_name=findViewById(R.id.user_chat_with);
-        sender_Profile_Img=findViewById(R.id.IV_profilePhoto);
-        Btn_send=findViewById(R.id.Btn_send);
-        ET_message_content=findViewById(R.id.ET_message_content);
+
         storageReference = FirebaseStorage.getInstance().getReference();
 
         intent= getIntent();
@@ -71,19 +58,19 @@ public class MessagePage extends AppCompatActivity {
         String Post_owner_name=intent.getStringExtra("Post_owner_name");
         String Post_owner_profileImg=intent.getStringExtra("Post_owner_profileImg");
 
-        FireBase.downloadImage(Post_owner_profileImg,sender_Profile_Img);
+        FireBase.downloadImage(Post_owner_profileImg,binding.IVProfilePhoto);
 
-        sender_full_name.setText(Post_owner_name);
+        binding.userChatWith.setText(Post_owner_name);
         readMessage(user.getUid(),Post_owner_UID,Post_owner_profileImg);
 
-        Btn_send.setOnClickListener(v -> {
-            String msg=ET_message_content.getText().toString();
+        binding.BtnSend.setOnClickListener(v -> {
+            String msg=binding.ETMessageContent.getText().toString();
             if(!msg.equals("")){
                 sendMessage(user.getUid(),Post_owner_UID,msg);
             }else{
                 Toast.makeText(this, "Message cannot be empty", Toast.LENGTH_SHORT).show();
             }
-            ET_message_content.setText("");
+            binding.ETMessageContent.setText("");
         });
 
     }
@@ -102,8 +89,10 @@ public class MessagePage extends AppCompatActivity {
 
         public void readMessage(String myid, String userid, String image_Path){
             Messages=new ArrayList<>();
-
-            reference = FirebaseDatabase.getInstance().getReference("Chats").child(myid+userid);
+            reference = FirebaseDatabase.getInstance().getReference("Chats").child(userid+myid);
+            if(reference==null){
+                reference = FirebaseDatabase.getInstance().getReference("Chats").child(myid+userid);
+            }
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot datasnapshot) {
@@ -115,7 +104,7 @@ public class MessagePage extends AppCompatActivity {
                             Messages.add(message);
                         }
                         adapterMessage= new AdapterMessage(MessagePage.this,Messages);
-                        RV_messages.setAdapter(adapterMessage);
+                        binding.RVMessages.setAdapter(adapterMessage);
                     }
                 }
 

@@ -15,10 +15,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.mesablet.R;
 import com.example.mesablet.adapters.Adapter_post;
 import com.example.mesablet.adapters.ClickInterface;
+import com.example.mesablet.databinding.ActivityHomePageBinding;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,11 +26,10 @@ import java.util.List;
 
 public class HomePage extends AppCompatActivity implements ClickInterface {
 
+    private ActivityHomePageBinding binding;
     FirebaseAuth firebaseAuth;
     Adapter_post adapter;
-    BottomNavigationView bottomNavigationView;
     FirebaseUser user;
-    MaterialToolbar topAppBar;
     List<Post> posts;
 
     private PostsViewModel viewModel;
@@ -40,15 +38,16 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        binding = ActivityHomePageBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         firebaseAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
-        bottomNavigationView=findViewById(R.id.bottom_navigation);
-        topAppBar = findViewById(R.id.topAppBar);
+
 
         viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
 
-        topAppBar.setOnMenuItemClickListener(menuItem -> {
+        binding.topAppBar.setOnMenuItemClickListener(menuItem -> {
             if(menuItem.getTitle().equals("Add post")) {
                 Intent intent = new Intent(this, CreatePost.class);
                 startActivity(intent);
@@ -60,7 +59,7 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
             return true;
         });
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(item ->{
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(item ->{
             if(item.getTitle().equals("Home")){
                 //stay in this page
             }

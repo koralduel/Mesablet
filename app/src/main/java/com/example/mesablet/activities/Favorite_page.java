@@ -1,43 +1,41 @@
 package com.example.mesablet.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.GridView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mesablet.R;
 import com.example.mesablet.adapters.GridAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.mesablet.databinding.ActivityFavoritePageBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Favorite_page extends AppCompatActivity {
 
 
-    GridView photoGrid;
+
     String[] images = {"android.resource://com.example.mesablet/drawable/ic_image","android.resource://com.example.mesablet/drawable/ic_image"};
     GridAdapter gridAdapter;
-    BottomNavigationView bottomNavigationView;
+    private ActivityFavoritePageBinding binding;
     FirebaseUser user;
     FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityFavoritePageBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
 
-        setContentView(R.layout.activity_favorite_page);
-        photoGrid = findViewById(R.id.photoGrid);
         gridAdapter = new GridAdapter(this,images);
-        photoGrid.setAdapter(gridAdapter);
-        bottomNavigationView=findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.favorites);
+        binding.photoGrid.setAdapter(gridAdapter);
+        binding.bottomNavigation.setSelectedItemId(R.id.favorites);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(item ->{
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(item ->{
             Intent intent;
             if(item.getTitle().equals("Home")){
                 intent = new Intent(this,HomePage.class);

@@ -65,15 +65,21 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         String post_photos = data.get(i).getPost_photos_path();
         FireBase.downloadImage(data.get(i).getPost_photos_path(),viewHolder.post_photos);
 
-        viewHolder.btn_send_message.setOnClickListener(v -> {
-            Intent intent=new Intent(layoutInflater.getContext(), MessagePage.class);
-            intent.putExtra("Post_owner_UID",data.get(i).getPublisher_id());
-            intent.putExtra("Post_owner_name",data.get(i).getPublisher_name());
-            intent.putExtra("Post_owner_profileImg",data.get(i).getPost_photos_path());
-            layoutInflater.getContext().startActivity(intent);
-        });
+        if(user.getUid().equals(data.get(i).getPublisher_id())){
+            viewHolder.btn_send_message.setEnabled(true);
+        }else{
+            viewHolder.btn_send_message.setOnClickListener(v -> {
+                Intent intent=new Intent(layoutInflater.getContext(), MessagePage.class);
+                intent.putExtra("Post_owner_UID",data.get(i).getPublisher_id());
+                intent.putExtra("Post_owner_name",data.get(i).getPublisher_name());
+                intent.putExtra("Post_owner_profileImg",data.get(i).getPost_photos_path());
+                layoutInflater.getContext().startActivity(intent);
+            });
+        }
+
 
     }
+
 
 
 
@@ -112,6 +118,8 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
             post_Price=itemView.findViewById(R.id.TV_Enter_Price);
             btn_send_message=itemView.findViewById(R.id.btn_send_message);
             btn_add_favorite=itemView.findViewById(R.id.btn_add_favorite);
+
+
 
             itemView.setOnClickListener(v -> {
                 if(clickInterface!=null){

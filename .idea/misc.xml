@@ -10,6 +10,8 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/chat_item.xml" value="0.1265625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/drawable/backgroud_right.xml" value="0.1315" />
+        <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/drawable/background_left.xml" value="0.1315" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/drawable/bottom_menu.xml" value="0.183" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/drawable/btn_skip.xml" value="0.1" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/drawable/card_post_item.xml" value="0.183" />
@@ -28,6 +30,8 @@
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/activity_profile_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/card_post_item.xml" value="0.209375" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/chat_item.xml" value="0.2" />
+        <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/chat_item_left.xml" value="0.2" />
+        <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/chat_item_right.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/fragment_login.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/fragment_register.xml" value="0.2296875" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/photo_item.xml" value="0.23854166666666668" />

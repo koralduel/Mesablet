@@ -14,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.mesablet.R;
 import com.example.mesablet.adapters.Adapter_post;
+import com.example.mesablet.adapters.ClickInterface;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -24,13 +25,14 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements ClickInterface {
 
     FirebaseAuth firebaseAuth;
     Adapter_post adapter;
     BottomNavigationView bottomNavigationView;
     FirebaseUser user;
     MaterialToolbar topAppBar;
+    List<Post> posts;
 
     private PostsViewModel viewModel;
 
@@ -78,7 +80,7 @@ public class HomePage extends AppCompatActivity {
         });
 
 
-        List<Post> posts =new ArrayList<>();
+        posts =new ArrayList<>();
         Uri image = Uri.parse("android.resource://com.example.mesablet/drawable/ic_image");
         Uri profilePhoto = Uri.parse("android.resource://com.example.mesablet/drawable/ic_image");
         String id=randomUUID().toString();
@@ -101,5 +103,18 @@ public class HomePage extends AppCompatActivity {
             refreshLayout.setRefreshing(false);
         });
 
+    }
+
+    @Override
+    public void OnItemClick(int position) {
+        Intent intent = new Intent(this,PostPage.class);
+        intent.putExtra("post",posts.get(position));
+        startActivity(intent);
+    }
+
+    @Override
+    public void OnItemLongClick(int position) {
+        viewModel.delete(posts.get(position));
+        posts.remove(position);
     }
 }

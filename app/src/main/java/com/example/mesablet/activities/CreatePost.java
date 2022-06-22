@@ -17,7 +17,6 @@ import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -63,7 +62,7 @@ public class CreatePost extends AppCompatActivity {
             //Validation check
             if(!TextUtils.isEmpty(address) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description)){
 
-                viewModel.add(new Post(publisher_photo,publisher_name,imageUri.toString(),description,address,price));
+                viewModel.add(new Post(publisher_photo,publisher_name,imageUri.toString(),description,address,price,user.getUid()));
                 Intent intent = new Intent(this,HomePage.class);
                 startActivity(intent);
             }else

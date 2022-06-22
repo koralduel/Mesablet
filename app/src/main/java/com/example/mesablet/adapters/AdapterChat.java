@@ -23,6 +23,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.ViewHolder> {
     LayoutInflater layoutInflater;
     ClickInterface clickInterface;
 
+
     public AdapterChat(List<Chat> chats, Context context) {
         this.chats = chats;
         this.layoutInflater = LayoutInflater.from(context);
@@ -42,8 +43,12 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.ViewHolder> {
         String sender_fullName = chats.get(i).getSender_fullName();
         holder.sender_fullName.setText(sender_fullName);
 
-        String publisher_image = chats.get(i).getImage_sender_path();
+        String image_sender_path = chats.get(i).getImage_sender_path();
         FireBase.downloadImage(chats.get(i).getImage_sender_path(),holder.sender_Profile_photo);
+
+
+
+
 
     }
 

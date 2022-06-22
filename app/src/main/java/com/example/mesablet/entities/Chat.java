@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class Chat implements Serializable {
 
-    private DatabaseReference dateBase = FirebaseDatabase.getInstance().getReference();
+   private DatabaseReference dateBase = FirebaseDatabase.getInstance().getReference();
 
     String senderID;
     String Image_sender_path;

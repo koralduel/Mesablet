@@ -7,8 +7,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Post {
+public class Post implements Serializable {
 
     @NonNull
     @PrimaryKey(autoGenerate = false)
@@ -25,6 +27,8 @@ public class Post {
     private String post_photos_path2;
     @ColumnInfo
     private String post_context;
+    @ColumnInfo
+    private String publisher_id;
     @ColumnInfo
     private int likes;
     @ColumnInfo
@@ -43,10 +47,11 @@ public class Post {
        this.likes = post.likes;
        this.Price = post.Price;
        this.id=id;
+       this.publisher_id=post.publisher_id;
    }
 
-    public Post(String publisher_image_path, String publisher_name, String post_photos_path, String post_context, String address, String price) {
-        this.id=randomUUID().toString();
+    public Post(String publisher_image_path, String publisher_name, String post_photos_path, String post_context, String address, String price,String publisher_id) {
+        this.id=randomUUID().toString().replace("-","");
         this.publisher_image_path = publisher_image_path;
         this.publisher_name = publisher_name;
         this.post_photos_path = post_photos_path;
@@ -54,6 +59,7 @@ public class Post {
         this.likes = 0;
         Address = address;
         Price = price;
+        this.publisher_id=publisher_id;
     }
 
     public String getId() { return id; }
@@ -102,5 +108,13 @@ public class Post {
 
     public void setPost_photos_path2(String post_photos_path2) {
         this.post_photos_path2 = post_photos_path2;
+    }
+
+    public String getPublisher_id() {
+        return publisher_id;
+    }
+
+    public void setPublisher_id(String publisher_id) {
+        this.publisher_id = publisher_id;
     }
 }

@@ -35,6 +35,10 @@ public class Post implements Serializable {
     private String Address;
     @ColumnInfo
     private String Price;
+    @ColumnInfo
+    private String startDate;
+    @ColumnInfo
+    private String endDate;
 
     public Post() { }
 
@@ -42,24 +46,34 @@ public class Post implements Serializable {
        this.publisher_image_path = post.publisher_image_path;
        this.publisher_name = post.publisher_name;
        this.post_photos_path = post.post_photos_path;
+       this.post_photos_path1 = post.post_photos_path1;
+       this.post_photos_path2 = post.post_photos_path2;
        this.post_context = post.post_context;
        this.Address = post.Address;
        this.likes = post.likes;
        this.Price = post.Price;
        this.id=id;
        this.publisher_id=post.publisher_id;
+       this.startDate = post.startDate;
+       this.endDate = post.endDate;
    }
 
-    public Post(String publisher_image_path, String publisher_name, String post_photos_path, String post_context, String address, String price,String publisher_id) {
+    public Post(String publisher_image_path, String publisher_name, String post_photos_path,
+                String post_photos_path1,String post_photos_path2,String post_context, String address, String price,
+                String publisher_id,String startDate,String endDate) {
         this.id=randomUUID().toString().replace("-","");
         this.publisher_image_path = publisher_image_path;
         this.publisher_name = publisher_name;
         this.post_photos_path = post_photos_path;
+        this.post_photos_path1= post_photos_path1;
+        this.post_photos_path2 = post_photos_path2;
         this.post_context = post_context;
         this.likes = 0;
         Address = address;
         Price = price;
         this.publisher_id=publisher_id;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public String getId() { return id; }
@@ -117,4 +131,12 @@ public class Post implements Serializable {
     public void setPublisher_id(String publisher_id) {
         this.publisher_id = publisher_id;
     }
+
+    public String getStartDate() { return startDate; }
+
+    public void setStartDate(String startDate) { this.startDate = startDate; }
+
+    public String getEndDate() { return endDate; }
+
+    public void setEndDate(String endDate) { this.endDate = endDate; }
 }

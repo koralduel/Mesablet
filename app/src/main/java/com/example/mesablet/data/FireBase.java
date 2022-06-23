@@ -64,13 +64,18 @@ public class FireBase {
     }
 
     public void add(Post post){
-        UploadImage("Posts",post.getId(),"Post_image", Uri.parse(post.getPost_photos_path()));
+        List<String> photosPaths = new ArrayList<>();
+        photosPaths.add(post.getPost_photos_path());
+        photosPaths.add(post.getPost_photos_path1());
+        photosPaths.add(post.getPost_photos_path2());
+        for (int i=1 ; i<=photosPaths.size(); i ++) {
+            UploadImage("Posts",post.getId(),"Post_image"+i, Uri.parse(post.getPost_photos_path()));
+        }
         storageRef = FirebaseStorage.getInstance().getReference();
-        post.setPost_photos_path(storageRef.child("Posts").child(post.getId()).child("Post_image").toString());
+        post.setPost_photos_path(storageRef.child("Posts").child(post.getId()).child("Post_image1").toString());
+        post.setPost_photos_path1(storageRef.child("Posts").child(post.getId()).child("Post_image2").toString());
+        post.setPost_photos_path2(storageRef.child("Posts").child(post.getId()).child("Post_image3").toString());
         dataRef.child(String.valueOf(post.getId())).setValue(post);
- //      storageRef.child("Users").child(user.getUid()).child("ProfileImg").putFile(Uri.parse(post.getPublisher_image_path()));
-
-  //     storageRef.child("Posts").child(post.getId()).child("Post_image").putFile(Uri.parse(post.getPost_photos_path()));
 
    }
 
@@ -125,14 +130,17 @@ public class FireBase {
         }
     }
 
-    public static void UploadImage(String folder,String id,String type ,Uri imageUri) {
+    public static void UploadImage(String folder,String id,String type ,Uri... uris) {
 
         storageRef = FirebaseStorage.getInstance().getReference(folder+"/").child(id+"/").child(type+"/");
-        storageRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-            }
-        });
+
+        for (Uri u:uris) {
+            storageRef.putFile(u).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                }
+            });
+        }
 
     }
 

@@ -14,6 +14,8 @@ import com.example.mesablet.R;
 import com.example.mesablet.activities.ChatActivity;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.entities.Chat;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -43,12 +45,18 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.ViewHolder> {
         String sender_fullName = chats.get(i).getSender_fullName();
         holder.sender_fullName.setText(sender_fullName);
 
-        String image_sender_path = chats.get(i).getImage_sender_path();
-        FireBase.downloadImage(chats.get(i).getImage_sender_path(),holder.sender_Profile_photo);
+        String Otheruser = chats.get(i).getOtheruserId();
+        //FireBase.downloadImage(image_sender_path,holder.sender_Profile_photo);
 
+        FirebaseDatabase.getInstance().getReference("Users").child(Otheruser).child("profileImageUri").get()
+                .addOnSuccessListener(dataSnapshot -> {
+                    FireBase.downloadImage(dataSnapshot.getValue().toString(), holder.sender_Profile_photo);
+                }).addOnFailureListener(new OnFailureListener() {
+        @Override
+        public void onFailure(@NonNull Exception e) {
 
-
-
+        }
+    });
 
     }
 

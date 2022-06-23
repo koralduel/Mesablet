@@ -39,26 +39,29 @@ public class ChatActivity extends AppCompatActivity implements ClickInterface {
 
 
         binding.RVChats.setLayoutManager(new LinearLayoutManager(this));
-        adapterChat= new AdapterChat(chats,this);
-        binding.RVChats.setAdapter(adapterChat);
-       // getAllChats();
+        getAllChats();
+
     }
+
 
     @Override
     public void OnItemClick(int position) {
-        Intent intent = new Intent(this,MessagePage.class);
-        intent.putExtra("Message",chats.get(position));
+        Intent intent = new Intent(this, MessagePage.class);
+        intent.putExtra("Message", chats.get(position));
         startActivity(intent);
     }
 
-    public void updateChats(){
-        reference=FirebaseDatabase.getInstance().getReference("Chats");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+    public void getAllChats() {
+        reference = FirebaseDatabase.getInstance().getReference("Chats");
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap:snapshot.getChildren()){
-                    if(snap.getKey().contains(user.getUid())){
-                        chats=new ArrayList<>();
+                if (snapshot != null) {
+                    for (DataSnapshot snap : snapshot.getChildren()) {
+                        if (snap.getKey().contains(user.getUid())) {
+                            addchat(snap.getKey());
+                        }
                     }
                 }
             }
@@ -69,5 +72,33 @@ public class ChatActivity extends AppCompatActivity implements ClickInterface {
             }
         });
     }
+
+    public void addchat(String chatid) {
+        reference = FirebaseDatabase.getInstance().getReference("Chats").child(chatid);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    chats = new ArrayList<>();
+                    if (snap.getKey().equals("users")) {
+                        Chat chat = snap.getValue(Chat.class);
+                        if (chat.getUser2().equals(user.getUid()) || chat.getUser1().equals(user.getUid())) {
+                            chats.add(chat);
+                        }
+
+                        adapterChat = new AdapterChat(chats, ChatActivity.this);
+                        binding.RVChats.setAdapter(adapterChat);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
 
 }

@@ -1,6 +1,8 @@
 package com.example.mesablet.entities;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -8,41 +10,45 @@ import java.io.Serializable;
 
 public class Chat implements Serializable {
 
-   private DatabaseReference dateBase = FirebaseDatabase.getInstance().getReference();
-
-    String senderID;
-    String Image_sender_path;
-    String sender_fullName;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference dateBase = FirebaseDatabase.getInstance().getReference("Users");
 
 
-    public Chat(String senderID) {
-        this.senderID = senderID;
-        this.Image_sender_path=dateBase.child("Users").child(senderID).child("profileImageUri").toString();
-        this.sender_fullName= dateBase.child("Users").child(senderID).child("fullname").toString();
+    String user1;
+    String user2;
 
+    public Chat(String user1, String user2) {
+        this.user1 = user1;
+        this.user2 = user2;
     }
 
-    public String getSenderID() {
-        return senderID;
+    public Chat(){}
+
+    public String getUser1() {
+        return user1;
     }
 
-    public void setSenderID(String senderID) {
-        this.senderID = senderID;
+    public void setUser1(String user1) {
+        this.user1 = user1;
     }
 
-    public String getImage_sender_path() {
-        return Image_sender_path;
+    public String getUser2() {
+        return user2;
     }
 
-    public void setImage_sender_path(String image_sender_path) {
-        Image_sender_path = image_sender_path;
+    public void setUser2(String user2) {
+        this.user2 = user2;
     }
 
-    public String getSender_fullName() {
-        return sender_fullName;
+    public String getSender_fullName(){
+        if(this.getUser1().equals(user.getUid()))
+            return this.getUser2();
+        return this.getUser1();
     }
 
-    public void setSender_fullName(String sender_fullName) {
-        this.sender_fullName = sender_fullName;
+    public String getOtheruserId(){
+        if(this.getUser1().equals(user.getUid()))
+            return this.getUser2();
+        return this.getUser1();
     }
 }

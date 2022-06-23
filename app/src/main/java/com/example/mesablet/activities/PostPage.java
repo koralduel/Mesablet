@@ -28,7 +28,7 @@ public class PostPage extends AppCompatActivity {
         binding.TVEnterAddress.setText(post.getAddress());
         binding.TVEnterPrice.setText(post.getPrice());
         binding.TvPostContent.setText(post.getPost_context());
-        binding.postPhotoSwitcher.setImageURI(Uri.parse(post.getPost_context()));
+      //  binding.postPhotoSwitcher.setImageURI(Uri.parse(post.getPost_context()));
 
     }
 }

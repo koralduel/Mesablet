@@ -19,7 +19,9 @@ import com.google.firebase.storage.StorageReference;
 
 public class CreatePost extends AppCompatActivity {
 
-    private static final int GALLERY_CODE = 2;
+    private static final int GALLERY_CODE1 = 1;
+    private static final int GALLERY_CODE2 = 2;
+    private static final int GALLERY_CODE3 = 3;
     //Firebase connection objects
     FirebaseUser user;
     PostsViewModel viewModel =new PostsViewModel();
@@ -27,6 +29,8 @@ public class CreatePost extends AppCompatActivity {
     private ActivityCreatePostBinding binding;
     StorageReference storageRef;
     private Uri imageUri = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
+    private Uri imageUri2 = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
+    private Uri imageUri3 = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
 
 
     @Override
@@ -45,11 +49,16 @@ public class CreatePost extends AppCompatActivity {
             String address = binding.ETEnterAddress.getText().toString();
             String price = binding.ETEnterPrice.getText().toString();
             String description = binding.ETDescriptionValue.getText().toString();
+            String startDate = binding.ETEnterStartDate.getText().toString();
+            String endDate = binding.ETEnterEndDate.getText().toString();
 
             //Validation check
-            if(!TextUtils.isEmpty(address) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description)){
+            if(!TextUtils.isEmpty(address) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description)
+                    && !TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)){
 
-                viewModel.add(new Post(publisher_photo,publisher_name,imageUri.toString(),description,address,price,user.getUid()));
+                viewModel.add(new Post(publisher_photo,publisher_name,imageUri.toString(),
+                        imageUri2.toString(),imageUri3.toString(),description,address,price,user.getUid(),
+                        startDate,endDate));
                 Intent intent = new Intent(this,HomePage.class);
                 startActivity(intent);
             }else
@@ -60,7 +69,19 @@ public class CreatePost extends AppCompatActivity {
             //add new photo from camera/gallery
             Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
             galleryIntent.setType("image/*");
-            startActivityForResult(galleryIntent,GALLERY_CODE);
+            startActivityForResult(galleryIntent,GALLERY_CODE1);
+        });
+        binding.uploadPhoto2.setOnClickListener(view1 -> {
+            //add new photo from camera/gallery
+            Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            galleryIntent.setType("image/*");
+            startActivityForResult(galleryIntent,GALLERY_CODE2);
+        });
+        binding.uploadPhoto3.setOnClickListener(view1 -> {
+            //add new photo from camera/gallery
+            Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            galleryIntent.setType("image/*");
+            startActivityForResult(galleryIntent,GALLERY_CODE3);
         });
 
 
@@ -69,10 +90,18 @@ public class CreatePost extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == GALLERY_CODE){
-            if(data != null){
+        if(data != null){
+            if(requestCode == GALLERY_CODE1) {
                 imageUri = data.getData();
                 binding.uploadPhoto.setImageURI(imageUri);
+            }
+            else if(requestCode ==GALLERY_CODE2) {
+                imageUri2 = data.getData();
+                binding.uploadPhoto2.setImageURI(imageUri2);
+            }
+            else if(requestCode == GALLERY_CODE3) {
+                imageUri3 = data.getData();
+                binding.uploadPhoto3.setImageURI(imageUri);
             }
         }
     }

@@ -99,6 +99,8 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         });
 
         viewModel.get().observe(this,p->{
+            posts.clear();
+            posts.addAll(p);
             adapter.setPosts(p);
             refreshLayout.setRefreshing(false);
         });

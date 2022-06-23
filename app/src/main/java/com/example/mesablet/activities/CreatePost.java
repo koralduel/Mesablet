@@ -101,7 +101,7 @@ public class CreatePost extends AppCompatActivity {
             }
             else if(requestCode == GALLERY_CODE3) {
                 imageUri3 = data.getData();
-                binding.uploadPhoto3.setImageURI(imageUri);
+                binding.uploadPhoto3.setImageURI(imageUri3);
             }
         }
     }

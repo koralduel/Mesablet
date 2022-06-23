@@ -1,5 +1,6 @@
 package com.example.mesablet.data;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -8,8 +9,11 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+import com.example.mesablet.activities.HomePage;
+import com.example.mesablet.activities.PostPage;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.repositories.PostsRepository;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -130,17 +134,20 @@ public class FireBase {
         }
     }
 
-    public static void UploadImage(String folder,String id,String type ,Uri... uris) {
+    public static void UploadImage(String folder,String id,String type ,Uri uri) {
 
         storageRef = FirebaseStorage.getInstance().getReference(folder+"/").child(id+"/").child(type+"/");
 
-        for (Uri u:uris) {
-            storageRef.putFile(u).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                }
-            });
-        }
+        storageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("eynav",e.getMessage().toString());
+            }
+        });
 
     }
 

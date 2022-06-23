@@ -59,6 +59,7 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
             return true;
         });
 
+
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item ->{
             if(item.getTitle().equals("Home")){
                 //stay in this page
@@ -111,9 +112,4 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         startActivity(intent);
     }
 
-    @Override
-    public void OnItemLongClick(int position) {
-        viewModel.delete(posts.get(position));
-        posts.remove(position);
-    }
 }

@@ -78,16 +78,6 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.ViewHolder> {
                 }
             });
 
-            viewItem.setOnLongClickListener(view -> {
-
-                if(clickInterface!=null){
-                    int position= getAdapterPosition();
-                    if(position!=RecyclerView.NO_POSITION){
-                        clickInterface.OnItemLongClick(position);
-                    }
-                }
-                return true;
-            });
         }
     }
 }

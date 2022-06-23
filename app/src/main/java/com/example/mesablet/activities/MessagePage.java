@@ -93,41 +93,56 @@ public class MessagePage extends AppCompatActivity {
            reference.addListenerForSingleValueEvent(new ValueEventListener() {
                @Override
                public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                   if(datasnapshot.getValue()==null){
+                       help=myid+userid;
+                   }
                    for (DataSnapshot snapshot:datasnapshot.getChildren()) {
-                       String tmp = snapshot.getKey();
                        if(snapshot.getKey().equals(myid+userid)){
                           help=myid+userid;
                        }
                        else if(snapshot.getKey().equals(userid+myid)){
                            help=userid+myid;
                        }
+                       else{
+                           help=myid+userid;
+                       }
                    }
+                   HashMap<String,Object> chatHashMap=new HashMap<>();
+                   chatHashMap.put("user1",myid);
+                   chatHashMap.put("user2",userid);
+                   reference.child(help).child("users").setValue(chatHashMap);
+
+                   reference=FirebaseDatabase.getInstance().getReference("Chats");
                    reference.child(help).addValueEventListener(new ValueEventListener() {
                        @Override
                        public void onDataChange(@NonNull DataSnapshot snapshot) {
                            Messages=new ArrayList<>();
-                           for (DataSnapshot s: snapshot.getChildren()) {
-                               Message message = s.getValue(Message.class);
-                               if (message.getReceiver().equals(myid) && message.getSender().equals(userid) ||
-                                       message.getReceiver().equals(userid) && message.getSender().equals(myid)) {
-                                   Messages.add(message);
-                               }
-                               adapterMessage = new AdapterMessage(MessagePage.this, Messages);
-                               binding.RVMessages.setAdapter(adapterMessage);
-                           }
+                               for (DataSnapshot s: snapshot.getChildren()) {
+                                   if(!s.getKey().equals("users")){
+                                       Message message = s.getValue(Message.class);
+                                       if (message.getReceiver().equals(myid) && message.getSender().equals(userid) ||
+                                               message.getReceiver().equals(userid) && message.getSender().equals(myid)) {
+                                           Messages.add(message);
+                                       }
+                                       adapterMessage = new AdapterMessage(MessagePage.this, Messages);
+                                       binding.RVMessages.setAdapter(adapterMessage);
+                                   }
 
-                       }
+                                   }
+                               }
+
+
 
                        @Override
                        public void onCancelled(@NonNull DatabaseError error) {
 
                        }
                    });
+
                }
 
                @Override
                public void onCancelled(@NonNull DatabaseError error) {
-                   String bla ="bla";
 
                }
            });

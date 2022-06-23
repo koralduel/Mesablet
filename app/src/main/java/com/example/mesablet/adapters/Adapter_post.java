@@ -133,16 +133,6 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
                 }
             });
 
-            itemView.setOnLongClickListener(view -> {
-
-                if(clickInterface!=null){
-                    int position= getAdapterPosition();
-                    if(position!=RecyclerView.NO_POSITION){
-                        clickInterface.OnItemLongClick(position);
-                    }
-                }
-                return true;
-            });
         }
 
 

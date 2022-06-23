@@ -11,9 +11,9 @@ public class Chat implements Serializable {
    private DatabaseReference dateBase = FirebaseDatabase.getInstance().getReference();
 
     String senderID;
-
     String Image_sender_path;
     String sender_fullName;
+
 
     public Chat(String senderID) {
         this.senderID = senderID;

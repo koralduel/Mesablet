@@ -52,7 +52,7 @@ public class Post implements Serializable {
        this.Address = post.Address;
        this.likes = post.likes;
        this.Price = post.Price;
-       this.id=id;
+       this.id=post.id;
        this.publisher_id=post.publisher_id;
        this.startDate = post.startDate;
        this.endDate = post.endDate;

@@ -157,7 +157,6 @@ public class FireBase {
     public static void UploadImage(String folder,String id,String type ,Uri uri) {
 
         storageRef = FirebaseStorage.getInstance().getReference(folder+"/").child(id+"/").child(type+"/");
-
         storageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

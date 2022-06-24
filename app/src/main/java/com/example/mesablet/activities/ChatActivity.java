@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mesablet.adapters.AdapterChat;
-import com.example.mesablet.adapters.ClickInterface;
+import com.example.mesablet.interfaces.ClickInterface;
 import com.example.mesablet.databinding.ActivityChatBinding;
 import com.example.mesablet.entities.Chat;
 import com.google.firebase.auth.FirebaseAuth;

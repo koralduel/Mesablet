@@ -14,7 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.mesablet.R;
 import com.example.mesablet.adapters.Adapter_post;
-import com.example.mesablet.adapters.ClickInterface;
+import com.example.mesablet.interfaces.ClickInterface;
 import com.example.mesablet.databinding.ActivityHomePageBinding;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;

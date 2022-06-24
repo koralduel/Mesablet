@@ -17,6 +17,7 @@ import com.example.mesablet.activities.HomePage;
 import com.example.mesablet.activities.MessagePage;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.entities.Post;
+import com.example.mesablet.interfaces.ClickInterface;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

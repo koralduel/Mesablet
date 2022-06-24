@@ -2,14 +2,12 @@ package com.example.mesablet.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mesablet.interfaces.ICallable;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.databinding.ActivityPostPageBinding;
 import com.example.mesablet.entities.Post;
@@ -21,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostPage extends AppCompatActivity {
+public class PostPage extends AppCompatActivity implements ICallable {
 
     private ActivityPostPageBinding binding;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -43,8 +41,12 @@ public class PostPage extends AppCompatActivity {
         binding.TVEnterAddress.setText(post.getAddress());
         binding.TVEnterPrice.setText(post.getPrice());
         binding.TvPostContent.setText(post.getPost_context());
-        String[] photos = {post.getPost_photos_path(),post.getPost_photos_path1(),post.getPost_photos_path2()};
-        FireBase.downloadImage(post.getPost_photos_path(),binding.postPhotoSwitcher);
+        List<Bitmap> bitmapList = new ArrayList<>();
+        FireBase.downloadImage(post.getPost_photos_path(),bitmapList,this);
+        FireBase.downloadImage(post.getPost_photos_path1(),bitmapList,null);
+        FireBase.downloadImage(post.getPost_photos_path2(),bitmapList,null);
+      //  binding.postPhotoSwitcher.setImageBitmap(bitmapList.get(0));
+
 
         if(!post.getPublisher_id().equals(user.getUid()))
             binding.postDeleteBtn.setVisibility(View.GONE);
@@ -70,7 +72,7 @@ public class PostPage extends AppCompatActivity {
                 counter = 2;
             else
                 counter--;
-            FireBase.downloadImage(photos[counter],binding.postPhotoSwitcher);
+            binding.postPhotoSwitcher.setImageBitmap(bitmapList.get(counter));
         });
 
         binding.nextBtn.setOnClickListener(view -> {
@@ -78,7 +80,7 @@ public class PostPage extends AppCompatActivity {
                 counter=0;
             else
                 counter++;
-            FireBase.downloadImage(photos[counter],binding.postPhotoSwitcher);
+            binding.postPhotoSwitcher.setImageBitmap(bitmapList.get(counter));
         });
 
 
@@ -86,5 +88,10 @@ public class PostPage extends AppCompatActivity {
 
       //  binding.postPhotoSwitcher.setImageURI(Uri.parse(post.getPost_context()));
 
+    }
+
+    @Override
+    public void call(Bitmap bitmap) {
+        binding.postPhotoSwitcher.setImageBitmap(bitmap);
     }
 }

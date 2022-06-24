@@ -1,4 +1,4 @@
-package com.example.mesablet.adapters;
+package com.example.mesablet.interfaces;
 
 public interface ClickInterface {
 

@@ -1,6 +1,5 @@
 package com.example.mesablet.data;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -9,8 +8,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import com.example.mesablet.activities.HomePage;
-import com.example.mesablet.activities.PostPage;
+import com.example.mesablet.interfaces.ICallable;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.repositories.PostsRepository;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,6 +28,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class FireBase {
@@ -68,12 +67,12 @@ public class FireBase {
     }
 
     public void add(Post post){
-        List<String> photosPaths = new ArrayList<>();
-        photosPaths.add(post.getPost_photos_path());
-        photosPaths.add(post.getPost_photos_path1());
-        photosPaths.add(post.getPost_photos_path2());
+        HashMap<Integer,String> photosPaths = new HashMap<>();
+        photosPaths.put(1,post.getPost_photos_path());
+        photosPaths.put(2,post.getPost_photos_path1());
+        photosPaths.put(3,post.getPost_photos_path2());
         for (int i=1 ; i<=photosPaths.size(); i ++) {
-            UploadImage("Posts",post.getId(),"Post_image"+i, Uri.parse(post.getPost_photos_path()));
+            UploadImage("Posts",post.getId(),"Post_image"+i, Uri.parse(photosPaths.get(i)));
         }
         storageRef = FirebaseStorage.getInstance().getReference();
         post.setPost_photos_path(storageRef.child("Posts").child(post.getId()).child("Post_image1").toString());
@@ -134,6 +133,27 @@ public class FireBase {
         }
     }
 
+    public static void downloadImage(String path, List<Bitmap> list, ICallable callable) {
+        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(path);
+        try {
+            bitmap = null;
+            File localFile = File.createTempFile("tempfile", ".jpeg");
+            storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    if (bitmap != null) {
+                        if(callable!=null)
+                            callable.call(bitmap);
+                        list.add(bitmap);
+                    }
+                }
+            });
+        } catch (IOException e) {
+            Log.d("eynav",e.getMessage().toString());
+        }
+    }
+
     public static void UploadImage(String folder,String id,String type ,Uri uri) {
 
         storageRef = FirebaseStorage.getInstance().getReference(folder+"/").child(id+"/").child(type+"/");
@@ -150,5 +170,4 @@ public class FireBase {
         });
 
     }
-
 }

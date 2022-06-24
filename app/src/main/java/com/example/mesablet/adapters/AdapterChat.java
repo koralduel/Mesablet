@@ -14,6 +14,7 @@ import com.example.mesablet.R;
 import com.example.mesablet.activities.ChatActivity;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.entities.Chat;
+import com.example.mesablet.interfaces.ClickInterface;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.database.FirebaseDatabase;
 

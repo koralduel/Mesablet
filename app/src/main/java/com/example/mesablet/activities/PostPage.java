@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 
+import com.example.mesablet.R;
 import com.example.mesablet.interfaces.ICallable;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.databinding.ActivityPostPageBinding;
@@ -35,36 +37,47 @@ public class PostPage extends AppCompatActivity implements ICallable {
 
         post =(Post) getIntent().getSerializableExtra("post");
 
-
         FireBase.downloadImage(post.getPublisher_image_path(),binding.postOwnerPhoto);
         binding.postOwnerFullName.setText(post.getPublisher_name());
         binding.TVEnterAddress.setText(post.getAddress());
         binding.TVEnterPrice.setText(post.getPrice());
         binding.TvPostContent.setText(post.getPost_context());
+        binding.TVStartDate.setText(post.getStartDate());
+        binding.TVEndDate.setText(post.getEndDate());
         List<Bitmap> bitmapList = new ArrayList<>();
         FireBase.downloadImage(post.getPost_photos_path(),bitmapList,this);
         FireBase.downloadImage(post.getPost_photos_path1(),bitmapList,null);
         FireBase.downloadImage(post.getPost_photos_path2(),bitmapList,null);
-      //  binding.postPhotoSwitcher.setImageBitmap(bitmapList.get(0));
 
 
         if(!post.getPublisher_id().equals(user.getUid()))
-            binding.postDeleteBtn.setVisibility(View.GONE);
-        binding.postDeleteBtn.setOnClickListener(view -> {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
-                builder.setTitle("Delete");
-                builder.setMessage("Are you sure you want to delete this post?");
-                builder.setNegativeButton("Yes",(dialogInterface, i) ->{
-                    viewModel.delete(post);
-                    Intent intent = new Intent(this,HomePage.class);
-                    startActivity(intent);
-                });
-                builder.setPositiveButton("Cancel",(dialogInterface, i) -> {
-                });
-                builder.show();
+            binding.openMenuBtn.setVisibility(View.GONE);
+        binding.openMenuBtn.setOnClickListener(view -> {
+            PopupMenu popupMenu = new PopupMenu(PostPage.this,binding.openMenuBtn);
+            popupMenu.getMenuInflater()
+                    .inflate(R.menu.post_options,popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(item -> {
+                if(item.getTitle().equals("Edit")){
 
+
+                }
+                else if(item.getTitle().equals("Delete")){
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+                    builder.setTitle("Delete");
+                    builder.setMessage("Are you sure you want to delete this post?");
+                    builder.setNegativeButton("Yes",(dialogInterface, i) ->{
+                        viewModel.delete(post);
+                        Intent intent = new Intent(this,HomePage.class);
+                        startActivity(intent);
+                    });
+                    builder.setPositiveButton("Cancel",(dialogInterface, i) -> { });
+                    builder.show();
+                }
+                return true;
             });
+            popupMenu.show();
 
+        });
 
 
         binding.prevBtn.setOnClickListener(view -> {
@@ -82,11 +95,6 @@ public class PostPage extends AppCompatActivity implements ICallable {
                 counter++;
             binding.postPhotoSwitcher.setImageBitmap(bitmapList.get(counter));
         });
-
-
-
-
-      //  binding.postPhotoSwitcher.setImageURI(Uri.parse(post.getPost_context()));
 
     }
 

@@ -81,8 +81,8 @@
                         android:id="@+id/postOwnerPhoto"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_profile"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_profile" />
 
                 </androidx.cardview.widget.CardView>
             </androidx.cardview.widget.CardView>
@@ -97,49 +97,89 @@
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
+
             <ImageView
-                android:id="@+id/postDeleteBtn"
+                android:id="@+id/openMenuBtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="200dp"
-                android:src="@drawable/ic_delete" />
+                android:layout_marginLeft="220dp"
+                android:src="@drawable/ic_three_dots" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/postPhotoSwitcher"
             android:layout_width="match_parent"
-            android:layout_height="250dp" />
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="center">
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/prevBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Prev"/>
+                android:text="Prev" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/nextBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next"/>
+                android:text="Next" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/likeBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_like"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_like" />
 
         <TextView
-                android:id="@+id/number_of_likes"
+            android:id="@+id/number_of_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="10 Likes"
+            android:textColor="@color/black" />
+        <LinearLayout
+            android:id="@+id/LL_Date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/TV_Dates"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10 Likes"
-                android:textColor="@color/black"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/dates"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/TV_Start_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/start_date"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/TV_End_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:background="@android:color/transparent"
+                android:text="@string/end_date"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/LL_Address"
@@ -155,7 +195,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/address"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/TV_Enter_Address"
@@ -163,7 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:text="@string/enter_address"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -181,7 +221,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/price"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/TV_Enter_Price"
@@ -190,7 +230,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/enter_price"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -202,7 +242,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:text="@string/description"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
     </LinearLayout>
 
 

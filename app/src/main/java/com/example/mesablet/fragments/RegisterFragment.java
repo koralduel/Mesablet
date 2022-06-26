@@ -1,4 +1,4 @@
-package com.example.mesablet;
+package com.example.mesablet.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.mesablet.R;
 import com.example.mesablet.activities.HomePage;
 import com.example.mesablet.data.FireBase;
 import com.google.android.gms.tasks.OnCompleteListener;

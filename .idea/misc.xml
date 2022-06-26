@@ -3,15 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/drawable/selected_dot.xml" value="0.1875" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/drawable/tab_selector.xml" value="0.1875" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/drawable/unselected_dot.xml" value="0.1875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_chat.xml" value="0.15625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_create_post.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_favorite_page.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_home_page.xml" value="0.1671875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_login_page.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_post_page.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_profile_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/card_post_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/chat_item.xml" value="0.1265625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_intro.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_register.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/menu/post_options.xml" value="0.2" />

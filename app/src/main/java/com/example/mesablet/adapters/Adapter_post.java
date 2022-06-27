@@ -84,10 +84,6 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
 
     }
 
-
-
-
-
     public void setPosts(List<Post> s){
         data = s;
         notifyDataSetChanged();

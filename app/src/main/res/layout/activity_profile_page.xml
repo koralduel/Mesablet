@@ -81,7 +81,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/TV_posts_number"
+                android:id="@+id/TVPostsNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -180,7 +180,7 @@
             android:id="@+id/photoGrid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:horizontalSpacing="4dp"
             android:numColumns="3"
             android:verticalSpacing="4dp" />

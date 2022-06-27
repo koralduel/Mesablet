@@ -9,14 +9,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.example.mesablet.R;
+import com.example.mesablet.data.FireBase;
+
+import java.util.List;
 
 public class GridAdapter extends BaseAdapter
 {
     private Context context;
-    private String[] images;
+    private List<String> images;
     private LayoutInflater inflater;
 
-    public GridAdapter(Context context, String[] images) {
+    public GridAdapter(Context context, List<String> images) {
         this.context = context;
         this.images = images;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -24,7 +27,7 @@ public class GridAdapter extends BaseAdapter
 
     @Override
     public int getCount() {
-        return images.length;
+        return images.size();
     }
 
     @Override
@@ -43,7 +46,7 @@ public class GridAdapter extends BaseAdapter
         if(view == null)
             view = inflater.inflate(R.layout.photo_item,viewGroup,false);
         ImageView imageView = view.findViewById(R.id.imageView_photo);
-        imageView.setImageURI(Uri.parse(images[i]));
+        FireBase.downloadImage(images.get(i),imageView);
         return view;
 
     }

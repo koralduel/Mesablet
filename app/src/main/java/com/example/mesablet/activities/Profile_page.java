@@ -12,7 +12,6 @@ import com.example.mesablet.databinding.ActivityProfilePageBinding;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +23,9 @@ public class Profile_page extends AppCompatActivity {
     GridAdapter gridAdapter;
     List<Post> myPosts;
 
-    FirebaseUser user;
+    //FirebaseUser user;
     FirebaseAuth firebaseAuth;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +34,20 @@ public class Profile_page extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         firebaseAuth = FirebaseAuth.getInstance();
-        user = FirebaseAuth.getInstance().getCurrentUser();
+       // user = FirebaseAuth.getInstance().getCurrentUser();
+        intent= getIntent();
+        String userUid=intent.getStringExtra("userUid");
+        String user_fullname=intent.getStringExtra("user_fullname");
+
+
 
         List<Post> posts = new ArrayList<>();
         PostsViewModel viewModel = new PostsViewModel();
         posts.addAll(viewModel.get().getValue());
-        String uid = user.getUid();
+        //String uid = user.getUid();
         myPosts = new ArrayList<>();
         for (Post p: posts) {
-            if(p.getPublisher_id().equals(uid))
+            if(p.getPublisher_id().equals(userUid))
                 myPosts.add(p);
         }
 
@@ -61,8 +66,8 @@ public class Profile_page extends AppCompatActivity {
         });
 
         FireBase.downloadImage(posts.get(0).getPublisher_image_path(),binding.IVProfilePhoto);
-        binding.TvFullName.setText(user.getDisplayName());
-        binding.topAppBar.setTitle(user.getDisplayName());
+        binding.TvFullName.setText(user_fullname);
+        binding.topAppBar.setTitle(user_fullname);
 
 
 

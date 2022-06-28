@@ -70,6 +70,8 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
             }
             else if(item.getTitle().equals("Profile")){
                 Intent intent=new Intent(this, Profile_page.class);
+                intent.putExtra("userUid",user.getUid());
+                intent.putExtra("user_fullname",user.getDisplayName());
                 startActivity(intent);
             }
             else if(item.getTitle().equals("Logout")){

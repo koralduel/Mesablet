@@ -1,7 +1,6 @@
 package com.example.mesablet.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +47,8 @@ public class Favorite_page extends AppCompatActivity {
             else if(item.getTitle().equals("Favorites")){ }
             else if(item.getTitle().equals("Profile")){
                 intent=new Intent(this, Profile_page.class);
+                intent.putExtra("userUid",user.getUid());
+                intent.putExtra("user_fullname",user.getDisplayName());
                 startActivity(intent);
             }
             else if(item.getTitle().equals("Logout")){

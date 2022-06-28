@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mesablet.R;
 import com.example.mesablet.activities.HomePage;
 import com.example.mesablet.activities.MessagePage;
+import com.example.mesablet.activities.Profile_page;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.interfaces.ClickInterface;
@@ -50,6 +51,12 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
 
         String publisher_name= data.get(i).getPublisher_name();
         viewHolder.publisher_name.setText(publisher_name);
+        viewHolder.publisher_name.setOnClickListener(v -> {
+            Intent intent=new Intent(layoutInflater.getContext(), Profile_page.class);
+            intent.putExtra("userUid",data.get(i).getPublisher_id());
+            intent.putExtra("user_fullname",data.get(i).getPublisher_name());
+            layoutInflater.getContext().startActivity(intent);
+        });
 
         String post_context=data.get(i).getPost_context();
         viewHolder.post_context.setText(post_context);

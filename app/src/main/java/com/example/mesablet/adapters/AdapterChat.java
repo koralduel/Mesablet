@@ -43,7 +43,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull AdapterChat.ViewHolder holder, int i) {
 
-        String sender_fullName = chats.get(i).getSender_fullName();
+        String sender_fullName = chats.get(i).getSender();
         FirebaseDatabase.getInstance().getReference("Users").child(sender_fullName).child("fullname").get()
                 .addOnSuccessListener(dataSnapshot -> {
                     holder.sender_fullName.setText(dataSnapshot.getValue().toString());
@@ -53,10 +53,9 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.ViewHolder> {
 
             }
         });
-        //holder.sender_fullName.setText(sender_fullName);
+
 
         String Otheruser = chats.get(i).getOtheruserId();
-        //FireBase.downloadImage(image_sender_path,holder.sender_Profile_photo);
 
         FirebaseDatabase.getInstance().getReference("Users").child(Otheruser).child("profileImageUri").get()
                 .addOnSuccessListener(dataSnapshot -> {

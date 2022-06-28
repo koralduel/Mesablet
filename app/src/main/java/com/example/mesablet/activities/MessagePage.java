@@ -61,7 +61,7 @@ public class MessagePage extends AppCompatActivity {
         FireBase.downloadImage(Post_owner_profileImg,binding.IVProfilePhoto);
 
         binding.userChatWith.setText(Post_owner_name);
-        readMessage(user.getUid(),Post_owner_UID,Post_owner_profileImg);
+        readMessage(user.getUid(),Post_owner_UID,Post_owner_profileImg,Post_owner_name);
 
         binding.BtnSend.setOnClickListener(v -> {
             String msg=binding.ETMessageContent.getText().toString();
@@ -87,7 +87,7 @@ public class MessagePage extends AppCompatActivity {
             reference.push().setValue(hashMap);
         }
 
-        public void readMessage(String myid, String userid, String image_Path){
+        public void readMessage(String myid, String userid, String image_Path,String Post_owner_name){
             help="";
            reference=FirebaseDatabase.getInstance().getReference("Chats");
            reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -110,6 +110,8 @@ public class MessagePage extends AppCompatActivity {
                    HashMap<String,Object> chatHashMap=new HashMap<>();
                    chatHashMap.put("user1",myid);
                    chatHashMap.put("user2",userid);
+                   chatHashMap.put("otherUser_image_Path",image_Path);
+                   chatHashMap.put("otherUser_fullname",Post_owner_name);
                    reference.child(help).child("users").setValue(chatHashMap);
 
                    reference=FirebaseDatabase.getInstance().getReference("Chats");

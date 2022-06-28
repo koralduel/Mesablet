@@ -47,7 +47,9 @@ public class ChatActivity extends AppCompatActivity implements ClickInterface {
     @Override
     public void OnItemClick(int position) {
         Intent intent = new Intent(this, MessagePage.class);
-        intent.putExtra("Message", chats.get(position));
+        intent.putExtra("Post_owner_UID", chats.get(position).getOtheruserId());
+        intent.putExtra("Post_owner_name",chats.get(position).getOtherUser_fullname());
+        intent.putExtra("Post_owner_profileImg",chats.get(position).getOtherUser_image_Path());
         startActivity(intent);
     }
 

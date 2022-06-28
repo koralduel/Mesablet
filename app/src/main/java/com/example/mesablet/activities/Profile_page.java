@@ -1,7 +1,6 @@
 package com.example.mesablet.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import com.example.mesablet.adapters.GridAdapter;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.databinding.ActivityProfilePageBinding;
 import com.example.mesablet.entities.Post;
-import com.example.mesablet.interfaces.ClickInterface;
 import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -64,6 +62,8 @@ public class Profile_page extends AppCompatActivity {
 
         FireBase.downloadImage(posts.get(0).getPublisher_image_path(),binding.IVProfilePhoto);
         binding.TvFullName.setText(user.getDisplayName());
+        binding.topAppBar.setTitle(user.getDisplayName());
+
 
 
         binding.bottomNavigation.setSelectedItemId(R.id.profile);

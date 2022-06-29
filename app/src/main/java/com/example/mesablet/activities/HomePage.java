@@ -64,8 +64,8 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
             if(item.getTitle().equals("Home")){
                 //stay in this page
             }
-            else if(item.getTitle().equals("Favorites")){
-                Intent intent=new Intent(this, Favorite_page.class);
+            else if(item.getTitle().equals("Add post")){
+                Intent intent=new Intent(this, CreatePost.class);
                 startActivity(intent);
             }
             else if(item.getTitle().equals("Profile")){

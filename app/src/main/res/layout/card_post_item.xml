@@ -156,21 +156,8 @@
             android:id="@+id/LL_bottom_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_add_favorite"
-                android:textColor="@color/black"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="55dp"
-                android:textSize="12dp"
-                app:iconSize="12dp"
-                app:iconTint="@color/black"
-                android:text="@string/add_favorites"
-                app:icon="@drawable/ic_favorite"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                />
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/btn_send_message"
@@ -183,8 +170,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/message"
                 app:icon="@drawable/ic_message"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                />
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
         </LinearLayout>
     </LinearLayout>

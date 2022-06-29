@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mesablet.R;
 import com.example.mesablet.databinding.ActivityCreatePostBinding;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;
@@ -25,6 +26,7 @@ public class CreatePost extends AppCompatActivity {
     //Firebase connection objects
     FirebaseUser user;
     PostsViewModel viewModel =new PostsViewModel();
+    FirebaseAuth firebaseAuth;
 
     private ActivityCreatePostBinding binding;
     StorageReference storageRef;
@@ -41,6 +43,7 @@ public class CreatePost extends AppCompatActivity {
 
         storageRef = FirebaseStorage.getInstance().getReference();
         user = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         String publisher_photo= storageRef.child("Users").child(user.getUid()).child("ProfileImg").toString();
         String publisher_name = user.getDisplayName();
@@ -82,6 +85,28 @@ public class CreatePost extends AppCompatActivity {
             Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
             galleryIntent.setType("image/*");
             startActivityForResult(galleryIntent,GALLERY_CODE3);
+        });
+
+        binding.bottomNavigation.setSelectedItemId(R.id.addPost);
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(item ->{
+            if(item.getTitle().equals("Home")){
+                Intent intent = new Intent(this,HomePage.class);
+                startActivity(intent);
+            }
+            else if(item.getTitle().equals("Add post")){
+                //Stay here
+            }
+            else if(item.getTitle().equals("Profile")){
+                Intent intent=new Intent(this, Profile_page.class);
+                intent.putExtra("userUid",user.getUid());
+                intent.putExtra("user_fullname",user.getDisplayName());
+                startActivity(intent);
+            }
+            else if(item.getTitle().equals("Logout")){
+                firebaseAuth.signOut();
+                startActivity(new Intent(this, LoginPage.class));
+            }
+            return true;
         });
 
 

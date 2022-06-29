@@ -28,9 +28,6 @@
             android:name=".activities.Profile_page"
             android:exported="false" />
         <activity
-            android:name=".activities.Favorite_page"
-            android:exported="false" />
-        <activity
             android:name=".activities.HomePage"
             android:exported="false" />
         <activity

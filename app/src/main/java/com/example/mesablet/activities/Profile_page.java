@@ -78,8 +78,8 @@ public class Profile_page extends AppCompatActivity {
                 intent = new Intent(this,HomePage.class);
                 startActivity(intent);
             }
-            else if(item.getTitle().equals("Favorites")){
-                intent=new Intent(this, Favorite_page.class);
+            else if(item.getTitle().equals("Add post")){
+                intent=new Intent(this, CreatePost.class);
                 startActivity(intent);
             }
             else if(item.getTitle().equals("Profile")){ }

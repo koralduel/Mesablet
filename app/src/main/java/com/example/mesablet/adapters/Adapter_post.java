@@ -130,7 +130,6 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
             post_Address=itemView.findViewById(R.id.TV_Enter_Address);
             post_Price=itemView.findViewById(R.id.TV_Enter_Price);
             btn_send_message=itemView.findViewById(R.id.btn_send_message);
-            btn_add_favorite=itemView.findViewById(R.id.btn_add_favorite);
             start_date = itemView.findViewById(R.id.TV_Start_Date);
             end_date = itemView.findViewById(R.id.TV_End_Date);
 

@@ -48,4 +48,6 @@
     <string name="start_date">Start date</string>
     <string name="end_date">End Date</string>
     <string name="next">Next</string>
+    <string name="settings">settings</string>
+    <string name="dark_mode">dark mode</string>
 </resources>

@@ -14,9 +14,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.mesablet.R;
 import com.example.mesablet.adapters.Adapter_post;
-import com.example.mesablet.interfaces.ClickInterface;
 import com.example.mesablet.databinding.ActivityHomePageBinding;
 import com.example.mesablet.entities.Post;
+import com.example.mesablet.fragments.CustomDialog;
+import com.example.mesablet.interfaces.ClickInterface;
 import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,9 +49,9 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
 
         binding.topAppBar.setOnMenuItemClickListener(menuItem -> {
-            if(menuItem.getTitle().equals("Add post")) {
-                Intent intent = new Intent(this, CreatePost.class);
-                startActivity(intent);
+            if(menuItem.getTitle().equals("settings")) {
+                CustomDialog customDialog=new CustomDialog();
+                customDialog.show(getSupportFragmentManager(),"");
             }
             if(menuItem.getTitle().equals("messenger")){
                 Intent intent = new Intent(this,ChatActivity.class);

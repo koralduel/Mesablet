@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -50,13 +51,16 @@ public class CustomDialog extends DialogFragment {
         super.onStart();
 
         Switch darkModeSwitch;
+        ImageButton btnExit;
         if (getDialog() == null){
             darkModeSwitch = getView().findViewById(R.id.switch_darkMode);
+            btnExit = getView().findViewById(R.id.Btn_exitSettings);
         }
         else
         {
             darkModeSwitch = getDialog().findViewById(R.id.switch_darkMode);
-        }
+            btnExit = getDialog().findViewById(R.id.Btn_exitSettings);
+            }
         int nightModeFlag= getContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
         if(nightModeFlag == Configuration.UI_MODE_NIGHT_YES)
             darkModeSwitch.setChecked(true);
@@ -69,6 +73,13 @@ public class CustomDialog extends DialogFragment {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
 
+        });
+
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
         });
 
 

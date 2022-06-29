@@ -2,8 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="30dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/LL_allItems"
@@ -14,16 +13,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/TV_settingTitle"
+        <LinearLayout
+            android:id="@+id/LL_Settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@color/grey">
+
+        <ImageView
+            android:id="@+id/Iv_settings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/ic_settings"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/darkGrey"/>
+
+        <TextView
+            android:id="@+id/TV_settingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
             android:paddingTop="10dp"
             android:text="@string/settings"
-            android:textSize="30sp">
+            android:textSize="30sp"/>
 
-        </TextView>
+            <ImageButton
+                android:id="@+id/Btn_exitSettings"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_exit"
+                android:layout_marginLeft="100dp"
+                android:backgroundTint="@color/darkGrey"/>
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/LL_darkMode"
@@ -32,12 +57,21 @@
             android:orientation="horizontal"
             android:paddingBottom="30dp">
 
+            <ImageView
+                android:id="@+id/Iv_darkMode"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/ic_dark_mode"
+                android:backgroundTint="@color/darkGrey"/>
+
             <TextView
                 android:id="@+id/Tv_darkModeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="40dp"
-                android:paddingLeft="60dp"
+                android:paddingLeft="40dp"
                 android:layout_weight="1"
                 android:text="@string/dark_mode"
                 android:textSize="16dp"/>

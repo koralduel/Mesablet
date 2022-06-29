@@ -5,6 +5,7 @@
     <item
         android:id="@+id/messenger"
         android:icon="@drawable/ic_messenger"
+
         android:title="@string/messenger"
         android:contentDescription="@string/messenger"
         app:showAsAction="ifRoom" />

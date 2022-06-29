@@ -73,6 +73,12 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         String post_photos = data.get(i).getPost_photos_path();
         FireBase.downloadImage(data.get(i).getPost_photos_path(),viewHolder.post_photos);
 
+        String start_date = data.get(i).getStartDate();
+        viewHolder.start_date.setText(start_date);
+
+        String end_date = data.get(i).getEndDate();
+        viewHolder.end_date.setText(end_date);
+
         if(user.getUid().equals(data.get(i).getPublisher_id())){
             viewHolder.btn_send_message.setEnabled(true);
             viewHolder.btn_send_message.setVisibility(View.GONE);
@@ -113,7 +119,7 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         Button btn_send_message;
         Button btn_add_favorite;
         ImageView post_photos;
-        TextView publisher_name,post_context,post_Address,post_Price;
+        TextView publisher_name,post_context,post_Address,post_Price,start_date,end_date;
 
         public ViewHolder(@NonNull View itemView,ClickInterface clickInterface) {
             super(itemView);
@@ -125,6 +131,8 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
             post_Price=itemView.findViewById(R.id.TV_Enter_Price);
             btn_send_message=itemView.findViewById(R.id.btn_send_message);
             btn_add_favorite=itemView.findViewById(R.id.btn_add_favorite);
+            start_date = itemView.findViewById(R.id.TV_Start_Date);
+            end_date = itemView.findViewById(R.id.TV_End_Date);
 
 
 

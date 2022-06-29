@@ -30,8 +30,6 @@ public class Post implements Serializable {
     @ColumnInfo
     private String publisher_id;
     @ColumnInfo
-    private int likes;
-    @ColumnInfo
     private String Address;
     @ColumnInfo
     private String Price;
@@ -50,7 +48,6 @@ public class Post implements Serializable {
        this.post_photos_path2 = post.post_photos_path2;
        this.post_context = post.post_context;
        this.Address = post.Address;
-       this.likes = post.likes;
        this.Price = post.Price;
        this.id=post.id;
        this.publisher_id=post.publisher_id;
@@ -68,7 +65,6 @@ public class Post implements Serializable {
         this.post_photos_path1= post_photos_path1;
         this.post_photos_path2 = post_photos_path2;
         this.post_context = post_context;
-        this.likes = 0;
         Address = address;
         Price = price;
         this.publisher_id=publisher_id;
@@ -96,10 +92,6 @@ public class Post implements Serializable {
 
     public void setPost_context(String post_context) { this.post_context = post_context; }
 
-    public int getLikes() { return likes; }
-
-    public void setLikes(int likes) { this.likes = likes; }
-
     public String getAddress() { return Address; }
 
     public void setAddress(String address) { Address = address; }
@@ -112,17 +104,13 @@ public class Post implements Serializable {
         return post_photos_path1;
     }
 
-    public void setPost_photos_path1(String post_photos_path1) {
-        this.post_photos_path1 = post_photos_path1;
-    }
+    public void setPost_photos_path1(String post_photos_path1) { this.post_photos_path1 = post_photos_path1; }
 
     public String getPost_photos_path2() {
         return post_photos_path2;
     }
 
-    public void setPost_photos_path2(String post_photos_path2) {
-        this.post_photos_path2 = post_photos_path2;
-    }
+    public void setPost_photos_path2(String post_photos_path2) { this.post_photos_path2 = post_photos_path2; }
 
     public String getPublisher_id() {
         return publisher_id;

@@ -75,21 +75,6 @@
                 android:layout_weight="1"/>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/likeBtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_like" />
-
-        <TextView
-            android:id="@+id/number_of_likes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="10 Likes"
-            android:textColor="@color/black" />
-
         <LinearLayout
             android:id="@+id/LL_Date"
             android:layout_width="match_parent"

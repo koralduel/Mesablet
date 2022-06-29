@@ -25,7 +25,7 @@
     <string name="price">Price</string>
     <string name="enter_price">Enter_Price</string>
     <string name="description">Description</string>
-    <string name="localDb">dblocal</string>
+    <string name="localDb">localdb</string>
     <string name="user_name">UserName</string>
     <string name="add_post">Add post</string>
     <string name="messenger">messenger</string>

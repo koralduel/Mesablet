@@ -55,6 +55,7 @@ public class Profile_page extends AppCompatActivity {
         for (Post p : myPosts) {
             photos.add(p.getPost_photos_path());
         }
+        binding.TVPostsNumber.setText(String.valueOf(myPosts.size()));
         gridAdapter = new GridAdapter(this,photos);
         binding.photoGrid.setAdapter(gridAdapter);
 

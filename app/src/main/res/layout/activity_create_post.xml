@@ -55,24 +55,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/upload_photo"
                 android:layout_width="100dp"
                 android:layout_height="250dp"
-                android:src="@drawable/ic_image"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:src="@drawable/ic_image" />
+
             <ImageView
                 android:id="@+id/upload_photo2"
                 android:layout_width="100dp"
                 android:layout_height="250dp"
-                android:src="@drawable/ic_image"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:src="@drawable/ic_image" />
+
             <ImageView
                 android:id="@+id/upload_photo3"
                 android:layout_width="100dp"
                 android:layout_height="250dp"
-                android:src="@drawable/ic_image"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:src="@drawable/ic_image" />
         </LinearLayout>
 
         <LinearLayout
@@ -91,26 +94,36 @@
                 android:text="@string/dates"
                 android:textColor="@color/black" />
 
-            <EditText
-                android:id="@+id/ET_Enter_Start_Date"
+            <TextView
+                android:id="@+id/Enter_Start_Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:hint="Start date"
-                android:inputType="date"
-                android:maxLines="1"
-                android:textColor="@color/black" />
+                android:text="@string/start_date"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
 
-            <EditText
-                android:id="@+id/ET_Enter_End_Date"
+            <ImageButton
+                android:id="@+id/Btn_StartDate"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="7dp"
+                android:background="@drawable/ic_calendar" />
+
+            <TextView
+                android:id="@+id/Enter_End_Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:background="@android:color/transparent"
-                android:hint="End Date"
-                android:inputType="date"
-                android:maxLines="1"
-                android:textColor="@color/black" />
+                android:text="@string/end_date"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <ImageButton
+                android:id="@+id/Btn_EndDate"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="7dp"
+                android:background="@drawable/ic_calendar" />
 
         </LinearLayout>
 

@@ -2,21 +2,30 @@ package com.example.mesablet.activities;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mesablet.R;
 import com.example.mesablet.databinding.ActivityCreatePostBinding;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class CreatePost extends AppCompatActivity {
 
@@ -35,6 +44,7 @@ public class CreatePost extends AppCompatActivity {
     private Uri imageUri3 = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,15 +58,78 @@ public class CreatePost extends AppCompatActivity {
         String publisher_photo= storageRef.child("Users").child(user.getUid()).child("ProfileImg").toString();
         String publisher_name = user.getDisplayName();
 
+        MaterialDatePicker.Builder builder=MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("SELECT A DATE");
+        final MaterialDatePicker materialDatePicker = builder.build();
+
+        binding.BtnStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialDatePicker.show(getSupportFragmentManager(),"DATE_PICKER");
+            }
+        });
+
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                binding.EnterStartDate.setText(materialDatePicker.getHeaderText());
+            }
+        });
+
+        MaterialDatePicker.Builder builder2=MaterialDatePicker.Builder.datePicker();
+        builder2.setTitleText("SELECT A DATE");
+        final MaterialDatePicker materialDatePicker2 = builder.build();
+
+
+        binding.BtnEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialDatePicker2.show(getSupportFragmentManager(),"DATE_PICKER");
+            }
+        });
+
+        materialDatePicker2.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                binding.EnterEndDate.setText(materialDatePicker2.getHeaderText());
+
+
+            }
+        });
+
+
         binding.createBtn.setOnClickListener(view -> {
             String address = binding.ETEnterAddress.getText().toString();
             String price = binding.ETEnterPrice.getText().toString();
             String description = binding.ETDescriptionValue.getText().toString();
-            String startDate = binding.ETEnterStartDate.getText().toString();
-            String endDate = binding.ETEnterEndDate.getText().toString();
+            String startDate = binding.EnterStartDate.getText().toString();
+            String endDate = binding.EnterEndDate.getText().toString();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH);
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.ENGLISH);
+            LocalDate datestart=null;
+            LocalDate dateend=null;
+            if(startDate.length()==11){
+                datestart = LocalDate.parse(startDate, formatter2);
+            }
+            else if(startDate.length()==12){
+                 datestart = LocalDate.parse(startDate, formatter);
+            }
+            if(endDate.length()==11){
+                 dateend = LocalDate.parse(endDate, formatter2);
+            }
+            else if(endDate.length()==12){
+                 dateend = LocalDate.parse(endDate, formatter);
+            }
+
+            LocalDate today=LocalDate.now();
+
+            if( TextUtils.isEmpty(startDate) || !TextUtils.isEmpty(endDate) ||datestart.isBefore(today) || datestart.isAfter(dateend)){
+                Toast.makeText(this,"Date is not valid",Toast.LENGTH_LONG).show();
+            }
 
             //Validation check
-            if(!TextUtils.isEmpty(address) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description)
+            else if(!TextUtils.isEmpty(address) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description)
                     && !TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)){
 
                 viewModel.add(new Post(publisher_photo,publisher_name,imageUri.toString(),

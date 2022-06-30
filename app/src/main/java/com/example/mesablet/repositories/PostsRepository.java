@@ -61,6 +61,8 @@ public class PostsRepository {
 
     public void reload() { fireBase.reload(); }
 
+    public void updatePost(final Post post) {fireBase.updatePost(post);}
+
     public static PostsRepository getPostsRepository() {
         return postsRepository;
     }

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.example.mesablet.R;
+import com.example.mesablet.fragments.EditPostFragment;
 import com.example.mesablet.interfaces.ICallable;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.databinding.ActivityPostPageBinding;
@@ -59,6 +60,11 @@ public class PostPage extends AppCompatActivity implements ICallable {
             popupMenu.setOnMenuItemClickListener(item -> {
                 if(item.getTitle().equals(getString(R.string.edit))){
 
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("post",post);
+                    EditPostFragment editPostFragment = new EditPostFragment(bundle);
+                    editPostFragment.show(getSupportFragmentManager(),"EditPostDialog");
+
 
                 }
                 else if(item.getTitle().equals(getString(R.string.delete))){
@@ -101,5 +107,11 @@ public class PostPage extends AppCompatActivity implements ICallable {
     @Override
     public void call(Bitmap bitmap) {
         binding.postPhotoSwitcher.setImageBitmap(bitmap);
+    }
+
+    public void restartActivity() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 }

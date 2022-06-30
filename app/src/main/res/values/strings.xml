@@ -60,6 +60,7 @@
     <string name="cancel">Cancel</string>
     <string name="must_enter">You must enter address,price and description</string>
     <string name="send_message">Send Message</string>
+    <string name="save">Save</string>
 
 
 </resources>

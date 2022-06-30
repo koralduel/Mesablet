@@ -90,6 +90,24 @@ public class FireBase {
        storageRef.child("Posts").child(post.getId()).delete();
    }
 
+   public void updatePost(Post post){
+        HashMap<String,Object> newPost = new HashMap<>();
+        newPost.put("address",post.getAddress());
+        newPost.put("endDate",post.getEndDate());
+        newPost.put("id",post.getId());
+        newPost.put("post_content",post.getPost_context());
+        newPost.put("post_photos_path",post.getPost_photos_path());
+        newPost.put("post_photos_path1",post.getPost_photos_path1());
+        newPost.put("post_photos_path2",post.getPost_photos_path2());
+        newPost.put("price",post.getPrice());
+        newPost.put("publisher_id",post.getPublisher_id());
+        newPost.put("publisher_name",post.getPublisher_name());
+        newPost.put("publisher_image_path",post.getPublisher_image_path());
+        newPost.put("startDate",post.getStartDate());
+
+        dataRef.child(post.getId()).updateChildren(newPost);
+   }
+
    public void reload(){
        dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
            @Override

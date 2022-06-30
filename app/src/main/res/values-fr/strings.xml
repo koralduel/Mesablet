@@ -60,4 +60,5 @@
     <string name="cancel">Annuler</string>
     <string name="must_enter">Vous devez entrer l\'adresse, le prix et la description</string>
     <string name="send_message">Envoyer le message</string>
+    <string name="save">Enregistrer</string>
 </resources>

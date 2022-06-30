@@ -11,8 +11,11 @@ import com.example.mesablet.adapters.GridAdapter;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.databinding.ActivityProfilePageBinding;
 import com.example.mesablet.entities.Post;
+import com.example.mesablet.fragments.EditPostFragment;
+import com.example.mesablet.fragments.EditProfile;
 import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,7 @@ public class Profile_page extends AppCompatActivity {
     String[] images = {"android.resource://com.example.mesablet/drawable/ic_image","android.resource://com.example.mesablet/drawable/ic_image"};
     GridAdapter gridAdapter;
     List<Post> myPosts;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     //FirebaseUser user;
     FirebaseAuth firebaseAuth;
@@ -67,7 +71,7 @@ public class Profile_page extends AppCompatActivity {
             startActivity(intent);
         });
 
-        FireBase.downloadImage(posts.get(0).getPublisher_image_path(),binding.IVProfilePhoto);
+        FireBase.downloadImage(user.getPhotoUrl().toString(),binding.IVProfilePhoto);
         binding.TvFullName.setText(user_fullname);
         binding.topAppBar.setTitle(user_fullname);
         
@@ -102,5 +106,13 @@ public class Profile_page extends AppCompatActivity {
             }
             return true;
         });
+
+        binding.BtnEditProfile.setOnClickListener(view -> {
+            EditProfile editProfile = new EditProfile();
+            editProfile.show(getSupportFragmentManager(),"EditProfileDialog");
+        });
+
+        if(user.getUid().equals(userUid))
+            binding.BtnSentMessage.setVisibility(View.GONE);
     }
 }

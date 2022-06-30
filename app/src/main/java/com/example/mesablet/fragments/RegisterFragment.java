@@ -105,7 +105,9 @@ public class RegisterFragment extends Fragment {
                         imageUri=Uri.parse(storageReference.child("Users").child(userID).child("ProfileImg").toString());
 
                         UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(fullname).build();
+                                .setDisplayName(fullname)
+                                .setPhotoUri(imageUri)
+                                .build();
                         user.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) { }

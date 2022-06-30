@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class HomePage extends AppCompatActivity implements ClickInterface {
 
@@ -49,33 +50,34 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
 
         binding.topAppBar.setOnMenuItemClickListener(menuItem -> {
-            if(menuItem.getTitle().equals("Settings")) {
+            if(menuItem.getTitle().equals(getString(R.string.settings))) {
                 CustomDialog customDialog=new CustomDialog();
                 customDialog.show(getSupportFragmentManager(),"");
             }
-            if(menuItem.getTitle().equals("messenger")){
+            if(menuItem.getTitle().equals(getString(R.string.messenger))){
                 Intent intent = new Intent(this,ChatActivity.class);
                 startActivity(intent);
             }
             return true;
         });
 
+        Locale current = getResources().getConfiguration().locale;
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item ->{
-            if(item.getTitle().equals("Home")){
+            if(item.getTitle().equals(getString(R.string.home))){
                 //stay in this page
             }
-            else if(item.getTitle().equals("Add post")){
+            else if(item.getTitle().equals(getString(R.string.add_post))){
                 Intent intent=new Intent(this, CreatePost.class);
                 startActivity(intent);
             }
-            else if(item.getTitle().equals("Profile")){
+            else if(item.getTitle().equals(getString(R.string.profile))){
                 Intent intent=new Intent(this, Profile_page.class);
                 intent.putExtra("userUid",user.getUid());
                 intent.putExtra("user_fullname",user.getDisplayName());
                 startActivity(intent);
             }
-            else if(item.getTitle().equals("Logout")){
+            else if(item.getTitle().equals(getString(R.string.logout))){
                 firebaseAuth.signOut();
                 startActivity(new Intent(this, LoginPage.class));
             }

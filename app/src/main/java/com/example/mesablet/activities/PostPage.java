@@ -57,20 +57,20 @@ public class PostPage extends AppCompatActivity implements ICallable {
             popupMenu.getMenuInflater()
                     .inflate(R.menu.post_options,popupMenu.getMenu());
             popupMenu.setOnMenuItemClickListener(item -> {
-                if(item.getTitle().equals("Edit")){
+                if(item.getTitle().equals(getString(R.string.edit))){
 
 
                 }
-                else if(item.getTitle().equals("Delete")){
+                else if(item.getTitle().equals(getString(R.string.delete))){
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
-                    builder.setTitle("Delete");
-                    builder.setMessage("Are you sure you want to delete this post?");
-                    builder.setNegativeButton("Yes",(dialogInterface, i) ->{
+                    builder.setTitle(getString(R.string.delete));
+                    builder.setMessage(getString(R.string.sure_delete));
+                    builder.setNegativeButton(getString(R.string.yes),(dialogInterface, i) ->{
                         viewModel.delete(post);
                         Intent intent = new Intent(this,HomePage.class);
                         startActivity(intent);
                     });
-                    builder.setPositiveButton("Cancel",(dialogInterface, i) -> { });
+                    builder.setPositiveButton(getString(R.string.cancel),(dialogInterface, i) -> { });
                     builder.show();
                 }
                 return true;

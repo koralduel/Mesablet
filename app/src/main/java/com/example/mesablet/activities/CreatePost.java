@@ -65,7 +65,7 @@ public class CreatePost extends AppCompatActivity {
                 Intent intent = new Intent(this,HomePage.class);
                 startActivity(intent);
             }else
-                Toast.makeText(this,"You must enter address,price and description",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.must_enter,Toast.LENGTH_LONG).show();
         });
 
         binding.uploadPhoto.setOnClickListener(view1 -> {
@@ -89,20 +89,20 @@ public class CreatePost extends AppCompatActivity {
 
         binding.bottomNavigation.setSelectedItemId(R.id.addPost);
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item ->{
-            if(item.getTitle().equals("Home")){
+            if(item.getTitle().equals(getString(R.string.home))){
                 Intent intent = new Intent(this,HomePage.class);
                 startActivity(intent);
             }
-            else if(item.getTitle().equals("Add post")){
+            else if(item.getTitle().equals(getString(R.string.add_post))){
                 //Stay here
             }
-            else if(item.getTitle().equals("Profile")){
+            else if(item.getTitle().equals(getString(R.string.profile))){
                 Intent intent=new Intent(this, Profile_page.class);
                 intent.putExtra("userUid",user.getUid());
                 intent.putExtra("user_fullname",user.getDisplayName());
                 startActivity(intent);
             }
-            else if(item.getTitle().equals("Logout")){
+            else if(item.getTitle().equals(getString(R.string.logout))){
                 firebaseAuth.signOut();
                 startActivity(new Intent(this, LoginPage.class));
             }

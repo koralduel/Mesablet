@@ -76,7 +76,7 @@
             android:id="@+id/LL_Posts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="25dp"
             android:orientation="vertical">
 
@@ -102,25 +102,10 @@
             android:id="@+id/LL_Likes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="25dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/TV_likes_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="@string/_0"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/TV_likes_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/likes"
-                android:textSize="15dp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -162,7 +147,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginRight="50dp"
             android:layout_weight="1"
-            android:text="Send Message"
+            android:text="@string/send_message"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="14dp"

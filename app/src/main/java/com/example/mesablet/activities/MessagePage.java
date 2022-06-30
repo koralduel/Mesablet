@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.mesablet.R;
 import com.example.mesablet.adapters.AdapterMessage;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.databinding.ActivityMessagePageBinding;
@@ -68,7 +69,7 @@ public class MessagePage extends AppCompatActivity {
             if(!msg.equals("")){
                 sendMessage(user.getUid(),Post_owner_UID,msg);
             }else{
-                Toast.makeText(this, "Message cannot be empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.not_empty), Toast.LENGTH_SHORT).show();
             }
             binding.ETMessageContent.setText("");
         });

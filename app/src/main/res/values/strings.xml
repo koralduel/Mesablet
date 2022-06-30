@@ -53,5 +53,13 @@
     <string name="portraitText">Portrait</string>
     <string name="landscapeText">Landscape</string>
     <string name="change_language">change language</string>
+    <string name="language">language</string>
+    <string name="not_empty">Message cannot be empty</string>
+    <string name="sure_delete">Are you sure you want to delete this post?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="must_enter">You must enter address,price and description</string>
+    <string name="send_message">Send Message</string>
+
 
 </resources>

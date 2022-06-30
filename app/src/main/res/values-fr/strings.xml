@@ -53,4 +53,11 @@
     <string name="portraitText">Portrait</string>
     <string name="landscapeText">Paysage</string>
     <string name="change_language">changer de langue</string>
+    <string name="language">Langue</string>
+    <string name="not_empty">Le message ne peut pas être vide</string>
+    <string name="sure_delete">Es-tu sur de vouloir supprimer cette annonce?</string>
+    <string name="yes">oui</string>
+    <string name="cancel">Annuler</string>
+    <string name="must_enter">Vous devez entrer l\'adresse, le prix et la description</string>
+    <string name="send_message">Envoyer le message</string>
 </resources>

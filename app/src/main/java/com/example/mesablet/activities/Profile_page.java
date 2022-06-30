@@ -74,16 +74,16 @@ public class Profile_page extends AppCompatActivity {
         binding.bottomNavigation.setSelectedItemId(R.id.profile);
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item ->{
             Intent intent;
-            if(item.getTitle().equals("Home")){
+            if(item.getTitle().equals(getString(R.string.home))){
                 intent = new Intent(this,HomePage.class);
                 startActivity(intent);
             }
-            else if(item.getTitle().equals("Add post")){
+            else if(item.getTitle().equals(getString(R.string.add_post))){
                 intent=new Intent(this, CreatePost.class);
                 startActivity(intent);
             }
-            else if(item.getTitle().equals("Profile")){ }
-            else if(item.getTitle().equals("Logout")){
+            else if(item.getTitle().equals(getString(R.string.profile))){ }
+            else if(item.getTitle().equals(getString(R.string.logout))){
                 firebaseAuth.signOut();
                 startActivity(new Intent(this, LoginPage.class));
             }

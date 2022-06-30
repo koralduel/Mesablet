@@ -53,4 +53,12 @@
     <string name="change_language">cambiar idioma</string>
     <string name="portraitText">Retrato</string>
     <string name="landscapeText">Paisaje</string>
+    <string name="language">idioma</string>
+    <string name="not_empty">El mensaje no puede estar vacío</string>
+    <string name="sure_delete">¿Seguro que quieres eliminar esta publicación?</string>
+    <string name="yes">sí</string>
+    <string name="cancel">Cancelar</string>
+    <string name="must_enter">Debes ingresar dirección, precio y descripción</string>
+    <string name="send_message">Enviar mensaje</string>
+
 </resources>

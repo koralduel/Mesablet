@@ -10,9 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.mesablet.R;
 import com.example.mesablet.adapters.IntroAdapter;
 import com.example.mesablet.databinding.ActivityMainBinding;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 

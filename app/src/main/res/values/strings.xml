@@ -52,4 +52,6 @@
     <string name="dark_mode">dark mode</string>
     <string name="portraitText">Portrait</string>
     <string name="landscapeText">Landscape</string>
+    <string name="change_language">change language</string>
+
 </resources>

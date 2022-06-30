@@ -2,6 +2,7 @@ package com.example.mesablet.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -69,6 +70,17 @@ public class Profile_page extends AppCompatActivity {
         FireBase.downloadImage(posts.get(0).getPublisher_image_path(),binding.IVProfilePhoto);
         binding.TvFullName.setText(user_fullname);
         binding.topAppBar.setTitle(user_fullname);
+        
+        binding.BtnSentMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Profile_page.this, MessagePage.class);
+                intent.putExtra("Post_owner_UID",userUid);
+                intent.putExtra("Post_owner_name",user_fullname);
+                intent.putExtra("Post_owner_profileImg",posts.get(0).getPublisher_image_path());
+                startActivity(intent);
+            }
+        });
 
 
 

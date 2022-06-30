@@ -24,7 +24,7 @@
             android:id="@+id/Iv_settings"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/ic_settings"
             android:layout_marginLeft="20dp"
             android:backgroundTint="@color/darkGrey"/>
@@ -34,17 +34,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="30dp"
-            android:paddingTop="10dp"
+            android:paddingTop="7dp"
             android:text="@string/settings"
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:layout_weight="1"/>
 
             <ImageButton
                 android:id="@+id/Btn_exitSettings"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/ic_exit"
-                android:layout_marginLeft="100dp"
                 android:backgroundTint="@color/darkGrey"/>
 
 

@@ -6,20 +6,41 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/drawable/selected_dot.xml" value="0.1875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/drawable/tab_selector.xml" value="0.1875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/drawable/unselected_dot.xml" value="0.1875" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-land/activity_create_post.xml" value="0.176" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-land/activity_home_page.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-land/activity_login_page.xml" value="0.328125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-land/activity_post_page.xml" value="0.328125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-land/activity_profile_page.xml" value="0.328125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-land/card_post_item.xml" value="0.27207207207207207" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-land/fragment_login.xml" value="0.328125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-land/fragment_register.xml" value="0.328125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-sw600dp/activity_create_post.xml" value="0.190625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-sw600dp/activity_home_page.xml" value="0.190625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-sw600dp/activity_post_page.xml" value="0.190625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-sw600dp/activity_profile_page.xml" value="0.4123263888888889" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-sw600dp/card_post_item.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-sw600dp/fragment_login.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout-sw600dp/fragment_register.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_chat.xml" value="0.15625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_create_post.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_favorite_page.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_home_page.xml" value="0.1671875" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_login_page.xml" value="0.2" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_post_page.xml" value="0.4" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_message_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_post_page.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/activity_profile_page.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/card_post_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/chat_item.xml" value="0.1265625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/card_post_item.xml" value="0.176" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/chat_item.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/chat_item_left.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/chat_item_right.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_intro.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/fragment_register.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/photo_item.xml" value="0.16770833333333332" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/layout/settings_dialog.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/menu/bottom_app_bar.xml" value="0.15625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/menu/land_bottom_app_bar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/menu/post_options.xml" value="0.2" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Mesablet/app/src/main/res/menu/top_app_bar.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/drawable/backgroud_right.xml" value="0.1315" />
@@ -47,7 +68,6 @@
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/fragment_login.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/fragment_register.xml" value="0.2296875" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/photo_item.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/layout/settings_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/menu/bottom_app_bar.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/menu/bottom_post.xml" value="0.209375" />
         <entry key="..\:/Users/koral/Desktop/sablet/Mesablet/app/src/main/res/menu/top_app_bar.xml" value="0.25416666666666665" />

@@ -82,8 +82,6 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         if(user.getUid().equals(data.get(i).getPublisher_id())){
             viewHolder.btn_send_message.setEnabled(true);
             viewHolder.btn_send_message.setVisibility(View.GONE);
-            viewHolder.btn_add_favorite.setEnabled(true);
-            viewHolder.btn_add_favorite.setVisibility(View.GONE);
         }else{
             viewHolder.btn_send_message.setOnClickListener(v -> {
                 Intent intent=new Intent(layoutInflater.getContext(), MessagePage.class);

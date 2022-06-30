@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Profile_page">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/top_app_bar"
+            app:title="@string/user_name"
+            app:titleTextColor="@color/appBlue"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/LL_top_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="250dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CV_profilePhoto"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="250dp">
+
+                <ImageView
+                    android:id="@+id/IV_profilePhoto"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_foreground" />
+
+            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/Tv_FullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/full_name"
+            android:textSize="16dp"></TextView>
+
+        <LinearLayout
+            android:id="@+id/LL_Posts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TVPostsNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="0"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TV_posts_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/posts"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LL_Likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TV_likes_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/_0"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TV_likes_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/likes"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/Btn_Edit_Profile"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="@string/edit_profile"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:id="@+id/Btn_sent_message"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="1"
+            android:text="Send Message"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:strokeWidth="1dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/gridLayout_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomMenu_profile"
+        android:layout_below="@id/LL_top_profile">
+
+        <GridView
+            android:id="@+id/photoGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:horizontalSpacing="4dp"
+            android:padding="5dp"
+            android:numColumns="3"
+            android:verticalSpacing="4dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomMenu_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/land_bottom_app_bar" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

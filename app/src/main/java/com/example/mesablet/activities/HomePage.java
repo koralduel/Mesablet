@@ -49,7 +49,7 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
 
         binding.topAppBar.setOnMenuItemClickListener(menuItem -> {
-            if(menuItem.getTitle().equals("settings")) {
+            if(menuItem.getTitle().equals("Settings")) {
                 CustomDialog customDialog=new CustomDialog();
                 customDialog.show(getSupportFragmentManager(),"");
             }

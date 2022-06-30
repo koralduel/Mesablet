@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:title="@string/home"
+        android:contentDescription="@string/home"/>
+
+
+
+    <item
+        android:id="@+id/addPost"
+        android:enabled="true"
+        android:title="@string/add_post"
+        android:contentDescription="@string/add_post"
+
+        />
+
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:title="@string/profile"
+        android:contentDescription="@string/profile"
+        />
+
+    <item
+        android:id="@+id/logout"
+        android:enabled="true"
+        android:title="@string/logout"
+        android:contentDescription="@string/logout"
+        />
+</menu>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.PostPage">
+
+    <LinearLayout
+        android:id="@+id/topPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_back" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginRight="55dp"
+            >
+            <TextView
+                android:id="@+id/username_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username"
+                android:textColor="@color/Blue"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Posts"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/postContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topPage"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="250dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/CV_profilePhoto"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="250dp">
+
+                    <ImageView
+                        android:id="@+id/postOwnerPhoto"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_profile" />
+
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/postOwnerFullName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:text="@string/full_name"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+            <ImageView
+                android:id="@+id/openMenuBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="220dp"
+                android:src="@drawable/ic_three_dots" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/postPhotoSwitcher"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/prevBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prev" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/nextBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Next" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:id="@+id/LL_Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/TV_Dates"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/dates"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/TV_Start_Date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:text="@string/start_date"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/TV_End_Date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:background="@android:color/transparent"
+                        android:text="@string/end_date"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LL_Address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/TV_Address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/address"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/TV_Enter_Address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/enter_address"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LL_Price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/TV_Price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/price"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/TV_Enter_Price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/enter_price"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/Tv_post_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/description"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

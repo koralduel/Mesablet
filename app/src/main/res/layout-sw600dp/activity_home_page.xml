@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,10 +10,16 @@
         android:id="@+id/LL_Top_HomePage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -30,56 +36,50 @@
                 android:layout_height="?attr/actionBarSize"
                 app:menu="@menu/top_app_bar"
                 app:titleTextColor="@color/appBlue">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/mesublet_logo"
-                    android:layout_marginRight="200dp"
+                    android:layout_gravity=""
                     android:layout_marginTop="5dp"
-                    android:layout_gravity=""/>
+                    android:layout_marginRight="200dp"
+                    android:src="@drawable/mesublet_logo" />
             </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.appbar.AppBarLayout>
-
 
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/Search_View"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/search_bar"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/search_bar" />
 
     </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        android:layout_above="@+id/linearLayout"
+        android:layout_below="@id/LL_Top_HomePage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LL_Top_HomePage">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
             android:id="@+id/refreshlayout"
             android:layout_width="match_parent"
-            android:layout_height="452dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LL_Top_HomePage">
+            android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RV_post"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/LL_Top_HomePage" />
+                android:layout_height="wrap_content" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
@@ -89,20 +89,24 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="bottom">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_app_bar"/>
+            app:menu="@menu/bottom_app_bar" />
 
     </LinearLayout>
 
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

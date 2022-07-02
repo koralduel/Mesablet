@@ -3,8 +3,13 @@ package com.example.mesablet.activities;
 import static java.util.UUID.randomUUID;
 
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -36,6 +41,12 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
 
     private PostsViewModel viewModel;
 
+    Sensor acceleromoter;
+    SensorManager sm;
+    SensorEventListener sensorEventListener;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +56,32 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
+
+        sm=(SensorManager)getSystemService(SENSOR_SERVICE);
+        acceleromoter = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorEventListener= new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if(event!=null){
+                    float x_accel = event.values[0];
+                    float y_accel = event.values[1];
+                    float z_accel = event.values[2];
+
+                    float floatSum=Math.abs(x_accel) + Math.abs(y_accel) + Math.abs(z_accel);
+
+                    if(floatSum > 14){
+                        executeShakeAction();
+                    }
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+
+        sm.registerListener(sensorEventListener,acceleromoter,SensorManager.SENSOR_DELAY_NORMAL);
 
 
         viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
@@ -94,9 +131,9 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         adapter =new Adapter_post(this,posts);
         recyclerView.setAdapter(adapter);
 
+
         //refresh refresh layout -reload new data
-        SwipeRefreshLayout refreshLayout=findViewById(R.id.refreshlayout);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        binding.refreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 viewModel.reload();
@@ -107,9 +144,27 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
             posts.clear();
             posts.addAll(p);
             adapter.setPosts(p);
-            refreshLayout.setRefreshing(false);
+            binding.refreshlayout.setRefreshing(false);
         });
 
+    }
+    //do when shaking happens
+    private void executeShakeAction() {
+        binding.refreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                viewModel.reload();
+            }
+        });
+
+        viewModel.get().observe(this,p->{
+            posts.clear();
+            posts.addAll(p);
+            adapter.setPosts(p);
+            binding.refreshlayout.setRefreshing(false);
+        });
+
+        Toast.makeText(this, "Feed updated", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -118,5 +173,10 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         intent.putExtra("post",posts.get(position));
         startActivity(intent);
     }
+
+
+
+
+
 
 }

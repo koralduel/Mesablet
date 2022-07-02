@@ -124,7 +124,7 @@ public class CreatePost extends AppCompatActivity {
 
             LocalDate today=LocalDate.now();
 
-            if( TextUtils.isEmpty(startDate) || !TextUtils.isEmpty(endDate) ||datestart.isBefore(today) || datestart.isAfter(dateend)){
+            if( TextUtils.isEmpty(startDate) || TextUtils.isEmpty(endDate) ||datestart.isBefore(today) || datestart.isAfter(dateend)){
                 Toast.makeText(this,"Date is not valid",Toast.LENGTH_LONG).show();
             }
 

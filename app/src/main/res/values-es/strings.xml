@@ -61,4 +61,6 @@
     <string name="must_enter">Debes ingresar dirección, precio y descripción</string>
     <string name="send_message">Enviar mensaje</string>
     <string name="save">Ahorrar</string>
+    <string name="upload_photo">Cargar imagen</string>
+    <string name="upload_video">Subir video</string>
 </resources>

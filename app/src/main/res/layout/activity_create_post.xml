@@ -69,15 +69,24 @@
                 android:layout_height="250dp"
                 android:layout_weight="1"
                 android:src="@drawable/ic_image" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+                <VideoView
+                    android:id="@+id/upload_video"
+                    android:layout_width="150dp"
+                    android:layout_height="100sp"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Video"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/upload_photo3"
-                android:layout_width="100dp"
-                android:layout_height="250dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_image" />
         </LinearLayout>
-
         <LinearLayout
             android:id="@+id/LL_Date"
             android:layout_width="match_parent"

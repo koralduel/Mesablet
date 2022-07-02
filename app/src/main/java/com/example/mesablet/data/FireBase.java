@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 
@@ -170,6 +171,24 @@ public class FireBase {
         } catch (IOException e) {
             Log.d("eynav",e.getMessage().toString());
         }
+    }
+
+    public static void downloadVideo(String path, VideoView videoView) {
+        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(path);
+        try {
+            File localFile = File.createTempFile("tempfile", ".jpeg");
+            storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    if (bitmap != null) {
+                        videoView.setVideoURI(Uri.fromFile(localFile));
+                    }
+                }
+            });
+        } catch (IOException e) {
+            Log.d("eynav",e.getMessage().toString());
+        }
+
     }
 
     public static void UploadImage(String folder,String id,String type ,Uri uri) {

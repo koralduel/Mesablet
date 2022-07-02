@@ -95,7 +95,8 @@
                 android:layout_marginLeft="8dp"
                 android:text="@string/full_name"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_weight="1"/>
 
 
             <ImageView
@@ -103,14 +104,22 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="220dp"
+                android:layout_marginRight="10dp"
                 android:src="@drawable/ic_three_dots" />
         </LinearLayout>
+
+        <VideoView
+            android:id="@+id/postVideoSwitcher"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:layout_gravity="center"/>
 
         <ImageView
             android:id="@+id/postPhotoSwitcher"
             android:layout_width="match_parent"
-            android:layout_height="302dp"
+            android:layout_height="300dp"
             android:layout_marginTop="20dp" />
 
         <LinearLayout

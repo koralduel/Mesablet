@@ -95,7 +95,8 @@
                 android:layout_marginLeft="8dp"
                 android:text="@string/full_name"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_weight="1"/>
 
 
             <ImageView
@@ -103,7 +104,6 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="220dp"
                 android:src="@drawable/ic_three_dots" />
         </LinearLayout>
 
@@ -118,6 +118,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="1">
+
+                <VideoView
+                    android:id="@+id/postVideoSwitcher"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/postPhotoSwitcher"

@@ -131,12 +131,11 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_image"
             android:layout_weight="1"/>
-        <ImageView
+        <VideoView
             android:id="@+id/upload_photo3"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_image"
+            android:layout_gravity="center"
             android:layout_weight="1"/>
     </LinearLayout>
 

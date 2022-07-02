@@ -2,6 +2,7 @@ package com.example.mesablet.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,6 +20,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +30,7 @@ public class PostPage extends AppCompatActivity implements ICallable {
     private ActivityPostPageBinding binding;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     int counter = 0;
+    File videoSrc = null;
     PostsViewModel viewModel =new PostsViewModel();
 
     Post post;
@@ -46,13 +50,15 @@ public class PostPage extends AppCompatActivity implements ICallable {
         binding.TVStartDate.setText(post.getStartDate());
         binding.TVEndDate.setText(post.getEndDate());
         List<Bitmap> bitmapList = new ArrayList<>();
+
+        FireBase.downloadVideo(post.getPost_photos_path2(),binding.postVideoSwitcher);
         FireBase.downloadImage(post.getPost_photos_path(),bitmapList,this);
         FireBase.downloadImage(post.getPost_photos_path1(),bitmapList,null);
-        FireBase.downloadImage(post.getPost_photos_path2(),bitmapList,null);
 
 
         if(!post.getPublisher_id().equals(user.getUid()))
             binding.openMenuBtn.setVisibility(View.GONE);
+
         binding.openMenuBtn.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(PostPage.this,binding.openMenuBtn);
             popupMenu.getMenuInflater()
@@ -87,19 +93,34 @@ public class PostPage extends AppCompatActivity implements ICallable {
 
 
         binding.prevBtn.setOnClickListener(view -> {
-            if (counter == 0)
-                counter = 2;
-            else
+            if(counter==2 || counter==1) {
                 counter--;
-            binding.postPhotoSwitcher.setImageBitmap(bitmapList.get(counter));
+                binding.postPhotoSwitcher.setVisibility(View.VISIBLE);
+                binding.postPhotoSwitcher.setImageBitmap(bitmapList.get(counter));
+                binding.postVideoSwitcher.setVisibility(View.GONE);
+            }
+            else if(counter==0){
+                counter=2;
+                binding.postPhotoSwitcher.setVisibility(View.GONE);
+                binding.postVideoSwitcher.setVisibility(View.VISIBLE);
+                binding.postVideoSwitcher.start();
+            }
         });
 
         binding.nextBtn.setOnClickListener(view -> {
-            if(counter==2)
-                counter=0;
-            else
+
+            if(counter==0 || counter==1) {
+                binding.postPhotoSwitcher.setVisibility(View.VISIBLE);
+                binding.postPhotoSwitcher.setImageBitmap(bitmapList.get(counter));
+                binding.postVideoSwitcher.setVisibility(View.GONE);
                 counter++;
-            binding.postPhotoSwitcher.setImageBitmap(bitmapList.get(counter));
+            }
+            else if(counter==2){
+                counter=0;
+                binding.postPhotoSwitcher.setVisibility(View.GONE);
+                binding.postVideoSwitcher.setVisibility(View.VISIBLE);
+                binding.postVideoSwitcher.start();
+            }
         });
 
     }

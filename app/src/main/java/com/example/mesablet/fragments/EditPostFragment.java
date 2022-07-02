@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,7 +47,7 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
 
     ImageView upload_photo;
     ImageView upload_photo2;
-    ImageView upload_photo3;
+    VideoView upload_photo3;
 
     PostsViewModel viewModel =new PostsViewModel();
 
@@ -88,7 +89,8 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
         description_value.setText(post.getPost_context());
         FireBase.downloadImage(post.getPost_photos_path(),upload_photo);
         FireBase.downloadImage(post.getPost_photos_path1(),upload_photo2);
-        FireBase.downloadImage(post.getPost_photos_path2(),upload_photo3);
+        FireBase.downloadVideo(post.getPost_photos_path2(),upload_photo3);
+        upload_photo3.start();
 
         upload_photo.setOnClickListener(view1 -> {
             //add new photo from camera/gallery
@@ -107,7 +109,7 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
         upload_photo3.setOnClickListener(view1 -> {
             //add new photo from camera/gallery
             Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-            galleryIntent.setType("image/*");
+            galleryIntent.setType("video/*");
             startActivityForResult(galleryIntent,GALLERY_CODE3);
         });
 
@@ -233,7 +235,8 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
             }
             else if(requestCode == GALLERY_CODE3) {
                 uri3 = data.getData();
-                upload_photo3.setImageURI(uri3);
+                upload_photo3.setVideoURI(uri3);
+                upload_photo3.start();
             }
         }
     }

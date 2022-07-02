@@ -41,7 +41,7 @@ public class CreatePost extends AppCompatActivity {
     StorageReference storageRef;
     private Uri imageUri = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
     private Uri imageUri2 = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
-    private Uri imageUri3 = Uri.parse("android.resource://com.example.mesablet/drawable/ic_upload_profile");
+    private Uri videoUri = Uri.parse("android.resource://com.example.mesablet/raw/sample_video");
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -106,7 +106,7 @@ public class CreatePost extends AppCompatActivity {
             String endDate = binding.EnterEndDate.getText().toString();
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH);
-            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.ENGLISH);
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH);
             LocalDate datestart=null;
             LocalDate dateend=null;
             if(startDate.length()==11){
@@ -133,7 +133,7 @@ public class CreatePost extends AppCompatActivity {
                     && !TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)){
 
                 viewModel.add(new Post(publisher_photo,publisher_name,imageUri.toString(),
-                        imageUri2.toString(),imageUri3.toString(),description,address,price,user.getUid(),
+                        imageUri2.toString(),videoUri.toString(),description,address,price,user.getUid(),
                         startDate,endDate));
                 Intent intent = new Intent(this,HomePage.class);
                 startActivity(intent);
@@ -153,10 +153,10 @@ public class CreatePost extends AppCompatActivity {
             galleryIntent.setType("image/*");
             startActivityForResult(galleryIntent,GALLERY_CODE2);
         });
-        binding.uploadPhoto3.setOnClickListener(view1 -> {
+        binding.uploadVideo.setOnClickListener(view1 -> {
             //add new photo from camera/gallery
-            Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-            galleryIntent.setType("image/*");
+            Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+            galleryIntent.setType("video/*");
             startActivityForResult(galleryIntent,GALLERY_CODE3);
         });
 
@@ -198,8 +198,9 @@ public class CreatePost extends AppCompatActivity {
                 binding.uploadPhoto2.setImageURI(imageUri2);
             }
             else if(requestCode == GALLERY_CODE3) {
-                imageUri3 = data.getData();
-                binding.uploadPhoto3.setImageURI(imageUri3);
+                videoUri = data.getData();
+                binding.uploadVideo.setVideoURI(videoUri);
+                binding.uploadVideo.start();
             }
         }
     }

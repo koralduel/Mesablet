@@ -55,6 +55,10 @@ public class CreatePost extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         firebaseAuth = FirebaseAuth.getInstance();
 
+        binding.backBtn.setOnClickListener(view -> {
+            finish();
+        });
+
         String publisher_photo= storageRef.child("Users").child(user.getUid()).child("ProfileImg").toString();
         String publisher_name = user.getDisplayName();
 
@@ -203,5 +207,11 @@ public class CreatePost extends AppCompatActivity {
                 binding.uploadVideo.start();
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        binding.bottomNavigation.setSelectedItemId(R.id.addPost);
     }
 }

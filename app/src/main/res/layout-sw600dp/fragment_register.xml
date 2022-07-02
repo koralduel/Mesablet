@@ -46,7 +46,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/fullname_value"
                 android:layout_width="590dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +73,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_value"
                 android:layout_width="590dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

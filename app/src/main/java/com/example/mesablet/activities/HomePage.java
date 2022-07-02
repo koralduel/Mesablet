@@ -43,7 +43,10 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
 
     Sensor acceleromoter;
     SensorManager sm;
-   // SensorEventListener sensorEventListener;
+    SensorEventListener sensorEventListener;
+    private double sumCurrentValue,sumPreviousValue;
+    private boolean itIsNotFirstTime = false;
+    float disX,disY,disZ,lastX,lastY,lastZ;
 
 
 
@@ -59,7 +62,8 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
 
         sm=(SensorManager)getSystemService(SENSOR_SERVICE);
         acceleromoter = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        SensorEventListener sensorEventListener= new SensorEventListener() {
+        sensorEventListener= new SensorEventListener() {
+
             @Override
             public void onSensorChanged(SensorEvent event) {
                 if(event!=null){
@@ -67,22 +71,30 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
                     float y_accel = event.values[1];
                     float z_accel = event.values[2];
 
-                    float floatSum=Math.abs(x_accel) + Math.abs(y_accel) + Math.abs(z_accel);
 
-                    if(floatSum > 14){
-                        executeShakeAction();
+                    if(itIsNotFirstTime){
+                        disX = Math.abs(lastX-x_accel);
+                        disY = Math.abs(lastY-y_accel);
+                        disZ = Math.abs(lastZ-z_accel);
+
+                        if(disX > 2 && disY > 2 ||
+                        disX > 2 && disZ > 2 ||
+                        disY > 2 && disZ > 2){
+                            executeShakeAction();
+                            itIsNotFirstTime=false;
+                        }
+
                     }
+                    lastX = x_accel;
+                    lastY = y_accel;
+                    lastZ = z_accel;
+                    itIsNotFirstTime=true;
                 }
             }
 
             @Override
-            public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-            }
+            public void onAccuracyChanged(Sensor sensor, int accuracy) { }
         };
-
-        sm.registerListener(sensorEventListener,acceleromoter,SensorManager.SENSOR_DELAY_NORMAL);
-
 
         viewModel= new ViewModelProvider(this).get(PostsViewModel.class);
 
@@ -189,5 +201,12 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
     protected void onResume() {
         super.onResume();
         binding.bottomNavigation.setSelectedItemId(R.id.home);
+        sm.registerListener(sensorEventListener,acceleromoter,sm.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sm.unregisterListener(sensorEventListener);
     }
 }

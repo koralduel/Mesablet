@@ -234,6 +234,7 @@
                 android:background="@android:color/transparent"
                 android:hint="@string/enter_price"
                 android:maxLines="1"
+                android:inputType="number"
                 android:textColor="@color/black" />
 
         </LinearLayout>

@@ -45,7 +45,7 @@ public class PostPage extends AppCompatActivity implements ICallable {
         FireBase.downloadImage(post.getPublisher_image_path(),binding.postOwnerPhoto);
         binding.postOwnerFullName.setText(post.getPublisher_name());
         binding.TVEnterAddress.setText(post.getAddress());
-        binding.TVEnterPrice.setText(post.getPrice());
+        binding.TVEnterPrice.setText(post.getPrice()+"$");
         binding.TvPostContent.setText(post.getPost_context());
         binding.TVStartDate.setText(post.getStartDate());
         binding.TVEndDate.setText(post.getEndDate());

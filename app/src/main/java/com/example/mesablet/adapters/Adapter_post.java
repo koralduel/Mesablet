@@ -65,7 +65,7 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         viewHolder.post_Address.setText(post_Address);
 
         String post_Price=data.get(i).getPrice();
-        viewHolder.post_Price.setText(post_Price);
+        viewHolder.post_Price.setText(post_Price+"$");
 
         String publisher_image = data.get(i).getPublisher_image_path();
         FireBase.downloadImage(data.get(i).getPublisher_image_path(),viewHolder.publisher_image);

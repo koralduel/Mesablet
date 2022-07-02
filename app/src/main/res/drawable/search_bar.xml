@@ -2,7 +2,7 @@
 <vector
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="348dp"
+    android:width="300dp"
     android:height="54dp"
     android:viewportWidth="348"
     android:viewportHeight="54">
@@ -14,7 +14,7 @@
 
         <path
             android:pathData="M0 0V54H348V0"
-            android:fillColor="#F2F2F2"
+            android:fillColor="@color/searchGrey"
             />
 
     </group>

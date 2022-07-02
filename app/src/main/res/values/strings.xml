@@ -6,7 +6,6 @@
     <string name="Email">Email</string>
     <string name="Password">Password</string>
     <string name="skip">Skip</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_to_your_account">Login to your Account</string>
     <string name="full_name">Full Name</string>
@@ -21,11 +20,11 @@
     <string name="add_favorites">Add Favorites</string>
     <string name="logout">Logout</string>
     <string name="address">Address</string>
-    <string name="enter_address">Enter_Address</string>
+    <string name="enter_address">Enter Address</string>
     <string name="price">Price</string>
-    <string name="enter_price">Enter_Price</string>
+    <string name="enter_price">Enter Price</string>
     <string name="description">Description</string>
-    <string name="localDb">localdb</string>
+    <string name="localDb">localdataBase</string>
     <string name="user_name">UserName</string>
     <string name="add_post">Add post</string>
     <string name="messenger">messenger</string>
@@ -63,6 +62,10 @@
     <string name="save">Save</string>
     <string name="upload_photo">Upload Photo</string>
     <string name="upload_video">Upload Video</string>
+    <string name="city">City</string>
+    <string name="enter_city">Enter City</string>
+    <string name="city_search">enter city to search</string>
+
 
 
 </resources>

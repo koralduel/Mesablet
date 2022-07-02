@@ -105,6 +105,7 @@ public class FireBase {
         newPost.put("publisher_name",post.getPublisher_name());
         newPost.put("publisher_image_path",post.getPublisher_image_path());
         newPost.put("startDate",post.getStartDate());
+       newPost.put("city",post.getCity());
 
         dataRef.child(post.getId()).updateChildren(newPost);
    }

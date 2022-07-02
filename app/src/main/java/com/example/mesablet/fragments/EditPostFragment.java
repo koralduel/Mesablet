@@ -69,6 +69,7 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
         EditText address_value = view.findViewById(R.id.address_value);
         EditText price_value = view.findViewById(R.id.price_value);
         EditText description_value = view.findViewById(R.id.description_value);
+        EditText city = view.findViewById(R.id.city_value);
         upload_photo = view.findViewById(R.id.upload_photo);
         upload_photo2 = view.findViewById(R.id.upload_photo2);
         upload_photo3 = view.findViewById(R.id.upload_photo3);
@@ -181,7 +182,8 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
 
             else if(!TextUtils.isEmpty(address_value.getText()) && !TextUtils.isEmpty(price_value.getText()) &&
                     !TextUtils.isEmpty(description_value.getText())
-                    && !TextUtils.isEmpty(start_date.getText()) && !TextUtils.isEmpty(end_date.getText())){
+                    && !TextUtils.isEmpty(start_date.getText()) && !TextUtils.isEmpty(end_date.getText())
+                    && !TextUtils.isEmpty(city.getText())){
 
                 Post newPost = new Post(post);
                 newPost.setAddress(address_value.getText().toString());
@@ -189,6 +191,7 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
                 newPost.setPost_context(description_value.getText().toString());
                 newPost.setStartDate(start_date.getText().toString());
                 newPost.setEndDate(end_date.getText().toString());
+                newPost.setCity(city.getText().toString());
 
                 if(!uri1.toString().equals(post.getPost_photos_path()))
                     FireBase.UploadImage("Posts",post.getId(),"Post_image1",uri1);

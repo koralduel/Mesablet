@@ -37,6 +37,9 @@ public class Post implements Serializable {
     private String startDate;
     @ColumnInfo
     private String endDate;
+    @ColumnInfo
+    private String city;
+
 
     public Post() { }
 
@@ -53,11 +56,12 @@ public class Post implements Serializable {
        this.publisher_id=post.publisher_id;
        this.startDate = post.startDate;
        this.endDate = post.endDate;
+       this.city = post.city;
    }
 
     public Post(String publisher_image_path, String publisher_name, String post_photos_path,
                 String post_photos_path1,String post_photos_path2,String post_context, String address, String price,
-                String publisher_id,String startDate,String endDate) {
+                String publisher_id,String startDate,String endDate, String city) {
         this.id=randomUUID().toString().replace("-","");
         this.publisher_image_path = publisher_image_path;
         this.publisher_name = publisher_name;
@@ -70,6 +74,7 @@ public class Post implements Serializable {
         this.publisher_id=publisher_id;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.city= city;
     }
 
     public String getId() { return id; }
@@ -127,4 +132,8 @@ public class Post implements Serializable {
     public String getEndDate() { return endDate; }
 
     public void setEndDate(String endDate) { this.endDate = endDate; }
+
+    public String getCity() {return city;}
+
+    public void setCity(String city) {this.city = city;}
 }

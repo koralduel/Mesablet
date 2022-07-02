@@ -179,13 +179,33 @@
 
             <EditText
                 android:id="@+id/ET_Enter_Address"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/enter_address"
                 android:maxLines="1"
                 android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/TV_City"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/city"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/ET_Enter_City"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/enter_city"
+                android:maxLines="1"
+                android:textColor="@color/black" />
+
 
         </LinearLayout>
 

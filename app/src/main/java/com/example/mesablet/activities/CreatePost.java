@@ -108,9 +108,10 @@ public class CreatePost extends AppCompatActivity {
             String description = binding.ETDescriptionValue.getText().toString();
             String startDate = binding.EnterStartDate.getText().toString();
             String endDate = binding.EnterEndDate.getText().toString();
+            String city = binding.ETEnterCity.getText().toString();
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH);
-            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH);
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.ENGLISH);
             LocalDate datestart=null;
             LocalDate dateend=null;
             if(startDate.length()==11){
@@ -134,11 +135,14 @@ public class CreatePost extends AppCompatActivity {
 
             //Validation check
             else if(!TextUtils.isEmpty(address) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description)
-                    && !TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)){
+                    && !TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate) && !TextUtils.isEmpty(city)){
 
                 viewModel.add(new Post(publisher_photo,publisher_name,imageUri.toString(),
+
                         imageUri2.toString(),videoUri.toString(),description,address,price,user.getUid(),
-                        startDate,endDate));
+                        startDate,endDate,city));
+
+
                 Intent intent = new Intent(this,HomePage.class);
                 startActivity(intent);
             }else

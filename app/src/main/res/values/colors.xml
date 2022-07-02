@@ -12,4 +12,5 @@
     <color name="grey">#F2F2F2</color>
     <color name="darkGrey">#8A8585</color>
     <color name="lightGrey">#778A8585</color>
+    <color name="searchGrey">#F2F2F2</color>
 </resources>

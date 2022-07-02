@@ -23,9 +23,9 @@
     <string name="address">Dirección</string>
     <string name="enter_address">Ingresa la direccion</string>
     <string name="price">Precio</string>
-    <string name="enter_price">Introducir_precio</string>
+    <string name="enter_price">Introducir precio</string>
     <string name="description">Descripción</string>
-    <string name="localDb">localdb</string>
+    <string name="localDb">localdataBase</string>
     <string name="user_name">nombre de usuario</string>
     <string name="add_post">Agregar publicación</string>
     <string name="messenger">mensajero</string>
@@ -63,4 +63,8 @@
     <string name="save">Ahorrar</string>
     <string name="upload_photo">Cargar imagen</string>
     <string name="upload_video">Subir video</string>
+    <string name="city">Ciudad</string>
+    <string name="enter_city">Ingresar Ciudad</string>
+    <string name="city_search">ingrese la ciudad para buscar</string>
+
 </resources>

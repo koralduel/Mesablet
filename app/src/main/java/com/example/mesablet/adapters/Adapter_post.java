@@ -61,7 +61,7 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         String post_context=data.get(i).getPost_context();
         viewHolder.post_context.setText(post_context);
 
-        String post_Address=data.get(i).getAddress();
+        String post_Address=data.get(i).getAddress() +","+ data.get(i).getCity();
         viewHolder.post_Address.setText(post_Address);
 
         String post_Price=data.get(i).getPrice();

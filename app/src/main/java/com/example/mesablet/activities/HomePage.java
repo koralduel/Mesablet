@@ -152,24 +152,9 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
 
             }
         });
-
-
+        
         //refresh refresh layout -reload new data
-        binding.refreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                binding.SearchView.setQuery("",false);
-                binding.SearchView.clearFocus();
-                viewModel.reload();
-            }
-        });
-
-        viewModel.get().observe(this,p->{
-            posts.clear();
-            posts.addAll(p);
-            adapter.setPosts(p);
-            binding.refreshlayout.setRefreshing(false);
-        });
+        executeShakeAction();
 
     }
     //do when shaking happens
@@ -177,6 +162,8 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         binding.refreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                binding.SearchView.setQuery("",false);
+                binding.SearchView.clearFocus();
                 viewModel.reload();
             }
         });

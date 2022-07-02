@@ -123,6 +123,10 @@ public class PostPage extends AppCompatActivity implements ICallable {
             }
         });
 
+        binding.backBtn.setOnClickListener(view -> {
+            finish();
+        });
+
     }
 
     @Override

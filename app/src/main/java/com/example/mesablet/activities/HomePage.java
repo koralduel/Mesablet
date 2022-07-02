@@ -174,9 +174,9 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         startActivity(intent);
     }
 
-
-
-
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        binding.bottomNavigation.setSelectedItemId(R.id.home);
+    }
 }

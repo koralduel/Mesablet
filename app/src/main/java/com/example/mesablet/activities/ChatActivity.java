@@ -41,6 +41,9 @@ public class ChatActivity extends AppCompatActivity implements ClickInterface {
         binding.RVChats.setLayoutManager(new LinearLayoutManager(this));
         getAllChats();
 
+        binding.BtnBackChats.setOnClickListener(view -> {finish();});
+
+
     }
 
 
@@ -99,7 +102,6 @@ public class ChatActivity extends AppCompatActivity implements ClickInterface {
 
             }
         });
-
     }
 
 

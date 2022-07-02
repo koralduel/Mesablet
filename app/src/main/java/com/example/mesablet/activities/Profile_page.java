@@ -115,4 +115,10 @@ public class Profile_page extends AppCompatActivity {
         if(user.getUid().equals(userUid))
             binding.BtnSentMessage.setVisibility(View.GONE);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        binding.bottomNavigation.setSelectedItemId(R.id.profile);
+    }
 }

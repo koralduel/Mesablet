@@ -28,7 +28,6 @@ public class PostsRepository {
 
     }
 
-
     public class PostListData extends MutableLiveData<List<Post>> {
 
         public PostListData() {

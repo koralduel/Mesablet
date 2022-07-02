@@ -64,6 +64,8 @@ public class MessagePage extends AppCompatActivity {
         binding.userChatWith.setText(Post_owner_name);
         readMessage(user.getUid(),Post_owner_UID,Post_owner_profileImg,Post_owner_name);
 
+        binding.BtnBackChats.setOnClickListener(view -> {finish();});
+
         binding.BtnSend.setOnClickListener(v -> {
             String msg=binding.ETMessageContent.getText().toString();
             if(!msg.equals("")){

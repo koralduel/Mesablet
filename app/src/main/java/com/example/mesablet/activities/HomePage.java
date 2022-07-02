@@ -9,12 +9,12 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.mesablet.R;
@@ -43,7 +43,7 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
 
     Sensor acceleromoter;
     SensorManager sm;
-    SensorEventListener sensorEventListener;
+   // SensorEventListener sensorEventListener;
 
 
 
@@ -59,7 +59,7 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
 
         sm=(SensorManager)getSystemService(SENSOR_SERVICE);
         acceleromoter = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensorEventListener= new SensorEventListener() {
+        SensorEventListener sensorEventListener= new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
                 if(event!=null){
@@ -126,10 +126,31 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         Uri image = Uri.parse("android.resource://com.example.mesablet/drawable/ic_image");
         Uri profilePhoto = Uri.parse("android.resource://com.example.mesablet/drawable/ic_image");
         String id=randomUUID().toString();
-        RecyclerView recyclerView = findViewById(R.id.RV_post);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.RVPost.setLayoutManager(new LinearLayoutManager(this));
         adapter =new Adapter_post(this,posts);
-        recyclerView.setAdapter(adapter);
+        binding.RVPost.setAdapter(adapter);
+
+        binding.BtnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String city = binding.SearchView.getQuery().toString().toLowerCase(Locale.ROOT);
+                List<Post> postBycity = new ArrayList<>();
+                if(posts!=null && !city.equals("")){
+                    for (Post p:posts) {
+                        if(p.getCity().toLowerCase(Locale.ROOT).equals(city))
+                            postBycity.add(p);
+                    }
+                    adapter =new Adapter_post(HomePage.this,postBycity);
+                }
+                else if (city.equals("")){
+                    adapter =new Adapter_post(HomePage.this,posts);
+                }
+                binding.RVPost.setAdapter(adapter);
+
+
+
+            }
+        });
 
 
         //refresh refresh layout -reload new data

@@ -58,7 +58,7 @@
                  app:queryHint="@string/city_search"
                  app:defaultQueryHint="@string/city_search"
                 android:background="@drawable/search_bar"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp" />
 
             <ImageButton
                 android:id="@+id/Btn_search"

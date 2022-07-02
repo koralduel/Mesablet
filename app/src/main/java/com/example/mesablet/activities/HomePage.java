@@ -130,6 +130,7 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         adapter =new Adapter_post(this,posts);
         binding.RVPost.setAdapter(adapter);
 
+
         binding.BtnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,6 +158,8 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
         binding.refreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                binding.SearchView.setQuery("",false);
+                binding.SearchView.clearFocus();
                 viewModel.reload();
             }
         });

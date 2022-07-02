@@ -2,6 +2,7 @@ package com.example.mesablet.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,11 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.mesablet.R;
@@ -21,12 +25,14 @@ import com.example.mesablet.activities.PostPage;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.entities.Post;
 import com.example.mesablet.viewmodels.PostsViewModel;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import io.grpc.okhttp.internal.Util;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class EditPostFragment extends DialogFragment implements View.OnClickListener {
 
@@ -49,6 +55,7 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
         this.post = (Post) bundle.getSerializable("post");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,8 +63,8 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
         storageRef = FirebaseStorage.getInstance().getReference();
 
         View view = inflater.inflate(R.layout.fragment_edit_post,container,false);
-        EditText start_date = view.findViewById(R.id.start_date);
-        EditText end_date = view.findViewById(R.id.end_date);
+        TextView start_date = view.findViewById(R.id.edit_Start_Date);
+        TextView end_date = view.findViewById(R.id.edit_end_Date);
         EditText address_value = view.findViewById(R.id.address_value);
         EditText price_value = view.findViewById(R.id.price_value);
         EditText description_value = view.findViewById(R.id.description_value);
@@ -66,6 +73,8 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
         upload_photo3 = view.findViewById(R.id.upload_photo3);
         Button saveBtn = view.findViewById(R.id.saveBtn);
         Button cancelBtn = view.findViewById(R.id.cancelBtn);
+        ImageButton Btn_editStartDate=view.findViewById(R.id.Btn_editStartDate);
+        ImageButton Btn_editendDate=view.findViewById(R.id.Btn_editendDate);
 
 
         uri1 = Uri.parse(post.getPost_photos_path());
@@ -102,9 +111,73 @@ public class EditPostFragment extends DialogFragment implements View.OnClickList
             startActivityForResult(galleryIntent,GALLERY_CODE3);
         });
 
+        MaterialDatePicker.Builder builder=MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("SELECT A DATE");
+        final MaterialDatePicker materialDatePicker = builder.build();
+
+        Btn_editStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialDatePicker.show(getActivity().getSupportFragmentManager(), "DATE_PICKER");
+            }
+        });
+
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                start_date.setText(materialDatePicker.getHeaderText());
+            }
+        });
+
+        MaterialDatePicker.Builder builder2=MaterialDatePicker.Builder.datePicker();
+        builder2.setTitleText("SELECT A DATE");
+        final MaterialDatePicker materialDatePicker2 = builder.build();
+
+        Btn_editendDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialDatePicker2.show(getActivity().getSupportFragmentManager(),"DATE_PICKER");
+            }
+        });
+
+        materialDatePicker2.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                end_date.setText(materialDatePicker2.getHeaderText());
+
+
+            }
+        });
+
 
         saveBtn.setOnClickListener(view1 -> {
-            if(!TextUtils.isEmpty(address_value.getText()) && !TextUtils.isEmpty(price_value.getText()) &&
+            String startDate=start_date.getText().toString();
+            String endDate= end_date.getText().toString();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH);
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.ENGLISH);
+            LocalDate datestart=null;
+            LocalDate dateend=null;
+            if(startDate.length()==11){
+                datestart = LocalDate.parse(startDate, formatter2);
+            }
+            else if(startDate.length()==12){
+                datestart = LocalDate.parse(startDate, formatter);
+            }
+            if(endDate.length()==11){
+                dateend = LocalDate.parse(endDate, formatter2);
+            }
+            else if(endDate.length()==12){
+                dateend = LocalDate.parse(endDate, formatter);
+            }
+
+            LocalDate today=LocalDate.now();
+
+            if( TextUtils.isEmpty(startDate) || TextUtils.isEmpty(endDate) ||datestart.isBefore(today) || datestart.isAfter(dateend)){
+                Toast.makeText(getActivity(),"Date is not valid",Toast.LENGTH_LONG).show();
+            }
+
+            else if(!TextUtils.isEmpty(address_value.getText()) && !TextUtils.isEmpty(price_value.getText()) &&
                     !TextUtils.isEmpty(description_value.getText())
                     && !TextUtils.isEmpty(start_date.getText()) && !TextUtils.isEmpty(end_date.getText())){
 

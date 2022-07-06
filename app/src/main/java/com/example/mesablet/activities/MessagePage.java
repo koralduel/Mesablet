@@ -55,21 +55,36 @@ public class MessagePage extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
 
         intent= getIntent();
-        String Post_owner_UID=intent.getStringExtra("Post_owner_UID");
-        String Post_owner_name=intent.getStringExtra("Post_owner_name");
-        String Post_owner_profileImg=intent.getStringExtra("Post_owner_profileImg");
+        String user1=intent.getStringExtra("user1");
+        String user2 = intent.getStringExtra("user2");
+        String user1_image_Path=intent.getStringExtra("user1_image_Path");
+        String user2_image_Path=intent.getStringExtra("user2_image_Path");
+        String user1_fullName=intent.getStringExtra("user1_fullName");
+        String user2_fullname= intent.getStringExtra("user2_fullname");
 
-        FireBase.downloadImage(Post_owner_profileImg,binding.IVProfilePhoto);
+        String me;
+        String otherUser_UID;
+        if(user.getUid().equals(user1)){
+            me=user1;
+            otherUser_UID=user2;
+            FireBase.downloadImage(user2_image_Path,binding.IVProfilePhoto);
+            binding.userChatWith.setText(user2_fullname);
+        }
+        else{
+            me=user2;
+            otherUser_UID=user1;
+            FireBase.downloadImage(user1_image_Path,binding.IVProfilePhoto);
+            binding.userChatWith.setText(user1_fullName);
+        }
 
-        binding.userChatWith.setText(Post_owner_name);
-        readMessage(user.getUid(),Post_owner_UID,Post_owner_profileImg,Post_owner_name);
+        readMessage(me, otherUser_UID, user1_image_Path,user2_image_Path,user1_fullName,user2_fullname);
 
         binding.BtnBackChats.setOnClickListener(view -> {finish();});
 
         binding.BtnSend.setOnClickListener(v -> {
             String msg=binding.ETMessageContent.getText().toString();
             if(!msg.equals("")){
-                sendMessage(user.getUid(),Post_owner_UID,msg);
+                sendMessage(user.getUid(),otherUser_UID,msg);
             }else{
                 Toast.makeText(this, getString(R.string.not_empty), Toast.LENGTH_SHORT).show();
             }
@@ -90,7 +105,7 @@ public class MessagePage extends AppCompatActivity {
             reference.push().setValue(hashMap);
         }
 
-        public void readMessage(String myid, String userid, String image_Path,String Post_owner_name){
+        public void readMessage(String myid, String userid, String user1_image_Path,String user2_image_Path,String user1_fullName,String user2_fullname){
             help="";
            reference=FirebaseDatabase.getInstance().getReference("Chats");
            reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -113,8 +128,10 @@ public class MessagePage extends AppCompatActivity {
                    HashMap<String,Object> chatHashMap=new HashMap<>();
                    chatHashMap.put("user1",myid);
                    chatHashMap.put("user2",userid);
-                   chatHashMap.put("otherUser_image_Path",image_Path);
-                   chatHashMap.put("otherUser_fullname",Post_owner_name);
+                   chatHashMap.put("user1_image_Path",user1_image_Path);
+                   chatHashMap.put("user1_fullname",user1_fullName);
+                   chatHashMap.put("user2_image_Path",user2_image_Path);
+                   chatHashMap.put("user2_fullname",user2_fullname);
                    reference.child(help).child("users").setValue(chatHashMap);
 
                    reference=FirebaseDatabase.getInstance().getReference("Chats");

@@ -85,9 +85,12 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         }else{
             viewHolder.btn_send_message.setOnClickListener(v -> {
                 Intent intent=new Intent(layoutInflater.getContext(), MessagePage.class);
-                intent.putExtra("Post_owner_UID",data.get(i).getPublisher_id());
-                intent.putExtra("Post_owner_name",data.get(i).getPublisher_name());
-                intent.putExtra("Post_owner_profileImg",data.get(i).getPost_photos_path());
+                intent.putExtra("user1",data.get(i).getPublisher_id());
+                intent.putExtra("user2",user.getUid());
+                intent.putExtra("user1_image_Path",data.get(i).getPost_photos_path());
+                intent.putExtra("user2_image_Path",user.getPhotoUrl().toString());
+                intent.putExtra("user1_fullName",data.get(i).getPublisher_name());
+                intent.putExtra("user2_fullname",user.getDisplayName());
                 layoutInflater.getContext().startActivity(intent);
             });
         }

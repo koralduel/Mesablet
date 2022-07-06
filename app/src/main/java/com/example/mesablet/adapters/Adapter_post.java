@@ -2,6 +2,7 @@ package com.example.mesablet.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mesablet.R;
@@ -22,6 +24,10 @@ import com.example.mesablet.interfaces.ClickInterface;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
@@ -103,6 +109,16 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
     }
 
     public void setPosts(List<Post> s){
+        Collections.sort(s, new Comparator<Post>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public int compare(Post o1, Post o2) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate post1=LocalDate.parse(o1.getPublish_date(),formatter);
+                LocalDate post2=LocalDate.parse(o2.getPublish_date(),formatter);
+                return post1.isAfter(post2) ? -1:1;
+            }
+        });
         data = s;
         notifyDataSetChanged();
     }

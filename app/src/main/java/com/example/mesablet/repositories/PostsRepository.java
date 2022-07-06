@@ -35,6 +35,7 @@ public class PostsRepository {
             setValue(new LinkedList<>());
         }
 
+
         @Override
         protected void onActive() {
             super.onActive();
@@ -65,6 +66,7 @@ public class PostsRepository {
     public static PostsRepository getPostsRepository() {
         return postsRepository;
     }
+
 }
 
 

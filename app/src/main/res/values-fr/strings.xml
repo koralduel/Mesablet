@@ -66,5 +66,7 @@
     <string name="city">Ville</string>
     <string name="enter_city">Entrez la ville</string>
     <string name="city_search">entrez la ville pour rechercher</string>
+    <string name="post">Poste</string>
+
 
 </resources>

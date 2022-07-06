@@ -134,6 +134,7 @@ public class RegisterFragment extends Fragment {
 
                     }else{
 
+                        String e =task.getException().getMessage();
                             Toast.makeText(getActivity(), R.string.errorRegister,Toast.LENGTH_LONG).show();
                         }
 

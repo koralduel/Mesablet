@@ -133,6 +133,7 @@ public class RegisterFragment extends Fragment {
                         });
 
                     }else{
+
                             Toast.makeText(getActivity(), R.string.errorRegister,Toast.LENGTH_LONG).show();
                         }
 

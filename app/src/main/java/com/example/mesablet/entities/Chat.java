@@ -16,15 +16,19 @@ public class Chat implements Serializable {
 
     String user1;
     String user2;
-    String otherUser_image_Path;
-    String otherUser_fullname;
+    String user1_image_Path;
+    String user1_fullname;
+    String user2_image_Path;
+    String user2_fullname;
 
 
-    public Chat(String user1, String user2, String otherUser_image_Path, String otherUser_fullname) {
+    public Chat(String user1, String user2, String user1_image_Path, String user1_fullname, String user2_image_Path, String user2_fullname) {
         this.user1 = user1;
         this.user2 = user2;
-        this.otherUser_image_Path = otherUser_image_Path;
-        this.otherUser_fullname = otherUser_fullname;
+        this.user1_image_Path = user1_image_Path;
+        this.user1_fullname = user1_fullname;
+        this.user2_image_Path = user2_image_Path;
+        this.user2_fullname = user2_fullname;
     }
 
     public Chat(){}
@@ -57,19 +61,49 @@ public class Chat implements Serializable {
         return this.getUser1();
     }
 
-    public String getOtherUser_image_Path() {
-        return otherUser_image_Path;
+    public String getOtherUser_fullname(){
+        if(user.getUid().equals(getUser1())){
+            return getUser2_fullname();
+        }
+        return user1_fullname;
     }
 
-    public void setOtherUser_image_Path(String otherUser_image_Path) {
-        this.otherUser_image_Path = otherUser_image_Path;
+    public String getOtherUser_image_Path(){
+        if(user.getUid().equals(getUser1())){
+            return getUser2_image_Path();
+        }
+        return user1_image_Path;
     }
 
-    public String getOtherUser_fullname() {
-        return otherUser_fullname;
+    public String getUser1_image_Path() {
+        return user1_image_Path;
     }
 
-    public void setOtherUser_fullname(String otherUser_fullname) {
-        this.otherUser_fullname = otherUser_fullname;
+    public void setUser1_image_Path(String user1_image_Path) {
+        this.user1_image_Path = user1_image_Path;
+    }
+
+    public String getUser1_fullname() {
+        return user1_fullname;
+    }
+
+    public void setUser1_fullname(String user1_fullname) {
+        this.user1_fullname = user1_fullname;
+    }
+
+    public String getUser2_image_Path() {
+        return user2_image_Path;
+    }
+
+    public void setUser2_image_Path(String user2_image_Path) {
+        this.user2_image_Path = user2_image_Path;
+    }
+
+    public String getUser2_fullname() {
+        return user2_fullname;
+    }
+
+    public void setUser2_fullname(String user2_fullname) {
+        this.user2_fullname = user2_fullname;
     }
 }

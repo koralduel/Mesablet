@@ -138,9 +138,8 @@ public class CreatePost extends AppCompatActivity {
                     && !TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate) && !TextUtils.isEmpty(city)){
 
                 viewModel.add(new Post(publisher_photo,publisher_name,imageUri.toString(),
-
                         imageUri2.toString(),videoUri.toString(),description,address,price,user.getUid(),
-                        startDate,endDate,city));
+                        startDate,endDate,city,today.toString()));
 
 
                 Intent intent = new Intent(this,HomePage.class);

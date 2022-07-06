@@ -25,7 +25,7 @@
     <string name="price">Prix</string>
     <string name="enter_price">Entrez Prix</string>
     <string name="description">La description</string>
-    <string name="localDb">localdataBase</string>
+    <string name="localDb">localDB</string>
     <string name="user_name">Nom d\'utilisateur</string>
     <string name="add_post">Ajouter un article</string>
     <string name="messenger">messager</string>

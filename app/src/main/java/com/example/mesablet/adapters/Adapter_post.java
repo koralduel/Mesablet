@@ -55,6 +55,7 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
             Intent intent=new Intent(layoutInflater.getContext(), Profile_page.class);
             intent.putExtra("userUid",data.get(i).getPublisher_id());
             intent.putExtra("user_fullname",data.get(i).getPublisher_name());
+            intent.putExtra("user_imagepath",data.get(i).getPublisher_image_path());
             layoutInflater.getContext().startActivity(intent);
         });
 

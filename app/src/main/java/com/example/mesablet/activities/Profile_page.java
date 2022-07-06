@@ -11,7 +11,6 @@ import com.example.mesablet.adapters.GridAdapter;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.databinding.ActivityProfilePageBinding;
 import com.example.mesablet.entities.Post;
-import com.example.mesablet.fragments.EditPostFragment;
 import com.example.mesablet.fragments.EditProfile;
 import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,6 +42,7 @@ public class Profile_page extends AppCompatActivity {
         intent= getIntent();
         String userUid=intent.getStringExtra("userUid");
         String user_fullname=intent.getStringExtra("user_fullname");
+        String user_imagepath=intent.getStringExtra("user_imagepath");
 
 
 
@@ -79,9 +79,12 @@ public class Profile_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Profile_page.this, MessagePage.class);
-                intent.putExtra("Post_owner_UID",userUid);
-                intent.putExtra("Post_owner_name",user_fullname);
-                intent.putExtra("Post_owner_profileImg",posts.get(0).getPublisher_image_path());
+                intent.putExtra("user1",userUid);
+                intent.putExtra("user2",user.getUid());
+                intent.putExtra("user1_image_Path",user_imagepath);
+                intent.putExtra("user2_image_Path",user.getPhotoUrl().toString());
+                intent.putExtra("user1_fullName",user_fullname);
+                intent.putExtra("user2_fullname",user.getDisplayName());
                 startActivity(intent);
             }
         });

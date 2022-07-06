@@ -62,22 +62,28 @@ public class MessagePage extends AppCompatActivity {
         String user1_fullName=intent.getStringExtra("user1_fullName");
         String user2_fullname= intent.getStringExtra("user2_fullname");
 
-        String me;
-        String otherUser_UID;
+        String me,my_image,my_fullName;
+        String otherUser_UID,other_image,other_fullname;
         if(user.getUid().equals(user1)){
             me=user1;
+            my_image=user1_image_Path;
+            my_fullName=user1_fullName;
             otherUser_UID=user2;
-            FireBase.downloadImage(user2_image_Path,binding.IVProfilePhoto);
-            binding.userChatWith.setText(user2_fullname);
+            other_image=user2_image_Path;
+            other_fullname=user2_fullname;
         }
         else{
             me=user2;
+            my_image=user2_image_Path;
+            my_fullName=user2_fullname;
             otherUser_UID=user1;
-            FireBase.downloadImage(user1_image_Path,binding.IVProfilePhoto);
-            binding.userChatWith.setText(user1_fullName);
-        }
+            other_image=user1_image_Path;
+            other_fullname=user1_fullName;
 
-        readMessage(me, otherUser_UID, user1_image_Path,user2_image_Path,user1_fullName,user2_fullname);
+        }
+        FireBase.downloadImage(other_image,binding.IVProfilePhoto);
+        binding.userChatWith.setText(other_fullname);
+        readMessage(me, otherUser_UID, my_image,other_image,my_fullName,other_fullname);
 
         binding.BtnBackChats.setOnClickListener(view -> {finish();});
 

@@ -87,7 +87,7 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
                 Intent intent=new Intent(layoutInflater.getContext(), MessagePage.class);
                 intent.putExtra("user1",data.get(i).getPublisher_id());
                 intent.putExtra("user2",user.getUid());
-                intent.putExtra("user1_image_Path",data.get(i).getPost_photos_path());
+                intent.putExtra("user1_image_Path",publisher_image);
                 intent.putExtra("user2_image_Path",user.getPhotoUrl().toString());
                 intent.putExtra("user1_fullName",data.get(i).getPublisher_name());
                 intent.putExtra("user2_fullname",user.getDisplayName());

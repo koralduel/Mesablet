@@ -142,6 +142,32 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/LL_PubishDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/TV_PublishDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/publish_date"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/TV_Publish_date_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/publish_date"
+                android:textColor="@color/black" />
+
+
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/LL_Date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -80,6 +80,9 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         String end_date = data.get(i).getEndDate();
         viewHolder.end_date.setText(end_date);
 
+        String publish_date = data.get(i).getPublish_date();
+        viewHolder.publish_date.setText(publish_date);
+
         if(user.getUid().equals(data.get(i).getPublisher_id())){
             viewHolder.btn_send_message.setEnabled(true);
             viewHolder.btn_send_message.setVisibility(View.GONE);
@@ -121,7 +124,7 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
         Button btn_send_message;
         Button btn_add_favorite;
         ImageView post_photos;
-        TextView publisher_name,post_context,post_Address,post_Price,start_date,end_date;
+        TextView publisher_name,post_context,post_Address,post_Price,start_date,end_date,publish_date;
 
         public ViewHolder(@NonNull View itemView,ClickInterface clickInterface) {
             super(itemView);
@@ -134,6 +137,7 @@ public class Adapter_post extends RecyclerView.Adapter<Adapter_post.ViewHolder>{
             btn_send_message=itemView.findViewById(R.id.btn_send_message);
             start_date = itemView.findViewById(R.id.TV_Start_Date);
             end_date = itemView.findViewById(R.id.TV_End_Date);
+            publish_date = itemView.findViewById(R.id.TV_Publish_date);
 
 
 

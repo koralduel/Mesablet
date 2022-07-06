@@ -67,6 +67,7 @@
     <string name="enter_city">Entrez la ville</string>
     <string name="city_search">entrez la ville pour rechercher</string>
     <string name="post">Poste</string>
+    <string name="publish_date">Date de publication</string>
 
 
 </resources>

@@ -66,6 +66,7 @@
     <string name="enter_city">Enter City</string>
     <string name="city_search">enter city to search</string>
     <string name="post">Post</string>
+    <string name="publish_date">Publish Date</string>
 
 
 </resources>

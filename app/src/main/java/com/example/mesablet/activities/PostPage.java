@@ -49,6 +49,7 @@ public class PostPage extends AppCompatActivity implements ICallable {
         binding.TvPostContent.setText(post.getPost_context());
         binding.TVStartDate.setText(post.getStartDate());
         binding.TVEndDate.setText(post.getEndDate());
+        binding.TVPublishDateValue.setText(post.getPublish_date());
         List<Bitmap> bitmapList = new ArrayList<>();
 
         FireBase.downloadVideo(post.getPost_photos_path2(),binding.postVideoSwitcher);

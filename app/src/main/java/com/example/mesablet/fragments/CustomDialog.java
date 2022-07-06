@@ -76,6 +76,12 @@ public class CustomDialog extends DialogFragment {
         }
 
         int nightModeFlag= getContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         if(nightModeFlag == Configuration.UI_MODE_NIGHT_YES)
             darkModeSwitch.setChecked(true);
 

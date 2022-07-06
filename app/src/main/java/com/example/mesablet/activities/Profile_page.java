@@ -11,6 +11,7 @@ import com.example.mesablet.adapters.GridAdapter;
 import com.example.mesablet.data.FireBase;
 import com.example.mesablet.databinding.ActivityProfilePageBinding;
 import com.example.mesablet.entities.Post;
+import com.example.mesablet.fragments.CustomDialog;
 import com.example.mesablet.fragments.EditProfile;
 import com.example.mesablet.viewmodels.PostsViewModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,6 +70,18 @@ public class Profile_page extends AppCompatActivity {
             Intent intent = new Intent(this,PostPage.class);
             intent.putExtra("post",selectedPost);
             startActivity(intent);
+        });
+
+        binding.topAppBar.setOnMenuItemClickListener(menuItem -> {
+            if(menuItem.getTitle().equals(getString(R.string.settings))) {
+                CustomDialog customDialog=new CustomDialog();
+                customDialog.show(getSupportFragmentManager(),"");
+            }
+            if(menuItem.getTitle().equals(getString(R.string.messenger))){
+                Intent intent = new Intent(this,ChatActivity.class);
+                startActivity(intent);
+            }
+            return true;
         });
 
         FireBase.downloadImage(user.getPhotoUrl().toString(),binding.IVProfilePhoto);

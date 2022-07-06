@@ -69,7 +69,7 @@
                     android:layout_width="150dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_image" />
+                    android:src="@drawable/ic_upload" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                     android:layout_width="150dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_image" />
+                    android:src="@drawable/ic_upload" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Upload Video" />
+                    android:text="@string/upload_video" />
             </LinearLayout>
 
         </LinearLayout>

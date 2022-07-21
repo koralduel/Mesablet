@@ -48,15 +48,33 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/Search_View"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/search_bar" />
+            android:orientation="horizontal"
+            android:gravity="center">
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/Search_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                app:iconifiedByDefault="false"
+                app:searchIcon="@null"
+                app:queryHint="@string/city_search"
+                app:defaultQueryHint="@string/city_search"
+                android:background="@drawable/search_bar"
+                android:layout_marginBottom="5dp" />
+
+            <ImageButton
+                android:id="@+id/Btn_search"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_search"
+                android:background="@drawable/search_button"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
 
     </LinearLayout>
 

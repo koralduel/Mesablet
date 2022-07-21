@@ -67,6 +67,9 @@
     <string name="city_search">enter city to search</string>
     <string name="post">Post</string>
     <string name="publish_date">Publish Date</string>
+    <string name="SELECT_A_DATE">SELECT A DATE</string>
+    <string name="Date_is_not_valid">Date is not valid</string>
+    <string name="Feed_updated">Feed updated</string>
 
 
 </resources>

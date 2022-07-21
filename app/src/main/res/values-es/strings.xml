@@ -68,5 +68,8 @@
     <string name="city_search">ingrese la ciudad para buscar</string>
     <string name="post">Publicacione</string>
     <string name="publish_date">Fecha de publicación</string>
+    <string name="SELECT_A_DATE">SELECCIONA UNA FECHA</string>
+    <string name="Date_is_not_valid">La fecha no es válida</string>
+    <string name="Feed_updated">Feed actualizado</string>
 
 </resources>

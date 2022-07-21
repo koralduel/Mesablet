@@ -170,7 +170,7 @@ public class FireBase {
                 }
             });
         } catch (IOException e) {
-            Log.d("eynav",e.getMessage().toString());
+
         }
     }
 
@@ -187,7 +187,7 @@ public class FireBase {
                 }
             });
         } catch (IOException e) {
-            Log.d("eynav",e.getMessage().toString());
+
         }
 
     }
@@ -202,7 +202,7 @@ public class FireBase {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("eynav",e.getMessage().toString());
+
             }
         });
 

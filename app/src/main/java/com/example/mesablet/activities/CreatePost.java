@@ -63,7 +63,7 @@ public class CreatePost extends AppCompatActivity {
         String publisher_name = user.getDisplayName();
 
         MaterialDatePicker.Builder builder=MaterialDatePicker.Builder.datePicker();
-        builder.setTitleText("SELECT A DATE");
+        builder.setTitleText(R.string.SELECT_A_DATE);
         final MaterialDatePicker materialDatePicker = builder.build();
 
         binding.BtnStartDate.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +81,7 @@ public class CreatePost extends AppCompatActivity {
         });
 
         MaterialDatePicker.Builder builder2=MaterialDatePicker.Builder.datePicker();
-        builder2.setTitleText("SELECT A DATE");
+        builder2.setTitleText(R.string.SELECT_A_DATE);
         final MaterialDatePicker materialDatePicker2 = builder.build();
 
 
@@ -130,7 +130,7 @@ public class CreatePost extends AppCompatActivity {
             LocalDate today=LocalDate.now();
 
             if( TextUtils.isEmpty(startDate) || TextUtils.isEmpty(endDate) ||datestart.isBefore(today) || datestart.isAfter(dateend)){
-                Toast.makeText(this,"Date is not valid",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.Date_is_not_valid,Toast.LENGTH_LONG).show();
             }
 
             //Validation check

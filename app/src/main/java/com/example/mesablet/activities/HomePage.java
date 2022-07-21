@@ -191,7 +191,7 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
             binding.refreshlayout.setRefreshing(false);
         });
 
-        Toast.makeText(this, "Feed updated", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.Feed_updated, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -84,7 +84,7 @@ public class Profile_page extends AppCompatActivity {
             return true;
         });
 
-        FireBase.downloadImage(user.getPhotoUrl().toString(),binding.IVProfilePhoto);
+        FireBase.downloadImage(user_imagepath,binding.IVProfilePhoto);
         binding.TvFullName.setText(user_fullname);
         binding.topAppBar.setTitle(user_fullname);
         

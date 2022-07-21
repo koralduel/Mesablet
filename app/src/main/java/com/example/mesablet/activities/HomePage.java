@@ -127,6 +127,7 @@ public class HomePage extends AppCompatActivity implements ClickInterface {
                 Intent intent=new Intent(this, Profile_page.class);
                 intent.putExtra("userUid",user.getUid());
                 intent.putExtra("user_fullname",user.getDisplayName());
+                intent.putExtra("user_imagepath",user.getPhotoUrl().toString());
                 startActivity(intent);
             }
             else if(item.getTitle().equals(getString(R.string.logout))){

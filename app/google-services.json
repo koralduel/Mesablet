@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "65116004321",
-    "project_id": "mesublet-4a7e7",
-    "storage_bucket": "mesublet-4a7e7.appspot.com"
+    "project_number": "212333794519",
+    "firebase_url": "https://mesublet-de1d8-default-rtdb.firebaseio.com",
+    "project_id": "mesublet-de1d8",
+    "storage_bucket": "mesublet-de1d8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:65116004321:android:db514c36dd3a9854e23ca0",
+        "mobilesdk_app_id": "1:212333794519:android:3a3bc762d1bffc712b4c92",
         "android_client_info": {
           "package_name": "com.example.mesablet"
         }
       },
       "oauth_client": [
         {
-          "client_id": "65116004321-ka0mudjuivrl0cn9chafgtutrc9o3f1r.apps.googleusercontent.com",
+          "client_id": "212333794519-vpciqrmvv9p3goi6crpm9almmbmvus3b.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAWSPm0woV_KjJUnzOCE09ZN-I9mRWWKv0"
+          "current_key": "AIzaSyAAfU8QeM1_QywwhvDyNg7JSO_7TX6R3tU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "65116004321-ka0mudjuivrl0cn9chafgtutrc9o3f1r.apps.googleusercontent.com",
+              "client_id": "212333794519-vpciqrmvv9p3goi6crpm9almmbmvus3b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
